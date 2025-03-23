@@ -45,13 +45,13 @@
       transform: scale(1.1);
     }
 
-    /* Active state for mobile (tap-to-activate) */
+    /* for mobile*/
     .grid-item.active {
       filter: blur(0) !important;
       transform: scale(1.1) !important;
     }
 
-    /* Assign background images for each quadrant */
+    /* Assign background images*/
     .item-1 {
       background-image: url('image/gate.jpg');
     }
@@ -68,7 +68,7 @@
       background-image: url('image/asiana.jpg');
     }
 
-    /* Styling for text overlay on each grid item */
+    /* grid item */
     .grid-text {
       position: absolute;
       top: 50%;
@@ -79,7 +79,7 @@
       color: white;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
       pointer-events: none;
-      /* so text doesn't block the hover event */
+      /* text doesn't block the hover event */
     }
 
     /* Center button styling */
@@ -110,6 +110,15 @@
     /* Optional: Adjust button hover state */
     .center-button:hover {
       background-color: rgba(255, 255, 255, 1);
+    }
+
+    /* Media query to adjust the button size on mobile devices */
+    @media (max-width: 600px) {
+      .center-button {
+        width: 200px;
+        height: 200px;
+        font-size: 24px;
+      }
     }
   </style>
 </head>
