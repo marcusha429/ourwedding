@@ -124,6 +124,7 @@
 </head>
 
 <body>
+  <audio id="background-music" loop autoplay></audio>
   <div class="container">
     <div class="grid-item item-1">
       <div class="grid-text">Wish for us:</div>
@@ -144,6 +145,32 @@
     </button>
   </div>
   <script>
+    const songs = [
+      "music/couple.mp3",
+      "music/onlyoneforme.mp3",
+    ];
+
+    const audio = document.getElementById('background-music');
+
+    // Function to play a random song from the playlist
+    function playRandomSong() {
+      const randomIndex = Math.floor(Math.random() * songs.length);
+      audio.src = songs[randomIndex];
+      audio.play().catch(error => {
+        console.log("Audio play failed: " + error);
+      });
+    }
+
+    // When the current song ends, play another random song
+    audio.addEventListener('ended', playRandomSong);
+
+    // Start playing a random song on first user interaction if auto-play is blocked
+    document.addEventListener('click', function () {
+      if (audio.paused) {
+        playRandomSong();
+      }
+    });
+
     // For mobile devices: implement tap-to-activate effect on grid items.
     const gridItems = document.querySelectorAll('.grid-item');
 
@@ -166,7 +193,6 @@
     // For the first grid item ("Wish for us:"), navigate to wish.html on click/tap.
     const wishGrid = document.querySelector('.item-1');
     wishGrid.addEventListener('click', function (e) {
-      // Prevent default behavior and stop propagation
       e.preventDefault();
       e.stopPropagation();
       window.location.href = 'wish.html';
