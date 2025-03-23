@@ -32,6 +32,7 @@
 
     /* Each grid item covers one-quarter of the screen */
     .grid-item {
+      position: relative;
       background-size: cover;
       background-position: center;
       filter: blur(5px);
@@ -42,6 +43,12 @@
     .grid-item:hover {
       filter: blur(0);
       transform: scale(1.1);
+    }
+
+    /* Active state for mobile (tap-to-activate) */
+    .grid-item.active {
+      filter: blur(0) !important;
+      transform: scale(1.1) !important;
     }
 
     /* Assign background images for each quadrant */
@@ -127,6 +134,25 @@
       Celebration
     </button>
   </div>
+  <script>
+    // For mobile devices: implement tap-to-activate effect.
+    // When a grid item is tapped, toggle the active class.
+    const gridItems = document.querySelectorAll('.grid-item');
+
+    gridItems.forEach(item => {
+      item.addEventListener('touchstart', function (e) {
+        e.stopPropagation(); // Prevent multiple events from firing
+        // Toggle active state on the tapped item
+        if (this.classList.contains('active')) {
+          this.classList.remove('active');
+        } else {
+          // Optionally, remove active state from other grid items
+          gridItems.forEach(i => i.classList.remove('active'));
+          this.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
