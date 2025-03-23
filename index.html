@@ -20,6 +20,12 @@
       font-family: Arial, sans-serif;
     }
 
+    #content {
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+
     /* Container uses grid to split into four equal areas */
     .container {
       position: relative;
@@ -125,24 +131,26 @@
 
 <body>
   <audio id="background-music" loop autoplay></audio>
-  <div class="container">
-    <div class="grid-item item-1">
-      <div class="grid-text">Wish for us:</div>
+  <div id="content">
+    <div class="container">
+      <div class="grid-item item-1">
+        <div class="grid-text">Wish for us:</div>
+      </div>
+      <div class="grid-item item-2">
+        <div class="grid-text">Meet the bride</div>
+      </div>
+      <div class="grid-item item-3">
+        <div class="grid-text">Our Church</div>
+      </div>
+      <div class="grid-item item-4">
+        <div class="grid-text">Our Restaurant</div>
+      </div>
+      <button class="center-button">
+        Join<br>
+        Our<br>
+        Celebration
+      </button>
     </div>
-    <div class="grid-item item-2">
-      <div class="grid-text">Meet the bride</div>
-    </div>
-    <div class="grid-item item-3">
-      <div class="grid-text">Our Church</div>
-    </div>
-    <div class="grid-item item-4">
-      <div class="grid-text">Our Restaurant</div>
-    </div>
-    <button class="center-button">
-      Join<br>
-      Our<br>
-      Celebration
-    </button>
   </div>
   <script>
     const songs = [
@@ -164,39 +172,47 @@
     // When the current song ends, play another random song
     audio.addEventListener('ended', playRandomSong);
 
-    // Start playing a random song on first user interaction if auto-play is blocked
+    // Start playing a random song on first user interaction (autoplay workaround)
     document.addEventListener('click', function () {
       if (audio.paused) {
         playRandomSong();
       }
     });
 
-    // For mobile devices: implement tap-to-activate effect on grid items.
-    const gridItems = document.querySelectorAll('.grid-item');
+    // Preserve the main content so we can restore it
+    const contentContainer = document.getElementById('content');
+    const mainContent = contentContainer.innerHTML;
 
-    gridItems.forEach(item => {
-      item.addEventListener('touchstart', function (e) {
-        e.stopPropagation(); // Prevent multiple events from firing
-        // For grid items other than item-1, toggle active state
-        if (!this.classList.contains('item-1')) {
-          if (this.classList.contains('active')) {
-            this.classList.remove('active');
-          } else {
-            // Remove active state from other grid items
-            gridItems.forEach(i => i.classList.remove('active'));
-            this.classList.add('active');
+    // Attach click listener to the "Wish for us:" grid item to load wish page content
+    function attachGridListeners() {
+      const wishGrid = document.querySelector('.item-1');
+      if (wishGrid) {
+        wishGrid.addEventListener('click', function (e) {
+          e.preventDefault();
+          loadWishPage();
+        });
+      }
+    }
+
+    attachGridListeners();
+
+    // Dynamically load wish page content without a full page reload
+    function loadWishPage() {
+      fetch('wish.html')
+        .then(response => response.text())
+        .then(data => {
+          contentContainer.innerHTML = data;
+          // Attach a listener to the Back button in the wish page to restore main content
+          const backButton = document.getElementById('back-button');
+          if (backButton) {
+            backButton.addEventListener('click', function () {
+              contentContainer.innerHTML = mainContent;
+              attachGridListeners();
+            });
           }
-        }
-      });
-    });
-
-    // For the first grid item ("Wish for us:"), navigate to wish.html on click/tap.
-    const wishGrid = document.querySelector('.item-1');
-    wishGrid.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      window.location.href = 'wish.html';
-    });
+        })
+        .catch(error => console.error('Error loading wish page:', error));
+    }
   </script>
 </body>
 
