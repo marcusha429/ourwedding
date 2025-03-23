@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset margin/padding and ensure full height */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Container uses grid to split into four equal areas */
+    .container {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 100%;
+      width: 100%;
+    }
+
+    /* Each grid item covers one-quarter of the screen */
+    .grid-item {
+      background-size: cover;
+      background-position: center;
+      filter: blur(5px);
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Remove blur and zoom in on hover */
+    .grid-item:hover {
+      filter: blur(0);
+      transform: scale(1.1);
+    }
+
+    /* Assign background images for each quadrant */
+    .item-1 {
+      background-image: url('image/gate.jpg');
+    }
+
+    .item-2 {
+      background-image: url('image/car.jpg');
+    }
+
+    .item-3 {
+      background-image: url('image/tcl.jpg');
+    }
+
+    .item-4 {
+      background-image: url('image/asiana.jpg');
+    }
+
+    /* Styling for text overlay on each grid item */
+    .grid-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 30px;
+      font-family: 'Playfair Display', serif;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+      pointer-events: none;
+      /* so text doesn't block the hover event */
+    }
+
+    /* Center button styling */
+    .center-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
+      z-index: 10;
+      padding: 15px 30px;
+      font-size: 30px;
+      font-family: 'Playfair Display', serif;
+      background-color: rgba(255, 255, 255, 0.85);
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      line-height: 1.5;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Optional: Adjust button hover state */
+    .center-button:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="grid-item item-1">
+      <div class="grid-text">Wish for us:</div>
+    </div>
+    <div class="grid-item item-2">
+      <div class="grid-text">Meet the bride</div>
+    </div>
+    <div class="grid-item item-3">
+      <div class="grid-text">Our Church</div>
+    </div>
+    <div class="grid-item item-4">
+      <div class="grid-text">Our Restaurant</div>
+    </div>
+    <button class="center-button">
+      Join<br>
+      Our<br>
+      Celebration
+    </button>
+  </div>
+</body>
+
+</html>
