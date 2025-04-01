@@ -46,35 +46,44 @@
       transition: filter 0.3s ease, transform 0.3s ease;
     }
 
-    /* Remove blur and zoom in on hover */
-    .grid-item:hover {
-      filter: blur(0);
-      transform: scale(1.1);
+    /* Remove blur and zoom in on hover (desktop only) */
+    @media (min-width: 769px) {
+      .grid-item:hover {
+        filter: blur(0);
+        transform: scale(1.1);
+      }
     }
 
-    /* For mobile: active state */
+    /* Active state for mobile and desktop */
     .grid-item.active {
       filter: blur(0) !important;
       transform: scale(1.1) !important;
+    }
+
+    /* Ready-to-navigate state with visual indicator */
+    .grid-item.ready {
+      box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.8);
     }
 
     /* Assign background images */
     .item-1 {
       background-image: url('image/gate.jpg');
       cursor: pointer;
-      /* indicate clickability */
     }
 
     .item-2 {
       background-image: url('image/car.jpg');
+      cursor: pointer;
     }
 
     .item-3 {
       background-image: url('image/tcl.jpg');
+      cursor: pointer;
     }
 
     .item-4 {
       background-image: url('image/asiana.jpg');
+      cursor: pointer;
     }
 
     /* Grid text styling */
@@ -88,6 +97,29 @@
       color: white;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
       pointer-events: none;
+    }
+
+    /* Tap instruction for mobile */
+    .tap-instruction {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 5px 10px;
+      border-radius: 15px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 5;
+      text-align: center;
+      width: 90%;
+    }
+
+    .grid-item.active .tap-instruction {
+      opacity: 1;
     }
 
     /* Center button styling */
@@ -120,59 +152,69 @@
     }
 
     /* Audio controls */
-    .music-controls {
+    #music-toggle {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      z-index: 100;
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 10px;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 12px;
       border-radius: 50%;
       cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .music-controls:hover {
-      opacity: 1;
+    #music-toggle:hover {
+      transform: scale(1.1);
+      background-color: rgba(255, 255, 255, 1);
     }
 
-    .music-controls svg {
+    #music-toggle svg {
       width: 24px;
       height: 24px;
+      pointer-events: none;
     }
 
     /* Media query for mobile */
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       .center-button {
         width: 200px;
         height: 200px;
         font-size: 24px;
       }
-    }
 
-    /* Hidden audio iframe */
-    #music-frame {
-      display: none;
+      .grid-text {
+        font-size: 24px;
+      }
+
+      #music-toggle {
+        width: 56px;
+        height: 56px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- Hidden music player iframe (will always be in the background) -->
-  <iframe id="music-frame" src="music-player.html"></iframe>
+  <!-- Audio player -->
+  <audio id="background-music" loop></audio>
 
   <!-- Music control button -->
-  <div class="music-controls" id="music-toggle">
+  <div id="music-toggle">
     <svg xmlns="http://www.w3.org/2000/svg" id="music-on" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2">
+      stroke-width="2" style="display: none;">
       <path d="M9 18V5l12-2v13"></path>
       <circle cx="6" cy="18" r="3"></circle>
       <circle cx="18" cy="16" r="3"></circle>
     </svg>
     <svg xmlns="http://www.w3.org/2000/svg" id="music-off" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2" style="display: none;">
+      stroke-width="2">
       <path d="M9 18V5l12-2v13"></path>
       <circle cx="6" cy="18" r="3"></circle>
       <circle cx="18" cy="16" r="3"></circle>
@@ -185,15 +227,19 @@
     <div class="container">
       <div class="grid-item item-1">
         <div class="grid-text">Wish for us:</div>
+        <div class="tap-instruction">Tap again to continue</div>
       </div>
       <div class="grid-item item-2">
         <div class="grid-text">Meet the bride</div>
+        <div class="tap-instruction">Tap again to continue</div>
       </div>
       <div class="grid-item item-3">
         <div class="grid-text">Our Church</div>
+        <div class="tap-instruction">Tap again to continue</div>
       </div>
       <div class="grid-item item-4">
         <div class="grid-text">Our Restaurant</div>
+        <div class="tap-instruction">Tap again to continue</div>
       </div>
       <button class="center-button">
         Join<br>
@@ -204,49 +250,154 @@
   </div>
 
   <script>
-    // Music toggle functionality
+    // Music functionality
+    // Songs to play
+    const songs = [
+      "music/couple.mp3",
+      "music/onlyoneforme.mp3"
+    ];
+
+    // Audio elements
+    const audioPlayer = document.getElementById('background-music');
     const musicToggle = document.getElementById('music-toggle');
     const musicOn = document.getElementById('music-on');
     const musicOff = document.getElementById('music-off');
 
-    // Initially show music as off
-    musicOn.style.display = 'none';
-    musicOff.style.display = 'block';
+    // Audio state
+    let isPlaying = false;
+    let currentSongIndex = Math.floor(Math.random() * songs.length);
 
-    // Communication with the music player iframe
-    function sendMessageToMusicPlayer(action) {
-      const iframe = document.getElementById('music-frame');
-      if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.postMessage({ action: action }, '*');
-      }
-    }
+    // Initialize music
+    function initMusic() {
+      // Load a random song
+      audioPlayer.src = songs[currentSongIndex];
+      audioPlayer.load();
 
-    // Listen for messages from the music iframe
-    window.addEventListener('message', function (event) {
-      if (event.data && event.data.status) {
-        if (event.data.status === 'playing') {
-          musicOn.style.display = 'block';
-          musicOff.style.display = 'none';
-        } else if (event.data.status === 'paused') {
-          musicOn.style.display = 'none';
-          musicOff.style.display = 'block';
-        }
-      }
-    });
-
-    // Toggle music on/off
-    musicToggle.addEventListener('click', function () {
-      sendMessageToMusicPlayer('toggle');
-    });
-
-    // When "Wish for us:" grid item is clicked, navigate to wish.html
-    const wishGrid = document.querySelector('.item-1');
-    if (wishGrid) {
-      wishGrid.addEventListener('click', function (e) {
-        e.preventDefault();
-        window.location.href = 'wish.html';
+      // Set up when song ends
+      audioPlayer.addEventListener('ended', function () {
+        currentSongIndex = (currentSongIndex + 1) % songs.length;
+        audioPlayer.src = songs[currentSongIndex];
+        audioPlayer.play().catch(e => console.log("Error playing next song:", e));
       });
+
+      // Toggle button click
+      musicToggle.addEventListener('click', function () {
+        if (audioPlayer.paused) {
+          audioPlayer.play().then(() => {
+            isPlaying = true;
+            updateMusicControls();
+          }).catch(e => console.log("Error playing audio:", e));
+        } else {
+          audioPlayer.pause();
+          isPlaying = false;
+          updateMusicControls();
+        }
+      });
+
+      // Initialize controls
+      updateMusicControls();
     }
+
+    // Update music control appearance
+    function updateMusicControls() {
+      if (isPlaying) {
+        musicOn.style.display = 'block';
+        musicOff.style.display = 'none';
+      } else {
+        musicOn.style.display = 'none';
+        musicOff.style.display = 'block';
+      }
+    }
+
+    // Initialize music when DOM is loaded
+    document.addEventListener('DOMContentLoaded', initMusic);
+
+    // Grid navigation
+    // Set up grid items for two-click navigation
+    const gridItems = document.querySelectorAll('.grid-item');
+
+    // For each grid item
+    gridItems.forEach((item) => {
+      // Track if this is the first click
+      let isFirstClick = true;
+
+      // Add click handler
+      item.addEventListener('click', function (e) {
+        // If this is the first click, just activate the item
+        if (isFirstClick) {
+          e.preventDefault();
+
+          // Clear any other active items
+          gridItems.forEach(otherItem => {
+            if (otherItem !== item) {
+              otherItem.classList.remove('active');
+              otherItem.classList.remove('ready');
+            }
+          });
+
+          // Make this item active
+          item.classList.add('active');
+          item.classList.add('ready');
+
+          // Set to second click for next time
+          isFirstClick = false;
+
+          // Reset to first click after delay (if user doesn't click again)
+          setTimeout(() => {
+            if (!item.classList.contains('active')) return;
+            isFirstClick = true;
+            item.classList.remove('active');
+            item.classList.remove('ready');
+          }, 5000); // Reset after 5 seconds of inactivity
+
+          return;
+        }
+
+        // For the second click, navigate based on which grid was clicked
+        if (item.classList.contains('item-1')) {
+          // Store music state before navigating
+          localStorage.setItem('weddingMusicPlaying', isPlaying);
+          localStorage.setItem('weddingMusicIndex', currentSongIndex);
+          localStorage.setItem('weddingMusicTime', audioPlayer.currentTime);
+
+          window.location.href = 'wish.html';
+        } else if (item.classList.contains('item-2')) {
+          // Navigate to bride page
+          // window.location.href = 'bride.html';
+          alert('Meet the bride page will be coming soon!');
+        } else if (item.classList.contains('item-3')) {
+          // Navigate to church page
+          // window.location.href = 'church.html';
+          alert('Our church page will be coming soon!');
+        } else if (item.classList.contains('item-4')) {
+          // Navigate to restaurant page
+          // window.location.href = 'restaurant.html';
+          alert('Our restaurant page will be coming soon!');
+        }
+      });
+    });
+
+    // Handle touch events specifically for better mobile experience
+    let touchStartTime = 0;
+    let touchEndTime = 0;
+
+    gridItems.forEach((item) => {
+      // On quick taps (less than 300ms), we'll treat as a single action
+      // This helps with scrolling vs clicking on mobile
+
+      item.addEventListener('touchstart', function (e) {
+        touchStartTime = new Date().getTime();
+      });
+
+      item.addEventListener('touchend', function (e) {
+        touchEndTime = new Date().getTime();
+
+        // If touch was quick, prevent default action to avoid scrolling
+        if (touchEndTime - touchStartTime < 300) {
+          e.preventDefault();
+        }
+      });
+    });
   </script>
 </body>
 
