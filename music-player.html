@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Music Player</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .music-player {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .music-player h1 {
+            margin-top: 0;
+            color: #e91e63;
+        }
+
+        .music-player p {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: linear-gradient(45deg, #f8bbd0, #e91e63);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #e91e63, #f8bbd0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="music-player">
+        <h1>Wedding Music Player</h1>
+        <p>This is the background music player for our wedding invitation</p>
+        <p>Current song: <span id="current-song">Loading...</span></p>
+        <div>
+            <button id="prev-btn">Previous</button>
+            <button id="toggle-btn">Pause</button>
+            <button id="next-btn">Next</button>
+        </div>
+    </div>
+
+    <!-- Hidden audio element -->
+    <audio id="audio-player" autoplay></audio>
+
+    <script>
+        // Music configuration
+        const songs = [
+            "music/couple.mp3",
+            "music/onlyoneforme.mp3"
+        ];
+
+        // DOM elements
+        const audioPlayer = document.getElementById('audio-player');
+        const currentSongDisplay = document.getElementById('current-song');
+        const toggleBtn = document.getElementById('toggle-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        // State variables
+        let currentSongIndex = 0;
+        let isPlaying = false; // Start with music off
+
+        // Initialize the player with a random song, but don't play automatically
+        window.onload = function () {
+            // Start with a random song
+            currentSongIndex = Math.floor(Math.random() * songs.length);
+            loadSongWithoutPlaying();
+
+            // Update UI to show paused state
+            toggleBtn.textContent = "Play";
+            notifyParent('paused');
+        };
+
+        // Load the song without playing it
+        function loadSongWithoutPlaying() {
+            audioPlayer.src = songs[currentSongIndex];
+
+            // Extract file name for display
+            const songName = songs[currentSongIndex].split('/').pop().replace('.mp3', '');
+            currentSongDisplay.textContent = songName;
+        }
+
+        // Load and play the current song
+        function loadAndPlaySong() {
+            audioPlayer.src = songs[currentSongIndex];
+
+            // Extract file name for display
+            const songName = songs[currentSongIndex].split('/').pop().replace('.mp3', '');
+            currentSongDisplay.textContent = songName;
+
+            // Play the song
+            const playPromise = audioPlayer.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // Playback started successfully
+                    isPlaying = true;
+                    toggleBtn.textContent = "Pause";
+                    notifyParent('playing');
+                }).catch(error => {
+                    // Auto-play was prevented
+                    console.log("Playback prevented:", error);
+                    isPlaying = false;
+                    toggleBtn.textContent = "Play";
+                    notifyParent('paused');
+                });
+            }
+        }
+
+        // Play the next song
+        function playNextSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            if (isPlaying) {
+                loadAndPlaySong();
+            } else {
+                loadSongWithoutPlaying();
+            }
+        }
+
+        // Play the previous song
+        function playPrevSong() {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            if (isPlaying) {
+                loadAndPlaySong();
+            } else {
+                loadSongWithoutPlaying();
+            }
+        }
+
+        // Toggle play/pause
+        function togglePlay() {
+            if (isPlaying) {
+                audioPlayer.pause();
+                isPlaying = false;
+                toggleBtn.textContent = "Play";
+                notifyParent('paused');
+            } else {
+                audioPlayer.play().then(() => {
+                    isPlaying = true;
+                    toggleBtn.textContent = "Pause";
+                    notifyParent('playing');
+                }).catch(e => console.log("Resume failed:", e));
+            }
+        }
+
+        // Notify the parent window about player status
+        function notifyParent(status) {
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({ status: status }, '*');
+            }
+        }
+
+        // Event Listeners
+        toggleBtn.addEventListener('click', togglePlay);
+        prevBtn.addEventListener('click', playPrevSong);
+        nextBtn.addEventListener('click', playNextSong);
+
+        // When song ends, play the next song
+        audioPlayer.addEventListener('ended', playNextSong);
+
+        // Listen for messages from parent window
+        window.addEventListener('message', function (event) {
+            if (event.data && event.data.action === 'toggle') {
+                togglePlay();
+            } else if (event.data && event.data.action === 'next') {
+                playNextSong();
+            } else if (event.data && event.data.action === 'prev') {
+                playPrevSong();
+            }
+        });
+    </script>
+</body>
+
+</html>

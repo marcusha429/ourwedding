@@ -20,6 +20,7 @@
       font-family: Arial, sans-serif;
     }
 
+    /* Container for dynamic content */
     #content {
       height: 100%;
       width: 100%;
@@ -51,15 +52,17 @@
       transform: scale(1.1);
     }
 
-    /* for mobile*/
+    /* For mobile: active state */
     .grid-item.active {
       filter: blur(0) !important;
       transform: scale(1.1) !important;
     }
 
-    /* Assign background images*/
+    /* Assign background images */
     .item-1 {
       background-image: url('image/gate.jpg');
+      cursor: pointer;
+      /* indicate clickability */
     }
 
     .item-2 {
@@ -74,7 +77,7 @@
       background-image: url('image/asiana.jpg');
     }
 
-    /* grid item */
+    /* Grid text styling */
     .grid-text {
       position: absolute;
       top: 50%;
@@ -85,7 +88,6 @@
       color: white;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
       pointer-events: none;
-      /* text doesn't block the hover event */
     }
 
     /* Center button styling */
@@ -103,9 +105,9 @@
       background-color: rgba(255, 255, 255, 0.85);
       border: none;
       cursor: pointer;
+      display: flex;
       flex-direction: column;
       border-radius: 10px;
-      display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
@@ -113,12 +115,35 @@
       transition: background-color 0.3s ease;
     }
 
-    /* Optional: Adjust button hover state */
     .center-button:hover {
       background-color: rgba(255, 255, 255, 1);
     }
 
-    /* Media query to adjust the button size on mobile devices */
+    /* Audio controls */
+    .music-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .music-controls:hover {
+      opacity: 1;
+    }
+
+    .music-controls svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Media query for mobile */
     @media (max-width: 600px) {
       .center-button {
         width: 200px;
@@ -127,42 +152,35 @@
       }
     }
 
-    .wish-page {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      background: #000;
-    }
-
-    .wish-page img {
-      max-width: 90%;
-      max-height: 80%;
-      object-fit: cover;
-    }
-
-    .back-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 18px;
-      font-family: 'Playfair Display', serif;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: rgba(255, 255, 255, 0.85);
-      transition: background-color 0.3s ease;
-    }
-
-    .back-button:hover {
-      background-color: rgba(255, 255, 255, 1);
+    /* Hidden audio iframe */
+    #music-frame {
+      display: none;
     }
   </style>
 </head>
 
 <body>
-  <audio id="background-music" loop autoplay></audio>
+  <!-- Hidden music player iframe (will always be in the background) -->
+  <iframe id="music-frame" src="music-player.html"></iframe>
+
+  <!-- Music control button -->
+  <div class="music-controls" id="music-toggle">
+    <svg xmlns="http://www.w3.org/2000/svg" id="music-on" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2">
+      <path d="M9 18V5l12-2v13"></path>
+      <circle cx="6" cy="18" r="3"></circle>
+      <circle cx="18" cy="16" r="3"></circle>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" id="music-off" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" style="display: none;">
+      <path d="M9 18V5l12-2v13"></path>
+      <circle cx="6" cy="18" r="3"></circle>
+      <circle cx="18" cy="16" r="3"></circle>
+      <line x1="2" y1="2" x2="22" y2="22" stroke="red" stroke-width="2"></line>
+    </svg>
+  </div>
+
+  <!-- Main content container -->
   <div id="content">
     <div class="container">
       <div class="grid-item item-1">
@@ -184,66 +202,50 @@
       </button>
     </div>
   </div>
+
   <script>
-    const songs = [
-      "music/couple.mp3",
-      "music/onlyoneforme.mp3",
-    ];
+    // Music toggle functionality
+    const musicToggle = document.getElementById('music-toggle');
+    const musicOn = document.getElementById('music-on');
+    const musicOff = document.getElementById('music-off');
 
-    const audio = document.getElementById('background-music');
+    // Initially show music as off
+    musicOn.style.display = 'none';
+    musicOff.style.display = 'block';
 
-    // Function to play a random song from the playlist
-    function playRandomSong() {
-      const randomIndex = Math.floor(Math.random() * songs.length);
-      audio.src = songs[randomIndex];
-      audio.play().catch(error => {
-        console.log("Audio play failed: " + error);
-      });
+    // Communication with the music player iframe
+    function sendMessageToMusicPlayer(action) {
+      const iframe = document.getElementById('music-frame');
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({ action: action }, '*');
+      }
     }
 
-    // When the current song ends, play another random song
-    audio.addEventListener('ended', playRandomSong);
-
-    // Start playing a random song on first user interaction (autoplay workaround)
-    document.addEventListener('click', function () {
-      if (audio.paused) {
-        playRandomSong();
+    // Listen for messages from the music iframe
+    window.addEventListener('message', function (event) {
+      if (event.data && event.data.status) {
+        if (event.data.status === 'playing') {
+          musicOn.style.display = 'block';
+          musicOff.style.display = 'none';
+        } else if (event.data.status === 'paused') {
+          musicOn.style.display = 'none';
+          musicOff.style.display = 'block';
+        }
       }
     });
 
-    // Preserve the main content so we can restore it
-    const contentContainer = document.getElementById('content');
-    const mainContent = contentContainer.innerHTML;
+    // Toggle music on/off
+    musicToggle.addEventListener('click', function () {
+      sendMessageToMusicPlayer('toggle');
+    });
 
-    // Attach click listener to the "Wish for us:" grid item to load wish page content
-    function attachGridListeners() {
-      const wishGrid = document.querySelector('.item-1');
-      if (wishGrid) {
-        wishGrid.addEventListener('click', function (e) {
-          e.preventDefault();
-          loadWishPage();
-        });
-      }
-    }
-
-    attachGridListeners();
-
-    // Dynamically load wish page content without a full page reload
-    function loadWishPage() {
-      fetch('wish.html')
-        .then(response => response.text())
-        .then(data => {
-          contentContainer.innerHTML = data;
-          // Attach a listener to the Back button in the wish page to restore main content
-          const backButton = document.getElementById('back-button');
-          if (backButton) {
-            backButton.addEventListener('click', function () {
-              contentContainer.innerHTML = mainContent;
-              attachGridListeners();
-            });
-          }
-        })
-        .catch(error => console.error('Error loading wish page:', error));
+    // When "Wish for us:" grid item is clicked, navigate to wish.html
+    const wishGrid = document.querySelector('.item-1');
+    if (wishGrid) {
+      wishGrid.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.location.href = 'wish.html';
+      });
     }
   </script>
 </body>

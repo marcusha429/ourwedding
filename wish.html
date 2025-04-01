@@ -2,49 +2,161 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wish for us</title>
-    <!-- Luxury Font from Google Fonts -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Send Your Wish</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* Reset basic styles */
+        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html,
         body {
-            height: 100%;
-            font-family: Arial, sans-serif;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(to bottom, #ffffff, #ffeef8);
+            color: #333;
+            padding: 20px;
         }
 
-        .wish-page {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: #e91e63;
+        }
+
+        .summary {
+            font-size: 20px;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        form {
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 18px;
+            color: #e91e63;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
             width: 100%;
-            height: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
-        .wish-page img {
-            max-width: 90%;
-            max-height: 80%;
-            object-fit: cover;
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #f8bbd0, #e91e63);
+            border: none;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #e91e63, #f8bbd0);
+        }
+
+        .qr-codes {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .qr-code {
+            text-align: center;
+        }
+
+        .qr-code img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            border: 2px solid #e91e63;
+            border-radius: 10px;
+        }
+
+        .qr-note {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Audio controls */
+        .music-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .music-controls:hover {
+            opacity: 1;
+        }
+
+        .music-controls svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .qr-codes {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .qr-code {
+                margin-bottom: 20px;
+            }
         }
 
         .back-button {
-            margin-top: 20px;
+            margin-top: 30px;
             padding: 10px 20px;
             font-size: 18px;
-            font-family: 'Playfair Display', serif;
             cursor: pointer;
             border: none;
             border-radius: 5px;
@@ -55,18 +167,123 @@
         .back-button:hover {
             background-color: rgba(255, 255, 255, 1);
         }
+
+        /* Hidden audio iframe */
+        #music-frame {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
-    <div class="wish-page">
-        <img src="image/wish-test.jpg" alt="Wish for us">
+    <!-- Hidden music player iframe (will always be in the background) -->
+    <iframe id="music-frame" src="music-player.html"></iframe>
+
+    <!-- Music control button -->
+    <div class="music-controls" id="music-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" id="music-on" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" id="music-off" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" style="display: none;">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+            <line x1="2" y1="2" x2="22" y2="22" stroke="red" stroke-width="2"></line>
+        </svg>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Send Us Your Wish</h1>
+        </div>
+        <div class="summary">
+            <p>Joseph Marcus Ha &amp; Clara Tran Thi Thanh Thuy</p>
+            <p>We cherish your heartfelt wishes. Please leave your blessing below.</p>
+        </div>
+        <!-- Wish Form -->
+        <form id="wish-form">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="user_name" required placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="message">Your Wish</label>
+                <textarea id="message" name="message" required placeholder="Write your wish here..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Wish</button>
+        </form>
+        <!-- QR Codes with notes -->
+        <div class="qr-codes">
+            <div class="qr-code">
+                <img src="image/qr1.png" alt="QR Code for Payment">
+                <div class="qr-note">
+                    <p>Ngân hàng Tiên Phong</p>
+                    <p>TRẦN THỊ THANH THÙY</p>
+                    <p>0617 1222 401</p>
+                </div>
+            </div>
+            <div class="qr-code">
+                <img src="image/qr2.png" alt="QR Code for Zelle">
+                <div class="qr-note">
+                    <p>MARCUS HA</p>
+                    <p>at xxx-xxx-5227</p>
+                </div>
+            </div>
+        </div>
+        <!-- Back button: Navigate back to index.html -->
         <button id="back-button" class="back-button">Back</button>
     </div>
+
     <script>
-        // If this page is loaded independently, the Back button can navigate to the main page.
+        // Music toggle functionality
+        const musicToggle = document.getElementById('music-toggle');
+        const musicOn = document.getElementById('music-on');
+        const musicOff = document.getElementById('music-off');
+
+        // Initially show music as off
+        musicOn.style.display = 'none';
+        musicOff.style.display = 'block';
+
+        // Communication with the music player iframe
+        function sendMessageToMusicPlayer(action) {
+            const iframe = document.getElementById('music-frame');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage({ action: action }, '*');
+            }
+        }
+
+        // Listen for messages from the music iframe
+        window.addEventListener('message', function (event) {
+            if (event.data && event.data.status) {
+                if (event.data.status === 'playing') {
+                    musicOn.style.display = 'block';
+                    musicOff.style.display = 'none';
+                } else if (event.data.status === 'paused') {
+                    musicOn.style.display = 'none';
+                    musicOff.style.display = 'block';
+                }
+            }
+        });
+
+        // Toggle music on/off
+        musicToggle.addEventListener('click', function () {
+            sendMessageToMusicPlayer('toggle');
+        });
+
+        // Fix back button to correctly navigate to index.html
         document.getElementById('back-button').addEventListener('click', function () {
             window.location.href = 'index.html';
+        });
+
+        // Handle the wish form submission (placeholder functionality)
+        document.getElementById('wish-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert('Your wish has been sent! (This is a placeholder alert.)');
+            this.reset();
         });
     </script>
 </body>
