@@ -12,12 +12,18 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      /* Removes tap highlight on mobile */
+      user-select: none;
+      /* Prevents text selection */
     }
 
     html,
     body {
       height: 100%;
       font-family: Arial, sans-serif;
+      overscroll-behavior: none;
+      /* Prevents pull-to-refresh */
     }
 
     /* Container for dynamic content */
@@ -43,7 +49,13 @@
       background-size: cover;
       background-position: center;
       filter: blur(5px);
-      transition: filter 0.3s ease, transform 0.3s ease;
+      transition: filter 0.2s ease, transform 0.2s ease;
+      /* Faster transitions */
+      touch-action: manipulation;
+      /* Optimizes for touch */
+      -webkit-transform: translateZ(0);
+      /* Hardware acceleration for mobile */
+      transform: translateZ(0);
     }
 
     /* Remove blur and zoom in on hover (desktop only) */
@@ -97,6 +109,8 @@
       color: white;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
       pointer-events: none;
+      user-select: none;
+      /* Prevent text selection */
     }
 
     /* Tap instruction for mobile */
@@ -168,11 +182,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      touch-action: manipulation;
+      /* Optimizes for touch */
     }
 
     #music-toggle:hover {
       transform: scale(1.1);
       background-color: rgba(255, 255, 255, 1);
+    }
+
+    #music-toggle:active {
+      transform: scale(0.95);
     }
 
     #music-toggle svg {
@@ -225,19 +245,19 @@
   <!-- Main content container -->
   <div id="content">
     <div class="container">
-      <div class="grid-item item-1">
+      <div class="grid-item item-1" data-destination="wish.html">
         <div class="grid-text">Wish for us:</div>
         <div class="tap-instruction">Tap again to continue</div>
       </div>
-      <div class="grid-item item-2">
+      <div class="grid-item item-2" data-destination="">
         <div class="grid-text">Meet the bride</div>
         <div class="tap-instruction">Tap again to continue</div>
       </div>
-      <div class="grid-item item-3">
+      <div class="grid-item item-3" data-destination="">
         <div class="grid-text">Our Church</div>
         <div class="tap-instruction">Tap again to continue</div>
       </div>
-      <div class="grid-item item-4">
+      <div class="grid-item item-4" data-destination="">
         <div class="grid-text">Our Restaurant</div>
         <div class="tap-instruction">Tap again to continue</div>
       </div>
@@ -281,7 +301,26 @@
       });
 
       // Toggle button click
-      musicToggle.addEventListener('click', function () {
+      musicToggle.addEventListener('click', function (e) {
+        e.preventDefault(); // Prevent any default behavior
+        e.stopPropagation(); // Stop event bubbling
+
+        if (audioPlayer.paused) {
+          audioPlayer.play().then(() => {
+            isPlaying = true;
+            updateMusicControls();
+          }).catch(e => console.log("Error playing audio:", e));
+        } else {
+          audioPlayer.pause();
+          isPlaying = false;
+          updateMusicControls();
+        }
+      });
+
+      // Also handle touchend for mobile
+      musicToggle.addEventListener('touchend', function (e) {
+        e.preventDefault(); // Prevent default touch behavior
+
         if (audioPlayer.paused) {
           audioPlayer.play().then(() => {
             isPlaying = true;
@@ -316,87 +355,106 @@
     // Set up grid items for two-click navigation
     const gridItems = document.querySelectorAll('.grid-item');
 
-    // For each grid item
+    // Keep track of the currently active grid
+    let activeGridItem = null;
+    let gridTimeoutId = null;
+
+    // Reset all grids to inactive state
+    function resetAllGrids() {
+      // Clear any pending timeouts
+      if (gridTimeoutId) {
+        clearTimeout(gridTimeoutId);
+        gridTimeoutId = null;
+      }
+
+      // Reset all grids
+      gridItems.forEach(item => {
+        item.classList.remove('active');
+        item.classList.remove('ready');
+      });
+
+      // Reset active grid tracking
+      activeGridItem = null;
+    }
+
+    // Activate a specific grid item
+    function activateGrid(item) {
+      // Reset all grids first
+      resetAllGrids();
+
+      // Set this as the active grid
+      item.classList.add('active');
+      item.classList.add('ready');
+      activeGridItem = item;
+
+      // Set timeout to reset after delay
+      gridTimeoutId = setTimeout(() => {
+        item.classList.remove('active');
+        item.classList.remove('ready');
+        activeGridItem = null;
+      }, 3000);
+    }
+
+    // Process touch on grid item - either activate or navigate
+    function processGridTouch(item) {
+      // If no grid is active or a different grid is active, activate this one
+      if (activeGridItem !== item) {
+        activateGrid(item);
+        return;
+      }
+
+      // If this grid is already active, navigate
+      const destination = item.getAttribute('data-destination');
+      if (destination) {
+        // Store music state before navigating
+        localStorage.setItem('weddingMusicPlaying', isPlaying);
+        localStorage.setItem('weddingMusicIndex', currentSongIndex);
+        localStorage.setItem('weddingMusicTime', audioPlayer.currentTime);
+
+        window.location.href = destination;
+      } else {
+        alert('This page will be coming soon!');
+      }
+    }
+
+    // Add touch handlers for all grid items
     gridItems.forEach((item) => {
-      // Track if this is the first click
-      let isFirstClick = true;
+      // Primary touch handler for mobile
+      item.addEventListener('touchend', function (e) {
+        e.preventDefault();
+        processGridTouch(item);
+      });
 
-      // Add click handler
+      // Click handler for desktop
       item.addEventListener('click', function (e) {
-        // If this is the first click, just activate the item
-        if (isFirstClick) {
+        // Only process for desktop to avoid duplicate execution
+        if (window.matchMedia("(hover: hover)").matches) {
           e.preventDefault();
-
-          // Clear any other active items
-          gridItems.forEach(otherItem => {
-            if (otherItem !== item) {
-              otherItem.classList.remove('active');
-              otherItem.classList.remove('ready');
-            }
-          });
-
-          // Make this item active
-          item.classList.add('active');
-          item.classList.add('ready');
-
-          // Set to second click for next time
-          isFirstClick = false;
-
-          // Reset to first click after delay (if user doesn't click again)
-          setTimeout(() => {
-            if (!item.classList.contains('active')) return;
-            isFirstClick = true;
-            item.classList.remove('active');
-            item.classList.remove('ready');
-          }, 5000); // Reset after 5 seconds of inactivity
-
-          return;
-        }
-
-        // For the second click, navigate based on which grid was clicked
-        if (item.classList.contains('item-1')) {
-          // Store music state before navigating
-          localStorage.setItem('weddingMusicPlaying', isPlaying);
-          localStorage.setItem('weddingMusicIndex', currentSongIndex);
-          localStorage.setItem('weddingMusicTime', audioPlayer.currentTime);
-
-          window.location.href = 'wish.html';
-        } else if (item.classList.contains('item-2')) {
-          // Navigate to bride page
-          // window.location.href = 'bride.html';
-          alert('Meet the bride page will be coming soon!');
-        } else if (item.classList.contains('item-3')) {
-          // Navigate to church page
-          // window.location.href = 'church.html';
-          alert('Our church page will be coming soon!');
-        } else if (item.classList.contains('item-4')) {
-          // Navigate to restaurant page
-          // window.location.href = 'restaurant.html';
-          alert('Our restaurant page will be coming soon!');
+          processGridTouch(item);
         }
       });
     });
 
-    // Handle touch events specifically for better mobile experience
-    let touchStartTime = 0;
-    let touchEndTime = 0;
+    // Special handling for mobile devices to prevent text selection and other issues
+    document.addEventListener('touchstart', function (e) {
+      // Check if the touch is on a grid item or the music toggle
+      if (e.target.closest('.grid-item') || e.target.closest('#music-toggle')) {
+        e.preventDefault();
+      }
+    }, { passive: false });
 
-    gridItems.forEach((item) => {
-      // On quick taps (less than 300ms), we'll treat as a single action
-      // This helps with scrolling vs clicking on mobile
+    // Prevent default behavior for touches on specific elements
+    document.addEventListener('touchmove', function (e) {
+      if (e.target.closest('.grid-item') || e.target.closest('#music-toggle')) {
+        e.preventDefault();
+      }
+    }, { passive: false });
 
-      item.addEventListener('touchstart', function (e) {
-        touchStartTime = new Date().getTime();
-      });
-
-      item.addEventListener('touchend', function (e) {
-        touchEndTime = new Date().getTime();
-
-        // If touch was quick, prevent default action to avoid scrolling
-        if (touchEndTime - touchStartTime < 300) {
-          e.preventDefault();
-        }
-      });
+    // Prevent context menu (long press) on mobile
+    document.addEventListener('contextmenu', function (e) {
+      if (e.target.closest('.grid-item') || e.target.closest('#music-toggle')) {
+        e.preventDefault();
+      }
     });
   </script>
 </body>
