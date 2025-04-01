@@ -119,27 +119,33 @@
         }
 
         /* Audio controls */
-        .music-controls {
+        #music-toggle {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 100;
-            background-color: rgba(255, 255, 255, 0.7);
-            padding: 10px;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 12px;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .music-controls:hover {
-            opacity: 1;
+        #music-toggle:hover {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 1);
         }
 
-        .music-controls svg {
+        #music-toggle svg {
             width: 24px;
             height: 24px;
+            pointer-events: none;
         }
 
         @media (max-width: 600px) {
@@ -150,6 +156,11 @@
 
             .qr-code {
                 margin-bottom: 20px;
+            }
+
+            #music-toggle {
+                width: 56px;
+                height: 56px;
             }
         }
 
@@ -167,28 +178,23 @@
         .back-button:hover {
             background-color: rgba(255, 255, 255, 1);
         }
-
-        /* Hidden audio iframe */
-        #music-frame {
-            display: none;
-        }
     </style>
 </head>
 
 <body>
-    <!-- Hidden music player iframe (will always be in the background) -->
-    <iframe id="music-frame" src="music-player.html"></iframe>
+    <!-- Audio player -->
+    <audio id="background-music" loop></audio>
 
     <!-- Music control button -->
-    <div class="music-controls" id="music-toggle">
+    <div id="music-toggle">
         <svg xmlns="http://www.w3.org/2000/svg" id="music-on" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2">
+            stroke-width="2" style="display: none;">
             <path d="M9 18V5l12-2v13"></path>
             <circle cx="6" cy="18" r="3"></circle>
             <circle cx="18" cy="16" r="3"></circle>
         </svg>
         <svg xmlns="http://www.w3.org/2000/svg" id="music-off" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" style="display: none;">
+            stroke-width="2">
             <path d="M9 18V5l12-2v13"></path>
             <circle cx="6" cy="18" r="3"></circle>
             <circle cx="18" cy="16" r="3"></circle>
@@ -239,43 +245,103 @@
     </div>
 
     <script>
-        // Music toggle functionality
+        // Music functionality
+        // Songs to play
+        const songs = [
+            "music/couple.mp3",
+            "music/onlyoneforme.mp3"
+        ];
+
+        // Audio elements
+        const audioPlayer = document.getElementById('background-music');
         const musicToggle = document.getElementById('music-toggle');
         const musicOn = document.getElementById('music-on');
         const musicOff = document.getElementById('music-off');
 
-        // Initially show music as off
-        musicOn.style.display = 'none';
-        musicOff.style.display = 'block';
+        // Audio state
+        let isPlaying = false;
+        let currentSongIndex = 0;
 
-        // Communication with the music player iframe
-        function sendMessageToMusicPlayer(action) {
-            const iframe = document.getElementById('music-frame');
-            if (iframe && iframe.contentWindow) {
-                iframe.contentWindow.postMessage({ action: action }, '*');
+        // Initialize music
+        function initMusic() {
+            // Get music state from localStorage (if exists)
+            const storedPlaying = localStorage.getItem('weddingMusicPlaying');
+            const storedIndex = localStorage.getItem('weddingMusicIndex');
+            const storedTime = localStorage.getItem('weddingMusicTime');
+
+            // Set state from localStorage or use defaults
+            isPlaying = storedPlaying === 'true';
+            currentSongIndex = storedIndex ? parseInt(storedIndex) : Math.floor(Math.random() * songs.length);
+
+            // Load the song
+            audioPlayer.src = songs[currentSongIndex];
+            audioPlayer.load();
+
+            // Set playback time if we have it
+            if (storedTime) {
+                audioPlayer.currentTime = parseFloat(storedTime);
+            }
+
+            // Start playing if it was playing before
+            if (isPlaying) {
+                audioPlayer.play().catch(e => console.log("Error resuming audio:", e));
+            }
+
+            // Set up when song ends
+            audioPlayer.addEventListener('ended', function () {
+                currentSongIndex = (currentSongIndex + 1) % songs.length;
+                audioPlayer.src = songs[currentSongIndex];
+                audioPlayer.play().catch(e => console.log("Error playing next song:", e));
+            });
+
+            // Toggle button click
+            musicToggle.addEventListener('click', function () {
+                if (audioPlayer.paused) {
+                    audioPlayer.play().then(() => {
+                        isPlaying = true;
+                        updateMusicControls();
+                        localStorage.setItem('weddingMusicPlaying', 'true');
+                    }).catch(e => console.log("Error playing audio:", e));
+                } else {
+                    audioPlayer.pause();
+                    isPlaying = false;
+                    updateMusicControls();
+                    localStorage.setItem('weddingMusicPlaying', 'false');
+                }
+            });
+
+            // Update controls based on current state
+            updateMusicControls();
+        }
+
+        // Update music control appearance
+        function updateMusicControls() {
+            if (isPlaying) {
+                musicOn.style.display = 'block';
+                musicOff.style.display = 'none';
+            } else {
+                musicOn.style.display = 'none';
+                musicOff.style.display = 'block';
             }
         }
 
-        // Listen for messages from the music iframe
-        window.addEventListener('message', function (event) {
-            if (event.data && event.data.status) {
-                if (event.data.status === 'playing') {
-                    musicOn.style.display = 'block';
-                    musicOff.style.display = 'none';
-                } else if (event.data.status === 'paused') {
-                    musicOn.style.display = 'none';
-                    musicOff.style.display = 'block';
-                }
-            }
-        });
+        // Initialize music when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initMusic);
 
-        // Toggle music on/off
-        musicToggle.addEventListener('click', function () {
-            sendMessageToMusicPlayer('toggle');
+        // Before user leaves the page, save music state
+        window.addEventListener('beforeunload', function () {
+            localStorage.setItem('weddingMusicPlaying', isPlaying);
+            localStorage.setItem('weddingMusicIndex', currentSongIndex);
+            localStorage.setItem('weddingMusicTime', audioPlayer.currentTime);
         });
 
         // Fix back button to correctly navigate to index.html
         document.getElementById('back-button').addEventListener('click', function () {
+            // Store music state before navigating
+            localStorage.setItem('weddingMusicPlaying', isPlaying);
+            localStorage.setItem('weddingMusicIndex', currentSongIndex);
+            localStorage.setItem('weddingMusicTime', audioPlayer.currentTime);
+
             window.location.href = 'index.html';
         });
 
