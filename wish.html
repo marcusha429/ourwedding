@@ -5,7 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Send Your Wish</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Harry Potter Font -->
+    <link href="https://fonts.cdnfonts.com/css/harry-potter" rel="stylesheet">
+
     <style>
         /* Reset and base styles */
         * {
@@ -15,116 +18,108 @@
         }
 
         body {
-            font-family: 'Playfair Display', serif;
-            background: linear-gradient(to bottom, #ffffff, #ffeef8);
-            color: #333;
-            padding: 20px;
+            font-family: 'Harry Potter', 'Playfair Display', serif;
+            background: url('https://www.transparenttextures.com/patterns/aged-paper.png') repeat;
+            background-color: #f5deb3; /* fallback parchment color */
+            color: #5b3920; /* Dark brown text like ink */
+            padding: 40px;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background: rgba(245, 222, 179, 0.95); /* parchment color */
+            border: 10px solid #8b5a2b; /* brown scroll border */
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 0 30px 10px rgba(0,0,0,0.3);
             text-align: center;
-        }
-
-        .header {
-            margin-bottom: 20px;
+            max-width: 800px;
+            margin: auto;
         }
 
         .header h1 {
-            font-size: 36px;
-            color: #e91e63;
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #5b3920;
+            text-shadow: 2px 2px 5px #e0c097;
         }
 
         .summary {
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 30px;
-            line-height: 1.4;
+            line-height: 1.6;
+            color: #5b3920;
         }
 
-        form {
-            margin-bottom: 40px;
-            text-align: left;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 18px;
-            color: #e91e63;
+        label, .qr-note, .back-button {
+            font-family: 'Harry Potter', 'Playfair Display', serif;
+            font-size: 20px;
         }
 
         input[type="text"],
         input[type="email"],
         textarea {
             width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 14px;
+            font-size: 18px;
+            background-color: #fff8dc;
+            border: 2px solid #8b5a2b;
+            border-radius: 8px;
+            color: #5b3920;
         }
 
         textarea {
-            resize: vertical;
-            min-height: 120px;
+            min-height: 140px;
         }
 
         .submit-btn {
-            background: linear-gradient(45deg, #f8bbd0, #e91e63);
+            background-color: #8b5a2b;
+            color: #fff8dc;
+            padding: 12px 30px;
+            font-size: 22px;
             border: none;
-            color: #fff;
-            padding: 12px 20px;
-            font-size: 18px;
             border-radius: 30px;
             cursor: pointer;
-            transition: background 0.3s ease;
-            display: block;
-            margin: 0 auto;
+            transition: all 0.3s ease;
+            margin-top: 20px;
         }
 
         .submit-btn:hover {
-            background: linear-gradient(45deg, #e91e63, #f8bbd0);
+            background-color: #5b3920;
+            transform: scale(1.05);
         }
 
         .qr-codes {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             margin-top: 30px;
         }
 
         .qr-code {
             text-align: center;
+            margin: 10px;
         }
 
         .qr-code img {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             object-fit: contain;
-            border: 2px solid #e91e63;
-            border-radius: 10px;
+            border: 2px solid #8b5a2b;
+            border-radius: 12px;
+            box-shadow: 0 0 10px 2px #8b5a2b;
         }
 
         .qr-note {
             margin-top: 10px;
-            font-size: 16px;
-            color: #333;
+            color: #5b3920;
         }
 
-        /* Audio controls */
         #music-toggle {
             position: fixed;
             bottom: 20px;
             right: 20px;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 248, 220, 0.6);
             padding: 12px;
             border-radius: 50%;
             cursor: pointer;
@@ -135,48 +130,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 2px solid #8b5a2b;
         }
 
         #music-toggle:hover {
             transform: scale(1.1);
-            background-color: rgba(255, 255, 255, 1);
         }
 
         #music-toggle svg {
             width: 24px;
             height: 24px;
             pointer-events: none;
-        }
-
-        @media (max-width: 600px) {
-            .qr-codes {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .qr-code {
-                margin-bottom: 20px;
-            }
-
-            #music-toggle {
-                width: 56px;
-                height: 56px;
-            }
+            color: #8b5a2b;
         }
 
         .back-button {
             margin-top: 30px;
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
+            padding: 12px 30px;
+            font-size: 20px;
+            background-color: #8b5a2b;
+            color: #fff8dc;
             border: none;
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.85);
-            transition: background-color 0.3s ease;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .back-button:hover {
-            background-color: rgba(255, 255, 255, 1);
+            background-color: #5b3920;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -222,7 +204,8 @@
             </div>
             <button type="submit" class="submit-btn">Send Wish</button>
         </form>
-        <!-- QR Codes with notes -->
+
+        <!-- QR Codes -->
         <div class="qr-codes">
             <div class="qr-code">
                 <img src="image/qr1.png" alt="QR Code for Payment">
@@ -240,61 +223,50 @@
                 </div>
             </div>
         </div>
-        <!-- Back button: Navigate back to index.html -->
+
+        <!-- Back button -->
         <button id="back-button" class="back-button">Back</button>
     </div>
 
     <script>
-        // Music functionality
-        // Songs to play
         const songs = [
             "music/couple.mp3",
             "music/onlyoneforme.mp3"
         ];
 
-        // Audio elements
         const audioPlayer = document.getElementById('background-music');
         const musicToggle = document.getElementById('music-toggle');
         const musicOn = document.getElementById('music-on');
         const musicOff = document.getElementById('music-off');
 
-        // Audio state
         let isPlaying = false;
         let currentSongIndex = 0;
 
-        // Initialize music
         function initMusic() {
-            // Get music state from localStorage (if exists)
             const storedPlaying = localStorage.getItem('weddingMusicPlaying');
             const storedIndex = localStorage.getItem('weddingMusicIndex');
             const storedTime = localStorage.getItem('weddingMusicTime');
 
-            // Set state from localStorage or use defaults
             isPlaying = storedPlaying === 'true';
             currentSongIndex = storedIndex ? parseInt(storedIndex) : Math.floor(Math.random() * songs.length);
 
-            // Load the song
             audioPlayer.src = songs[currentSongIndex];
             audioPlayer.load();
 
-            // Set playback time if we have it
             if (storedTime) {
                 audioPlayer.currentTime = parseFloat(storedTime);
             }
 
-            // Start playing if it was playing before
             if (isPlaying) {
                 audioPlayer.play().catch(e => console.log("Error resuming audio:", e));
             }
 
-            // Set up when song ends
             audioPlayer.addEventListener('ended', function () {
                 currentSongIndex = (currentSongIndex + 1) % songs.length;
                 audioPlayer.src = songs[currentSongIndex];
                 audioPlayer.play().catch(e => console.log("Error playing next song:", e));
             });
 
-            // Toggle button click
             musicToggle.addEventListener('click', function () {
                 if (audioPlayer.paused) {
                     audioPlayer.play().then(() => {
@@ -310,11 +282,9 @@
                 }
             });
 
-            // Update controls based on current state
             updateMusicControls();
         }
 
-        // Update music control appearance
         function updateMusicControls() {
             if (isPlaying) {
                 musicOn.style.display = 'block';
@@ -325,33 +295,25 @@
             }
         }
 
-        // Initialize music when DOM is loaded
         document.addEventListener('DOMContentLoaded', initMusic);
 
-        // Before user leaves the page, save music state
         window.addEventListener('beforeunload', function () {
             localStorage.setItem('weddingMusicPlaying', isPlaying);
             localStorage.setItem('weddingMusicIndex', currentSongIndex);
             localStorage.setItem('weddingMusicTime', audioPlayer.currentTime);
         });
 
-        // Fix back button to correctly navigate to index.html
         document.getElementById('back-button').addEventListener('click', function () {
-            // Store music state before navigating
-            localStorage.setItem('weddingMusicPlaying', isPlaying);
-            localStorage.setItem('weddingMusicIndex', currentSongIndex);
-            localStorage.setItem('weddingMusicTime', audioPlayer.currentTime);
-
             window.location.href = 'index.html';
         });
 
-        // Handle the wish form submission (placeholder functionality)
         document.getElementById('wish-form').addEventListener('submit', function (event) {
             event.preventDefault();
             alert('Your wish has been sent! (This is a placeholder alert.)');
             this.reset();
         });
     </script>
+
 </body>
 
 </html>
