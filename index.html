@@ -6,7 +6,9 @@
   <title>Wedding Invitation</title>
   
   <!-- Harry Potter Font -->
-  <link href="https://fonts.cdnfonts.com/css/harry-potter" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Literata&family=MonteCarlo&display=swap" rel="stylesheet">
+
+
 
   <style>
     * {
@@ -19,10 +21,15 @@
 
     html, body {
       height: 100%;
-      font-family: 'Harry Potter', 'Playfair Display', serif;
+      font-family: 'Literata', 'Playfair Display', serif;
       overscroll-behavior: none;
       background: url('https://www.transparenttextures.com/patterns/aged-paper.png') repeat;
       background-color: #f5deb3;
+    }
+
+    .couple-names {
+    font-family: 'MonteCarlo', cursive;
+    font-size: 36px; /* optional: adjust size for elegance */
     }
 
     #content, #wish-form-container {
@@ -47,6 +54,18 @@
       touch-action: manipulation;
       cursor: pointer;
       position: relative;
+    }
+
+    .item-1 {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    }
+
+    .item-3 {
+    background-size: 250%;
+    background-repeat: no-repeat;
+    background-position: calc(50% + 120px) 60%;
     }
 
     .grid-item:hover {
@@ -84,6 +103,28 @@
       z-index: 2;
       box-shadow: 0 0 15px rgba(0,0,0,0.4);
     }
+
+    .center-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    max-width: 80%;
+    }
+
+    .countdown-timer {
+    margin-top: 20px;
+    font-size: 24px;
+    font-family: 'Literata', serif;
+    color: #5b3920;
+    }
+
 
     /* Royal Scroll Wish Form */
     #wish-form-container {
@@ -242,22 +283,27 @@
 
 <body>
 
-  <!-- Main Grid Content -->
+  <!-- Main Grid Content wish , home, church, restaurant--> 
   <div id="content">
     <div class="container">
-      <div class="grid-item item-1" id="wish-btn" style="background-image: url('image/wish.jpg');">
-        <div class="grid-text">Wish for Us</div>
+      <div class="grid-item item-1" id="home-btn" style="background-image: url('image/tcl.jpg');">
+        <div class="grid-text">Meet The Bride</div>
       </div>
-      <div class="grid-item item-2" id= "home-btn" style="background-image: url('image/ruocdau.jpg');">
-        <div class="grid-text">Meet the Bride</div>
+      <div class="grid-item item-2" id= "church-btn" style="background-image: url('image/asiana.jpg');">
+        <div class="grid-text">The Church</div>
       </div>
-      <div class="grid-item item-3" id="church-btn" style="background-image: url('image/tcl.jpg');">
-        <div class="grid-text">Our Church</div>
+      <div class="grid-item item-3" id="restaurant-btn" style="background-image: url('image/wish.jpg');">
+        <div class="grid-text">The Restaurant</div>
       </div>
-      <div class="grid-item item-4" id ="restaurant-btn" style="background-image: url('image/asiana.jpg');">
-        <div class="grid-text">Our Restaurant</div>
+      <div class="grid-item item-4" id ="wish-btn" style="background-image: url('image/ruocdau.jpg');">
+        <div class="grid-text">Your Wish</div>
       </div>
-      <button class="center-button">Join<br>Our<br>Celebration</button>
+      <div class="center-info">
+        <div class="couple-names">Marcus Ha</div>
+        <div class="couple-names">and</div>
+        <div class="couple-names">Tran Thi Thanh Thuy</div>
+        <div id="countdown" class="countdown-timer"></div>
+      </div>
     </div>
   </div>
 
@@ -265,7 +311,7 @@
   <div id="wish-form-container">
     <div class="wish-form-scroll">
       <h1>Send Us Your Wish</h1>
-      <p>Joseph Marcus Ha & Clara Tran Thi Thanh Thuy</p>
+      <p class="couple-names">Joseph Marcus Ha & Clara Tran Thi Thanh Thuy</p>
       <p><em>We cherish your heartfelt wishes. Please leave your blessing below.</em></p>
 
       <input type="text" placeholder="Your Name" id="name">
@@ -299,7 +345,7 @@
   <div id="church-form-container" style="display: none;">
     <div class="wish-form-scroll">
       <h1>You're Invited!</h1>
-      <p>Joseph Marcus Ha & Clara Tran Thi Thanh Thuy</p>
+      <p class="couple-names">Joseph Marcus Ha & Clara Tran Thi Thanh Thuy</p>
       <p>We would be honored to have you join us as we exchange vows and celebrate our love at Tan Chi Linh Church.</p>
       <p>The ceremony will take place at 6/25 Pham Van Hai, Ward 3, Tan Binh District, starting at 4:00 PM on June 28, 2025.</p>
       <p style="margin-top:20px; font-style: italic;">“We become what we love and who we love shapes what we become.”<br>— St. Clare of Assisi</p>
@@ -309,26 +355,62 @@
   </div>
 
   <!-- Hidden Restaurant Invitation Form -->
-  <div id="restaurant-form-container" style="display: none;">
-    <div class="wish-form-scroll">
-      <h1>Reception Invitation</h1>
-      <p>Together with our families,</p>
-      <p>Joseph Marcus Ha & Clara Tran Thi Thanh Thuy</p>
-      <p>invite you to celebrate with us at <strong>Asiana Restaurant</strong>.</p>
-      <p>The reception will begin at <strong>7:00 PM</strong> on <strong>June 28, 2025</strong>,</p>
-      <p>at <strong>286 Vuon Lai Street, Phu Tho Hoa Ward, Tan Phu District</strong>.</p>
-      <p style="margin-top:20px;">We look forward to sharing this joyful moment with you!</p>
+<div id="restaurant-form-container" style="display: none;">
+  <div class="wish-form-scroll">
+    <h1>Wedding Details</h1>
 
-      <button class="back-btn" onclick="closeRestaurantForm()">Back</button>
+    <p><strong>DATE</strong><br>
+    June 28th, 2025<br>
+    7:00 PM – 5:00 AM (PST)</p>
+
+    <p><strong>RECEPTION LOCATION</strong><br>
+    284-286 Vuon Lai<br>
+    Phu Tho Hoa, Tan Phu</p>
+
+    <p><strong>DRESS</strong><br>
+    Formal</p>
+
+    <hr style="margin: 25px 0; border: none; border-top: 2px dashed #8b5a2b;">
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left;">
+
+      <div>
+        <h2 style="color:#5b3920;">Getting There</h2>
+        <p><strong>By Car/Motobike</strong><br>
+        • 15-20' Drive from Tan Chi Linh Catholic Church<br>
+        • 25' Drive from Bride's house</p>
+      </div>
+
+      <div>
+        <h2 style="color:#5b3920;">☕ Drinks</h2>
+        <p>
+          • Coke<br>
+          • Beer<br>
+          • Water<br>
+        </p>
+
+        <h2 style="color:#5b3920; margin-top: 20px;">Good Eats</h2>
+        <p>
+          • Mon 1<br>
+          • Mon 2<br>
+          • Mon 3<br>
+          • Mon 4<br>
+          • Mon 5<br>
+        </p>
+      </div>
+
     </div>
+
+    <button class="back-btn" onclick="closeRestaurantForm()">Back</button>
   </div>
+</div>
 
   <!-- Hidden Meet The Bride Invitation Form -->
   <div id="home-form-container" style="display: none;">
     <div class="wish-form-scroll">
       <h1>Reception Invitation</h1>
       <p>Together with our families,</p>
-      <p>Joseph Marcus Ha & Clara Tran Thi Thanh Thuy</p>
+      <p class="couple-names">Joseph Marcus Ha & Clara Tran Thi Thanh Thuy</p>
       <p>invite you to celebrate with us at <strong>Home</strong>.</p>
       <p>The reception will begin at <strong>13:00 PM</strong> on <strong>June 28, 2025</strong>,</p>
       <p style="margin-top:20px;">We look forward to sharing this joyful moment with you!</p>
@@ -383,6 +465,30 @@
     function closeHomeForm() {
       document.getElementById('home-form-container').style.display = 'none';
     }
+
+    function updateCountdown() {
+      const targetDate = new Date('June 25, 2025 13:00:00').getTime();
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('countdown').innerText = "It's time!";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      const dayLabel = days === 1 ? 'day' : 'days';
+
+      document.getElementById('countdown').innerText = 
+        document.getElementById('countdown').innerText = `${days} ${dayLabel}   ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 
 </body>
