@@ -10,13 +10,18 @@ const musicList = [
 let currentAudio = null;
 let isPlaying = false;
 
+function initAudio() {
+    playRandomMusic();
+}
+
 function playRandomMusic() {
     if (isPlaying) {
         return;
     }
 
     const randomIndex = Math.floor(Math.random() * musicList.length);
-    currentAudio = new Audio(musicList[randomIndex]); // Create new Audio object here
+    currentAudio = new Audio(musicList[randomIndex]);
+    currentAudio.volume = 0.5; 
     
     currentAudio.addEventListener('ended', () => {
         const nextIndex = (musicList.indexOf(currentAudio.src.split('/').pop()) + 1) % musicList.length;
@@ -33,12 +38,27 @@ function playRandomMusic() {
             console.log("Audio playback failed:", error);
             isPlaying = false;
             document.getElementById('musicToggle').textContent = '🔇';
+            document.addEventListener('click', initAudio, { once: true });
         });
 }
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Split-doors click
+
+    const musicControls = document.createElement('div');
+    musicControls.className = 'music-controls';
+    musicControls.style = 'position: fixed; bottom: 20px; right: 20px; z-index: 1000;';
+    musicControls.innerHTML = `
+        <button id="musicToggle" style="padding: 10px; border-radius: 50%; background: rgba(255,255,255,0.8);">
+            🔇
+        </button>
+    `;
+    document.body.appendChild(musicControls);
+
+    // Start music immediately when page loads
+    initAudio();
+
+    // Door click handlers
     const landing = document.getElementById("landing");
     const doors = document.querySelectorAll(".door");
 
@@ -46,13 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
         door.addEventListener("click", () => {
             if (!landing.classList.contains("open")) {
                 landing.classList.add("open");
-                playRandomMusic(); // Start playing music when doors open
+                // Remove this line since music should already be playing
+                // playRandomMusic(); 
             }
         });
     });
 
     // Add music controls to your page
-    const musicControls = document.createElement('div');
     musicControls.innerHTML = `
         <div class="music-controls" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
             <button onclick="toggleMusic()" id="musicToggle" style="padding: 10px; border-radius: 50%; background: rgba(255,255,255,0.8);">
