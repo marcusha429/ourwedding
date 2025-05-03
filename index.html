@@ -76,113 +76,137 @@
 
       <!-- Wish Form -->
       <div id="wish-form-container">
-        <div class="wish-form-scroll">
-          <h1>Send Us Your Wish</h1>
-          <p class="couple-names">
-            Joseph Marcus Ha & Clara Tran Thi Thanh Thuy
-          </p>
-          <p>
-            <em
-              >We cherish your heartfelt wishes. Please leave your blessing
-              below.</em
-            >
-          </p>
-          <input type="text" placeholder="Your Name" id="name" />
-          <textarea placeholder="Your Wish" id="wish" rows="5"></textarea>
-          <br />
-          <button class="submit-btn" onclick="sendWish()">Send Wish</button>
-          <button class="back-btn" onclick="closeWishForm()">Back</button>
-          <div class="qr-codes">
-            <div class="qr-code">
-              <img src="image/qr1.png" alt="QR Payment" />
-              <div class="qr-note">
-                Ngân hàng Tiên Phong<br />
-                TRẦN THỊ THANH THÙY<br />
-                0617 1222 401
+        <div class="wish-layout">
+          <div class="wish-info">
+            <div class="wish-content">
+              <h1>Send Us Your Wish</h1>
+
+              <p>
+                <em>We cherish your heartfelt wishes. Please leave your blessing below.</em>
+              </p>
+              <div class="wish-form">
+                <input type="text" placeholder="Your Name" id="name" />
+                <textarea placeholder="Your Wish" id="wish" rows="5"></textarea>
+                <button class="submit-btn" onclick="sendWish()">Send Wish</button>
               </div>
-            </div>
-            <div class="qr-code">
-              <img src="image/qr2.png" alt="QR Zelle" />
-              <div class="qr-note">
-                Marcus Ha<br />
-                at xxx-xxx-5227
+      
+              <hr class="divider" />
+      
+              <div class="qr-codes">
+                <div class="qr-code">
+                  <img src="image/qr1.png" alt="QR Payment" />
+                  <div class="qr-note">
+                    Ngân hàng Tiên Phong<br />
+                    TRẦN THỊ THANH THÙY<br />
+                    0617 1222 401
+                  </div>
+                </div>
+                <div class="qr-code">
+                  <img src="image/qr2.png" alt="QR Zelle" />
+                  <div class="qr-note">
+                    Marcus Ha<br />
+                    at xxx-xxx-5227
+                  </div>
+                </div>
               </div>
+              <button class="back-btn" onclick="closeWishForm()">Back</button>
             </div>
           </div>
+          <div class="wish-image"></div>
         </div>
       </div>
 
       <!-- Church Form -->
       <div id="church-form-container">
-        <div class="wish-form-scroll">
-          <h1>You're Invited!</h1>
-          <p class="couple-names">
-            Joseph Marcus Ha & Clara Tran Thi Thanh Thuy
-          </p>
-          <p>
-            Join us at Tan Chi Linh Church, 6/25 Pham Van Hai, Ward 3, Tan
-            Binh District
-          </p>
-          <p>4:00 PM on June 28, 2025</p>
-          <p style="margin-top: 20px; font-style: italic">
-            “We become what we love and who we love shapes what we become.”<br />—
-            St. Clare of Assisi
-          </p>
-          <button class="back-btn" onclick="closeChurchForm()">Back</button>
+        <div class="church-layout">
+          <div class="church-image"></div>
+          <div class="church-info">
+            <div class="church-content">
+              <h1>You're Invited!</h1>
+              <p class="couple-names">
+                Joseph Marcus Ha & Clara Tran Thi Thanh Thuy
+              </p>
+              <p class="church-address">
+                Join us at Tan Chi Linh Church<br>
+                6/25 Pham Van Hai, Ward 3, Tan Binh District
+              </p>
+              <p class="church-time">4:00 PM on June 28, 2025</p>
+              <p class="church-quote">
+                "We become what we love and who we love shapes what we become."<br>
+                — St. Clare of Assisi
+              </p>
+              <button class="back-btn" onclick="closeChurchForm()">Back</button>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Restaurant Form -->
       <div id="restaurant-form-container">
-        <div class="wish-form-scroll">
-          <h1>Wedding Details</h1>
-          <p>
-            <strong>June 28th, 2025<br />7:00 PM – 5:00 AM</strong>
-          </p>
-          <p><strong>284–286 Vuon Lai, Phu Tho Hoa, Tan Phu</strong></p>
-          <hr style="margin: 25px 0; border-top: 2px dashed #8b5a2b" />
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              gap: 30px;
-              text-align: left;
-            "
-          >
-            <div>
-              <h2 style="color: #5b3920">Getting There</h2>
-              <p>• 15–20′ from Church<br />• 25′ from Bride’s House</p>
-            </div>
-            <div>
-              <h2 style="color: #5b3920">☕ Drinks</h2>
-              <p>• Coke • Beer • Water</p>
-              <h2 style="color: #5b3920; margin-top: 20px">Good Eats</h2>
-              <p>• Mon 1 • Mon 2 • Mon 3 • Mon 4 • Mon 5</p>
+        <div class="restaurant-layout">
+          <div class="restaurant-info">
+            <div class="restaurant-content">
+              <h1>Wedding Details</h1>
+              <p class="restaurant-time">
+                <strong>June 28th, 2025<br />6:00 PM (GMT+7)</strong>
+              </p>
+              <p class="restaurant-address"><strong>284–286 Vuon Lai, Phu Tho Hoa, Tan Phu</strong></p>
+              <hr class="divider" />
+              <div class="info-grid">
+                <div class="info-column">
+                  <h2>Getting There</h2>
+                  <p>• 15–20′ from Church<br />• 25′ from Bride's House</p>
+                </div>
+                <div class="info-column">
+                  <h2>☕ Drinks</h2>
+                  <p>• Coke • Beer • Water</p>
+                  <h2>Good Eats</h2>
+                  <p>• Mon 1 • Mon 2 • Mon 3 • Mon 4 • Mon 5</p>
+                </div>
+              </div>
+              <button class="back-btn" onclick="closeRestaurantForm()">Back</button>
             </div>
           </div>
-          <button
-            class="back-btn"
-            onclick="closeRestaurantForm()"
-          >
-            Back
-          </button>
+          <div class="restaurant-image"></div>
         </div>
       </div>
 
       <!-- Home/Meet-Bride Form -->
       <div id="home-form-container">
-        <div class="wish-form-scroll">
-          <h1>Reception Invitation</h1>
-          <p>Together with our families,</p>
-          <p class="couple-names">
-            Joseph Marcus Ha & Clara Tran Thi Thanh Thuy
-          </p>
-          <p>invite you to celebrate at <strong>Home</strong>.</p>
-          <p><strong>13:00 PM on June 28, 2025</strong></p>
-          <p style="margin-top: 20px">
-            We look forward to sharing this joyful moment!
-          </p>
-          <button class="back-btn" onclick="closeHomeForm()">Back</button>
+        <div class="bride-layout">
+          <div class="bride-image"></div>
+          <div class="bride-info">
+            <div class="bride-content">
+              <h1>Our Story</h1>
+              
+              <div class="bride-story">
+                <p>Seven years woven tightly.</p>
+                <p>I greets the sun in Vietnam as he whispers goodnight from the U.S.</p>
+                <p>Our love, tested by miles and strengthened by patience, waits joyfully for the day we'll finally share every sunrise side by side. </p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p style="margin-top: 20px">And our new chapter begins...</p>
+              </div>
+      
+              <hr class="divider" />
+      
+              <div class="reception-info">
+                <h1>Reception Invitation</h1>
+                <p>Together with our families,</p>
+                <p class="couple-names">
+                  Marcus Ha & Thanh Thuy
+                </p>
+                <p>invite you to celebrate at <strong>Home</strong>.</p>
+                <p class="reception-time"><strong>June 28th, 2025<br />1:00 PM (GMT+7)</strong>
+                <p class="reception-note">
+                  We look forward to sharing this joyful moment!
+                </p>
+              </div>
+              
+              <button class="back-btn" onclick="closeHomeForm()">Back</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
