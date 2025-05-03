@@ -1,0 +1,305 @@
+@font-face {
+    font-family: "Elegist";
+    src: url("fonts/Elegist.otf") format("opentype");
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+    font-family: "Literata", "Playfair Display", serif;
+    background: url("https://www.transparenttextures.com/patterns/aged-paper.png")
+      repeat;
+    background-color: #728c69;
+  }
+  
+  /* Landing “doors” */
+  #landing {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .door {
+    position: fixed;
+    height: 100%;
+    width: 50%;
+    top: 0;
+    transition: transform 1.5s ease-in-out;
+    z-index: 10;
+    cursor: pointer;
+  }
+  #door-left {
+    left: 0;
+    width: 33.3333%;
+    background: url("image/main.jpg") center/cover no-repeat;
+  }
+  #door-right {
+    right: 0;
+    width: 66.6667%;
+    background-color: #738678;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .names-container {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .groom-name,
+  .bride-name {
+    position: absolute;
+    width: 66.67%;
+    font-family: "Elegist", serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #fff;
+    line-height: 1.2;
+    font-size: 10rem;
+  }
+  .groom-name {
+    top: 50%;
+    right: 0;
+    text-align: right;
+  }
+  .bride-name {
+    bottom: 50%;
+    left: 0;
+    text-align: left;
+  }
+  #landing.open #door-left {
+    transform: translateX(-100%);
+  }
+  #landing.open #door-right {
+    transform: translateX(100%);
+  }
+  #main-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    z-index: 1;
+  }
+  #landing.open #main-content {
+    visibility: visible;
+  }
+  
+  .music-controls button {
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.music-controls button:hover {
+    transform: scale(1.1);
+}
+
+  /* Invitation grid */
+  #content {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+    width: 100%;
+  }
+  .grid-item {
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    transition: filter 0.5s ease, transform 0.5s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .item-3 {
+    background-size: 250%;
+    background-position: calc(50% + 120px) 60%;
+  }
+  .grid-item:hover {
+    filter: blur(0);
+    transform: scale(1.1);
+    z-index: 1;
+  }
+  .grid-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    pointer-events: none;
+  }
+  
+  /* Countdown */
+  .center-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 30px;
+    z-index: 2;
+    max-width: 80%;
+  }
+  .countdown-timer {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    font-family: "Literata", serif;
+  }
+  .countdown-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 100px;
+    text-align: center;
+  }
+  .countdown-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  .countdown-label {
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Forms overlay */
+  #wish-form-container,
+  #church-form-container,
+  #restaurant-form-container,
+  #home-form-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+  }
+  .wish-form-scroll {
+    background: rgba(114, 140, 105, 0.95);
+    border: 10px solid #4a5c44;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.4);
+    max-width: 800px;
+    width: 90%;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .wish-form-scroll h1 {
+    margin-bottom: 10px;
+    font-size: 40px;
+    color: #ffffff;
+  }
+  .wish-form-scroll p {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #ffffff;
+  }
+  .wish-form-scroll input,
+  .wish-form-scroll textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 2px solid #4a5c44;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    color: #4a5c44;
+  }
+  .submit-btn,
+  .back-btn {
+    margin-top: 10px;
+    padding: 10px 25px;
+    font-size: 20px;
+    background-color: #4a5c44;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: "Playfair Display", serif;
+    margin-bottom: 10px;
+  }
+  .submit-btn:hover,
+  .back-btn:hover {
+    background-color: #5d7456;
+  }
+  .qr-codes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .qr-code img {
+    width: 140px;
+    height: 140px;
+    border-radius: 10px;
+    object-fit: contain;
+  }
+  .qr-note {
+    font-size: 16px;
+    margin-top: 8px;
+    color: #ffffff;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    /* adjust grid to one column, names to smaller font, etc. */
+    .container { grid-template-columns: 1fr; grid-template-rows: repeat(4,1fr); }
+    .names-container { height: 150px; }
+    .groom-name, .bride-name { font-size: 4rem; width:100%; text-align:center; }
+    .countdown-box { min-width:70px; padding:10px; }
+    .countdown-number { font-size: 2rem; }
+    .countdown-label { font-size:12px; }
+    .wish-form-scroll { width:95%; padding:20px; }
+    .wish-form-scroll h1 { font-size:28px; }
+    .wish-form-scroll p { font-size:16px; }
+    .qr-code img { width:120px; height:120px; }
+  }
+  @media screen and (max-width: 380px) {
+    .groom-name, .bride-name { font-size:3rem; }
+    .countdown-box { min-width:60px; }
+    .countdown-number { width:50px; height:50px; }
+    .countdown-label { font-size:12px; }
+  }
+  
