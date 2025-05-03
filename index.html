@@ -1,495 +1,747 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation</title>
-  
-  <!-- Harry Potter Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Literata&family=MonteCarlo&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Invitation</title>
 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Literata&family=MonteCarlo&display=swap"
+      rel="stylesheet"
+    />
 
+    <style>
+      @font-face {
+        font-family: "Elegist";
+        src: url("fonts/Elegist.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+      /* Reset & base */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+        font-family: "Literata", "Playfair Display", serif;
+        background: url("https://www.transparenttextures.com/patterns/aged-paper.png")
+          repeat;
+        background-color: #728c69;
+      }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
-    }
+      /* Landing “doors” */
+      #landing {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      .door {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        transition: transform 1s ease;
+        will-change: transform;
+        cursor: pointer;
+      }
+      #door-left {
+        left: 0;
+        width: 33.3333%;
+        background: url("image/main.jpg") center/cover no-repeat;
+      }
+      #door-right {
+        right: 0;
+        width: 66.6667%;
+        background-color: #738678; /* Xanadu */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .names-container {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
 
-    html, body {
-      height: 100%;
-      font-family: 'Literata', 'Playfair Display', serif;
-      overscroll-behavior: none;
-      background: url('https://www.transparenttextures.com/patterns/aged-paper.png') repeat;
-      background-color: #f5deb3;
-    }
+      .groom-name {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 66.67%;
+        text-align: right;
+        color: #fff;
+        font-size: 10rem;
+        line-height: 1.2;
+        font-family: "Elegist", serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
 
-    .couple-names {
-    font-family: 'MonteCarlo', cursive;
-    font-size: 36px; /* optional: adjust size for elegance */
-    }
+      .bride-name {
+        position: absolute;
+        bottom: 50%;
+        left: 0;
+        width: 66.67%;
+        text-align: left;
+        color: #fff;
+        font-size: 10rem;
+        line-height: 1.2;
+        font-family: "Elegist", serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
 
-    #content, #wish-form-container {
-      height: 100%;
-      width: 100%;
-      position: relative;
-    }
+      /* Animate “doors” open */
+      #landing.open #door-left {
+        transform: translateX(-100%);
+      }
+      #landing.open #door-right {
+        transform: translateX(100%);
+      }
 
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      height: 100%;
-      width: 100%;
-    }
+      /* Underlying content, hidden until doors open */
+      #main-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        visibility: hidden;
+        overflow: auto;
+      }
+      #landing.open #main-content {
+        visibility: visible;
+      }
 
-    .grid-item {
-      background-size: cover;
-      background-position: center;
-      filter: blur(5px);
-      transition: filter 0.5s ease, transform 0.5s ease;
-      touch-action: manipulation;
-      cursor: pointer;
-      position: relative;
-    }
+      /* ——————————————————————————————————————————— 
+              Invitation styles start here 
+       ——————————————————————————————————————————— */
 
-    .item-1 {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center top;
-    }
+      #content {
+        height: 100%;
+        width: 100%;
+        position: relative;
+      }
 
-    .item-3 {
-    background-size: 250%;
-    background-repeat: no-repeat;
-    background-position: calc(50% + 120px) 60%;
-    }
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 100%;
+        width: 100%;
+      }
 
-    .grid-item:hover {
-      filter: blur(0);
-      transform: scale(1.1);
-      z-index: 1;
-    }
-
-    .grid-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 30px;
-      color: white;
-      text-shadow: 2px 2px 5px black;
-      pointer-events: none;
-    }
-
-    .center-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 300px;
-      height: 300px;
-      background-color: rgba(255,255,255,0.8);
-      border-radius: 10px;
-      font-size: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-family: 'Playfair Display', serif;
-      z-index: 2;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    }
-
-    .center-info {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.85);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-    z-index: 2;
-    max-width: 80%;
-    }
-
-    .countdown-timer {
-    margin-top: 20px;
-    font-size: 24px;
-    font-family: 'Literata', serif;
-    color: #5b3920;
-    }
-
-
-    /* Royal Scroll Wish Form */
-    #wish-form-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 5;
-    }
-
-    #church-form-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 5;
-    }
-
-    #restaurant-form-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 5;
-    }
-
-    #home-form-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 5;
-    }
-
-
-    .wish-form-scroll {
-      background: rgba(245, 222, 179, 0.95);
-      border: 10px solid #8b5a2b;
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 0 30px 10px rgba(0,0,0,0.4);
-      max-width: 800px;
-      width: 90%;
-      text-align: center;
-      animation: fadeIn 0.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.8);}
-      to { opacity: 1; transform: scale(1);}
-    }
-
-    .wish-form-scroll h1 {
-      margin-bottom: 10px;
-      font-size: 40px;
-      color: #5b3920;
-    }
-
-    .wish-form-scroll p {
-      font-size: 20px;
-      margin-bottom: 15px;
-      color: #5b3920;
-    }
-
-    .wish-form-scroll input,
-    .wish-form-scroll textarea {
-      width: 100%;
-      margin-bottom: 15px;
-      padding: 10px;
-      border: 2px solid #8b5a2b;
-      border-radius: 5px;
-      background-color: #fff8dc;
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      color: #5b3920;
-    }
-
-    .submit-btn, .back-btn {
-      margin-top: 10px;
-      padding: 10px 25px;
-      font-size: 20px;
-      background-color: #8b5a2b;
-      color: #fff8dc;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 10px;
-    }
-
-    .submit-btn:hover, .back-btn:hover {
-      background-color: #5b3920;
-    }
-
-    .qr-codes {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .qr-code {
-      text-align: center;
-    }
-
-    .qr-code img {
-      width: 140px;
-      height: 140px;
-      border: 2px solid #8b5a2b;
-      border-radius: 10px;
-      box-shadow: 0 0 10px 2px #8b5a2b;
-      object-fit: contain;
-    }
-
-    .qr-note {
-      font-size: 16px;
-      margin-top: 8px;
-      color: #5b3920;
-    }
-
-    @media (max-width: 768px) {
+      .grid-item {
+        background-size: cover;
+        background-position: center;
+        filter: blur(5px);
+        transition:
+          filter 0.5s ease,
+          transform 0.5s ease;
+        cursor: pointer;
+        position: relative;
+      }
+      .item-1 {
+        background-repeat: no-repeat;
+        background-position: center top;
+      }
+      .item-3 {
+        background-size: 250%;
+        background-repeat: no-repeat;
+        background-position: calc(50% + 120px) 60%;
+      }
+      .grid-item:hover {
+        filter: blur(0);
+        transform: scale(1.1);
+        z-index: 1;
+      }
       .grid-text {
-        font-size: 22px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 30px;
+        color: white;
+        text-shadow: 2px 2px 5px black;
+        pointer-events: none;
       }
 
-      .center-button {
-        width: 220px;
-        height: 220px;
-        font-size: 22px;
+      /* ——————————————————————————————————————————— 
+              Timer styles start here 
+       ——————————————————————————————————————————— */
+
+      .center-info {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 30px;
+        z-index: 2;
+        max-width: 80%;
       }
-    }
-  </style>
-</head>
 
-<body>
+      /* .countdown-timer {
+      margin-top: 20px;
+      font-size: 24px;
+      font-family: 'Literata', serif;
+      color: #4a5c44;
+    } */
+      /* Add these styles in your existing <style> section */
+      .countdown-timer {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        font-family: "Literata", serif;
+      }
 
-  <!-- Main Grid Content wish , home, church, restaurant--> 
-  <div id="content">
-    <div class="container">
-      <div class="grid-item item-1" id="home-btn" style="background-image: url('image/tcl.jpg');">
-        <div class="grid-text">Meet The Bride</div>
+      .countdown-box {
+        position: relative;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 100px;
+      }
+
+      .countdown-number {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+        perspective: 400px;
+      }
+
+      .card {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.6s;
+      }
+
+      .card.flip {
+        transform: rotateX(-180deg);
+      }
+
+      .card-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        font-weight: bold;
+        color: #333;
+        background: #fff;
+        border-radius: 8px;
+      }
+
+      .card-face-back {
+        transform: rotateX(180deg);
+      }
+
+      .countdown-number span {
+        position: relative;
+        z-index: 3; /* Add this to ensure numbers appear above flip panels */
+        display: block;
+        line-height: 80px; /* Match the height */
+      }
+
+      .countdown-label {
+        font-size: 14px;
+        color: #666;
+        text-transform: uppercase;
+        margin-top: 5px;
+        letter-spacing: 1px;
+      }
+
+      .flip-top,
+      .flip-bottom {
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        z-index: 2; /* Lower than the span */
+      }
+
+      .flip-top {
+        background: #f8f8f8;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .flip-bottom {
+        bottom: 0;
+        background: #f0f0f0;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+      /* Forms overlay */
+      #wish-form-container,
+      #church-form-container,
+      #restaurant-form-container,
+      #home-form-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 5;
+      }
+
+      .wish-form-scroll {
+        background: rgba(114, 140, 105, 0.95);
+        border: 10px solid #4a5c44;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.4);
+        max-width: 800px;
+        width: 90%;
+        text-align: center;
+        animation: fadeIn 0.5s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .wish-form-scroll h1 {
+        margin-bottom: 10px;
+        font-size: 40px;
+        color: #ffffff;
+      }
+      .wish-form-scroll p {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #ffffff;
+      }
+      .wish-form-scroll input,
+      .wish-form-scroll textarea {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 2px solid #4a5c44;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.9);
+        font-family: "Playfair Display", serif;
+        font-size: 18px;
+        color: #4a5c44;
+      }
+      .submit-btn,
+      .back-btn {
+        margin-top: 10px;
+        padding: 10px 25px;
+        font-size: 20px;
+        background-color: #4a5c44;
+        color: #ffffff;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-family: "Playfair Display", serif;
+        margin-bottom: 10px;
+      }
+      .submit-btn:hover,
+      .back-btn:hover {
+        background-color: #5d7456;
+      }
+
+      .qr-codes {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+      .qr-code img {
+        width: 140px;
+        height: 140px;
+        border-radius: 10px;
+        object-fit: contain;
+      }
+      .qr-note {
+        font-size: 16px;
+        margin-top: 8px;
+        color: #ffffff;
+      }
+
+      @media (max-width: 768px) {
+        .grid-text {
+          font-size: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="landing">
+      <!-- Doors -->
+      <div id="door-left" class="door"></div>
+      <div id="door-right" class="door">
+        <div class="names-container">
+          <div class="groom-name">MARCUS HA</div>
+          <div class="bride-name">THANH THUY</div>
+        </div>
       </div>
-      <div class="grid-item item-2" id= "church-btn" style="background-image: url('image/asiana.jpg');">
-        <div class="grid-text">The Church</div>
-      </div>
-      <div class="grid-item item-3" id="restaurant-btn" style="background-image: url('image/wish.jpg');">
-        <div class="grid-text">The Restaurant</div>
-      </div>
-      <div class="grid-item item-4" id ="wish-btn" style="background-image: url('image/ruocdau.jpg');">
-        <div class="grid-text">Your Wish</div>
-      </div>
-      <div class="center-info">
-        <div class="couple-names">Marcus Ha</div>
-        <div class="couple-names">and</div>
-        <div class="couple-names">Tran Thi Thanh Thuy</div>
-        <div id="countdown" class="countdown-timer"></div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Hidden Wish Form Container -->
-  <div id="wish-form-container">
-    <div class="wish-form-scroll">
-      <h1>Send Us Your Wish</h1>
-      <p class="couple-names">Joseph Marcus Ha & Clara Tran Thi Thanh Thuy</p>
-      <p><em>We cherish your heartfelt wishes. Please leave your blessing below.</em></p>
+      <!-- Hidden until doors open -->
+      <div id="main-content">
+        <!-- Main Grid -->
+        <div id="content">
+          <div class="container">
+            <div
+              class="grid-item item-1"
+              id="home-btn"
+              style="background-image: url(&quot;image/tcl.jpg&quot;)"
+            >
+              <div class="grid-text">Meet The Bride</div>
+            </div>
+            <div
+              class="grid-item item-2"
+              id="church-btn"
+              style="background-image: url(&quot;image/asiana.jpg&quot;)"
+            >
+              <div class="grid-text">The Church</div>
+            </div>
+            <div
+              class="grid-item item-3"
+              id="restaurant-btn"
+              style="background-image: url(&quot;image/wish.jpg&quot;)"
+            >
+              <div class="grid-text">The Restaurant</div>
+            </div>
+            <div
+              class="grid-item item-4"
+              id="wish-btn"
+              style="background-image: url(&quot;image/ruocdau.jpg&quot;)"
+            >
+              <div class="grid-text">Your Wish</div>
+            </div>
+            <div class="center-info">
+              <div class="countdown-timer">
+                <div class="countdown-box">
+                  <div class="countdown-number">
+                    <div class="card" id="days-card">
+                      <div class="card-face card-face-front">
+                        <span>00</span>
+                      </div>
+                      <div class="card-face card-face-back">
+                        <span>00</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="countdown-label">Days</div>
+                </div>
 
-      <input type="text" placeholder="Your Name" id="name">
-      <textarea placeholder="Your Wish" id="wish" rows="5"></textarea>
+                <div class="countdown-box">
+                  <div class="countdown-number">
+                    <div class="card" id="hours-card">
+                      <div class="card-face card-face-front">
+                        <span>00</span>
+                      </div>
+                      <div class="card-face card-face-back">
+                        <span>00</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="countdown-label">Hours</div>
+                </div>
 
-      <br>
-      <button class="submit-btn" onclick="sendWish()">Send Wish</button>
-      <button class="back-btn" onclick="closeWishForm()">Back</button>
+                <div class="countdown-box">
+                  <div class="countdown-number">
+                    <div class="card" id="minutes-card">
+                      <div class="card-face card-face-front">
+                        <span>00</span>
+                      </div>
+                      <div class="card-face card-face-back">
+                        <span>00</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="countdown-label">Minutes</div>
+                </div>
 
-      <div class="qr-codes">
-        <div class="qr-code">
-          <img src="image/qr1.png" alt="QR Payment">
-          <div class="qr-note">
-            Ngân hàng Tiên Phong<br>
-            TRẦN THỊ THANH THÙY<br>
-            0617 1222 401
+                <div class="countdown-box">
+                  <div class="countdown-number">
+                    <div class="card" id="seconds-card">
+                      <div class="card-face card-face-front">
+                        <span>00</span>
+                      </div>
+                      <div class="card-face card-face-back">
+                        <span>00</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="countdown-label">Seconds</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="qr-code">
-          <img src="image/qr2.png" alt="QR Zelle">
-          <div class="qr-note">
-            Marcus Ha<br>
-            at xxx-xxx-5227
+
+        <!-- Wish Form -->
+        <div id="wish-form-container">
+          <div class="wish-form-scroll">
+            <h1>Send Us Your Wish</h1>
+            <p class="couple-names">
+              Joseph Marcus Ha & Clara Tran Thi Thanh Thuy
+            </p>
+            <p>
+              <em
+                >We cherish your heartfelt wishes. Please leave your blessing
+                below.</em
+              >
+            </p>
+            <input type="text" placeholder="Your Name" id="name" />
+            <textarea placeholder="Your Wish" id="wish" rows="5"></textarea>
+            <br />
+            <button class="submit-btn" onclick="sendWish()">Send Wish</button>
+            <button class="back-btn" onclick="closeWishForm()">Back</button>
+            <div class="qr-codes">
+              <div class="qr-code">
+                <img src="image/qr1.png" alt="QR Payment" />
+                <div class="qr-note">
+                  Ngân hàng Tiên Phong<br />
+                  TRẦN THỊ THANH THÙY<br />
+                  0617 1222 401
+                </div>
+              </div>
+              <div class="qr-code">
+                <img src="image/qr2.png" alt="QR Zelle" />
+                <div class="qr-note">
+                  Marcus Ha<br />
+                  at xxx-xxx-5227
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Church Form -->
+        <div id="church-form-container">
+          <div class="wish-form-scroll">
+            <h1>You're Invited!</h1>
+            <p class="couple-names">
+              Joseph Marcus Ha & Clara Tran Thi Thanh Thuy
+            </p>
+            <p>
+              Join us at Tan Chi Linh Church, 6/25 Pham Van Hai, Ward 3, Tan
+              Binh District
+            </p>
+            <p>4:00 PM on June 28, 2025</p>
+            <p style="margin-top: 20px; font-style: italic">
+              “We become what we love and who we love shapes what we become.”<br />—
+              St. Clare of Assisi
+            </p>
+            <button class="back-btn" onclick="closeChurchForm()">Back</button>
+          </div>
+        </div>
+
+        <!-- Restaurant Form -->
+        <div id="restaurant-form-container">
+          <div class="wish-form-scroll">
+            <h1>Wedding Details</h1>
+            <p>
+              <strong>June 28th, 2025<br />7:00 PM – 5:00 AM</strong>
+            </p>
+            <p><strong>284–286 Vuon Lai, Phu Tho Hoa, Tan Phu</strong></p>
+            <hr style="margin: 25px 0; border-top: 2px dashed #8b5a2b" />
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+                text-align: left;
+              "
+            >
+              <div>
+                <h2 style="color: #5b3920">Getting There</h2>
+                <p>• 15–20′ from Church<br />• 25′ from Bride’s House</p>
+              </div>
+              <div>
+                <h2 style="color: #5b3920">☕ Drinks</h2>
+                <p>• Coke • Beer • Water</p>
+                <h2 style="color: #5b3920; margin-top: 20px">Good Eats</h2>
+                <p>• Mon 1 • Mon 2 • Mon 3 • Mon 4 • Mon 5</p>
+              </div>
+            </div>
+            <button class="back-btn" onclick="closeRestaurantForm()">
+              Back
+            </button>
+          </div>
+        </div>
+
+        <!-- Home/Meet-Bride Form -->
+        <div id="home-form-container">
+          <div class="wish-form-scroll">
+            <h1>Reception Invitation</h1>
+            <p>Together with our families,</p>
+            <p class="couple-names">
+              Joseph Marcus Ha & Clara Tran Thi Thanh Thuy
+            </p>
+            <p>invite you to celebrate at <strong>Home</strong>.</p>
+            <p><strong>13:00 PM on June 28, 2025</strong></p>
+            <p style="margin-top: 20px">
+              We look forward to sharing this joyful moment!
+            </p>
+            <button class="back-btn" onclick="closeHomeForm()">Back</button>
           </div>
         </div>
       </div>
+      <!-- end #main-content -->
     </div>
-  </div>
+    <!-- end #landing -->
 
-  <!-- Hidden Church Invitation Form -->
-  <div id="church-form-container" style="display: none;">
-    <div class="wish-form-scroll">
-      <h1>You're Invited!</h1>
-      <p class="couple-names">Joseph Marcus Ha & Clara Tran Thi Thanh Thuy</p>
-      <p>We would be honored to have you join us as we exchange vows and celebrate our love at Tan Chi Linh Church.</p>
-      <p>The ceremony will take place at 6/25 Pham Van Hai, Ward 3, Tan Binh District, starting at 4:00 PM on June 28, 2025.</p>
-      <p style="margin-top:20px; font-style: italic;">“We become what we love and who we love shapes what we become.”<br>— St. Clare of Assisi</p>
-  
-      <button class="back-btn" onclick="closeChurchForm()">Back</button>
-    </div>
-  </div>
+    <script>
+      // Split-doors click
+      const landing = document.getElementById("landing");
+      landing.addEventListener("click", () => {
+        if (!landing.classList.contains("open")) {
+          landing.classList.add("open");
+        }
+      });
 
-  <!-- Hidden Restaurant Invitation Form -->
-<div id="restaurant-form-container" style="display: none;">
-  <div class="wish-form-scroll">
-    <h1>Wedding Details</h1>
+      // Show/hide forms
+      document
+        .getElementById("wish-btn")
+        .addEventListener(
+          "click",
+          () =>
+            (document.getElementById("wish-form-container").style.display =
+              "flex"),
+        );
+      document
+        .getElementById("church-btn")
+        .addEventListener(
+          "click",
+          () =>
+            (document.getElementById("church-form-container").style.display =
+              "flex"),
+        );
+      document
+        .getElementById("restaurant-btn")
+        .addEventListener(
+          "click",
+          () =>
+            (document.getElementById(
+              "restaurant-form-container",
+            ).style.display = "flex"),
+        );
+      document
+        .getElementById("home-btn")
+        .addEventListener(
+          "click",
+          () =>
+            (document.getElementById("home-form-container").style.display =
+              "flex"),
+        );
 
-    <p><strong>DATE</strong><br>
-    June 28th, 2025<br>
-    7:00 PM – 5:00 AM (PST)</p>
-
-    <p><strong>RECEPTION LOCATION</strong><br>
-    284-286 Vuon Lai<br>
-    Phu Tho Hoa, Tan Phu</p>
-
-    <p><strong>DRESS</strong><br>
-    Formal</p>
-
-    <hr style="margin: 25px 0; border: none; border-top: 2px dashed #8b5a2b;">
-
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left;">
-
-      <div>
-        <h2 style="color:#5b3920;">Getting There</h2>
-        <p><strong>By Car/Motobike</strong><br>
-        • 15-20' Drive from Tan Chi Linh Catholic Church<br>
-        • 25' Drive from Bride's house</p>
-      </div>
-
-      <div>
-        <h2 style="color:#5b3920;">☕ Drinks</h2>
-        <p>
-          • Coke<br>
-          • Beer<br>
-          • Water<br>
-        </p>
-
-        <h2 style="color:#5b3920; margin-top: 20px;">Good Eats</h2>
-        <p>
-          • Mon 1<br>
-          • Mon 2<br>
-          • Mon 3<br>
-          • Mon 4<br>
-          • Mon 5<br>
-        </p>
-      </div>
-
-    </div>
-
-    <button class="back-btn" onclick="closeRestaurantForm()">Back</button>
-  </div>
-</div>
-
-  <!-- Hidden Meet The Bride Invitation Form -->
-  <div id="home-form-container" style="display: none;">
-    <div class="wish-form-scroll">
-      <h1>Reception Invitation</h1>
-      <p>Together with our families,</p>
-      <p class="couple-names">Joseph Marcus Ha & Clara Tran Thi Thanh Thuy</p>
-      <p>invite you to celebrate with us at <strong>Home</strong>.</p>
-      <p>The reception will begin at <strong>13:00 PM</strong> on <strong>June 28, 2025</strong>,</p>
-      <p style="margin-top:20px;">We look forward to sharing this joyful moment with you!</p>
-
-      <button class="back-btn" onclick="closeHomeForm()">Back</button>
-    </div>
-  </div>
-
-  <script>
-    document.getElementById('wish-btn').addEventListener('click', function() {
-      document.getElementById('wish-form-container').style.display = 'flex';
-    });
-
-    function closeWishForm() {
-      document.getElementById('wish-form-container').style.display = 'none';
-    }
-
-    function sendWish() {
-      const name = document.getElementById('name').value;
-      const wish = document.getElementById('wish').value;
-      if (name && wish) {
-        alert('Thank you for your wish!');
-        closeWishForm();
-      } else {
-        alert('Please fill out your name and wish!');
+      function closeWishForm() {
+        document.getElementById("wish-form-container").style.display = "none";
       }
-    }
-
-      // Open Church Invitation Form
-    document.getElementById('church-btn').addEventListener('click', function() {
-      document.getElementById('church-form-container').style.display = 'flex';
-    });
-
-    function closeChurchForm() {
-      document.getElementById('church-form-container').style.display = 'none';
-    }
-
-      // Open Restaurant Invitation Form
-      document.getElementById('restaurant-btn').addEventListener('click', function() {
-      document.getElementById('restaurant-form-container').style.display = 'flex';
-    });
-
-    function closeRestaurantForm() {
-      document.getElementById('restaurant-form-container').style.display = 'none';
-    }
-
-      // Open Restaurant Invitation Form
-      document.getElementById('home-btn').addEventListener('click', function() {
-      document.getElementById('home-form-container').style.display = 'flex';
-    });
-
-    function closeHomeForm() {
-      document.getElementById('home-form-container').style.display = 'none';
-    }
-
-    function updateCountdown() {
-      const targetDate = new Date('June 25, 2025 13:00:00').getTime();
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-
-      if (diff <= 0) {
-        document.getElementById('countdown').innerText = "It's time!";
-        return;
+      function closeChurchForm() {
+        document.getElementById("church-form-container").style.display = "none";
+      }
+      function closeRestaurantForm() {
+        document.getElementById("restaurant-form-container").style.display =
+          "none";
+      }
+      function closeHomeForm() {
+        document.getElementById("home-form-container").style.display = "none";
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      const dayLabel = days === 1 ? 'day' : 'days';
-
-      document.getElementById('countdown').innerText = 
-        document.getElementById('countdown').innerText = `${days} ${dayLabel}   ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      function sendWish() {
+        const name = document.getElementById("name").value.trim();
+        const wish = document.getElementById("wish").value.trim();
+        if (name && wish) {
+          alert("Thank you for your wish!");
+          closeWishForm();
+        } else {
+          alert("Please fill out your name and wish!");
+        }
       }
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
+      // Countdown
+      function updateCountdown() {
+        const target = new Date("June 25, 2025 13:00:00").getTime();
+        const now = Date.now();
+        const diff = target - now;
 
-</body>
+        if (diff <= 0) {
+          document.querySelector(".countdown-timer").innerHTML =
+            "<div class='countdown-box'><div class='countdown-number'>It's time!</div></div>";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        // Function to update each card
+        function updateCard(id, value) {
+          const card = document.querySelector(`#${id}-card`);
+          const currentValue = card.querySelector(
+            ".card-face-front span",
+          ).textContent;
+          const newValue = String(value).padStart(2, "0");
+
+          if (currentValue !== newValue) {
+            // Update back face with new value
+            card.querySelector(".card-face-back span").textContent = newValue;
+
+            // Add flip class
+            card.classList.add("flip");
+
+            // After animation, update front face and remove flip
+            setTimeout(() => {
+              card.querySelector(".card-face-front span").textContent =
+                newValue;
+              card.classList.remove("flip");
+            }, 600);
+          }
+        }
+
+        // Update all cards
+        updateCard("days", days);
+        updateCard("hours", hrs);
+        updateCard("minutes", mins);
+        updateCard("seconds", secs);
+      }
+
+      // Keep the existing interval
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+    </script>
+  </body>
 </html>
