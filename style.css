@@ -594,6 +594,18 @@ line-height: 1.4;
 /* Responsive */
 @media (max-width: 768px) {
   /* adjust grid to one column, names to smaller font, etc. */
+
+  #home-form-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
   .container { grid-template-columns: 1fr; grid-template-rows: repeat(4,1fr); }
   .names-container { height: 150px; }
   .groom-name, .bride-name { font-size: 4rem; width:100%; text-align:center; }
@@ -656,39 +668,47 @@ line-height: 1.4;
   }
   
   .bride-layout {
-    position: relative !important;
-    height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
+    display: flex;
+    flex-direction: column;
+    overflow-y: visible;
+    height: auto;
   }
 
   .bride-image {
-    order: 2 !important;
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-    padding-top: 56.25% !important;
-    background-size: cover !important;
-    background-position: center !important;
+    order: 2;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
   }
 
   .bride-info {
-    order: 1 !important;
-    width: 100% !important;
-    padding: 20px !important;
+    order: 1;
+    width: 100%;
+    padding: 20px;
+    min-height: auto;
   }
 
-  .bride-content h1 {
-    font-size: 32px;
+  .bride-content {
+    text-align: center;
+    color: #ffffff;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 20px;
   }
 
   .bride-story {
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.8;
+    margin: 20px 0;
+    text-align: left;
   }
 
-  .reception-info h2 {
-    font-size: 36px;
+  .reception-info {
+    margin-top: 40px;
+    text-align: center;
   }
 
   .reception-info .couple-names {
