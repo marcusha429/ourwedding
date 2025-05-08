@@ -668,30 +668,30 @@ line-height: 1.4;
   }
   
   .bride-layout {
-    display: block !important;
+    display: grid !important;
     position: relative !important;
     height: auto !important;
     padding: 0 !important;
   }
 
   .bride-image {
-    display: block !important;
-    position: flex !important;
+    order: 1 !important;
+    display: grid !important;
+    position: relative !important;
     width: 100% !important;
     height: 100vh !important;
-    padding-top: 100% !important; 
     background-size: cover !important;
-    background-position: center !important;
+    background-position: top center !important;
   }
 
   .bride-info {
-    order: 1 !important;
     width: 100% !important;
     padding: 20px !important;
   }
 
   .bride-content {
-    padding-top: 10%;
+    display: grid !important;
+    padding-top: 180%;
     text-align: center;
     color: #ffffff;
     max-width: 800px;
@@ -701,7 +701,7 @@ line-height: 1.4;
   }
 
   .bride-story {
-    font-size: 18px;
+    font-size: 15px;
     line-height: 1.8;
     margin: 20px 0;
     text-align: left;
