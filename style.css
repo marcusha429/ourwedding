@@ -668,26 +668,26 @@ line-height: 1.4;
   }
   
   .bride-layout {
-    display: flex;
-    flex-direction: column;
-    overflow-y: visible;
-    height: auto;
+    display: block !important;
+    position: relative !important;
+    height: auto !important;
+    padding: 0 !important;
   }
 
   .bride-image {
-    order: 2;
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-attachment: scroll;
+    order: 2 !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 100vh !important;
+    padding-bottom: 100% !important; 
+    background-size: cover !important;
+    background-position: center !important;
   }
 
   .bride-info {
-    order: 1;
-    width: 100%;
-    padding: 20px;
-    min-height: auto;
+    order: 1 !important;
+    width: 100% !important;
+    padding: 20px !important;
   }
 
   .bride-content {
@@ -709,18 +709,6 @@ line-height: 1.4;
   .reception-info {
     margin-top: 40px;
     text-align: center;
-  }
-
-  .reception-info .couple-names {
-    font-size: 28px;
-  }
-
-  .reception-info p {
-    font-size: 20px;
-  }
-
-  .reception-time {
-    font-size: 24px !important;
   }
 
   .wish-layout {
