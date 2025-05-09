@@ -621,6 +621,28 @@ line-height: 1.4;
     background: rgba(0, 0, 0, 0.5); 
   }
 
+  #restaurant-form-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: rgba(0, 0, 0, 0.5); 
+  }
+
+  #wish-form-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: rgba(0, 0, 0, 0.5); 
+  }
+
   .container { grid-template-columns: 1fr; grid-template-rows: repeat(4,1fr); }
   .names-container { height: 150px; }
   .groom-name, .bride-name { font-size: 4rem; width:100%; text-align:center; }
@@ -666,22 +688,36 @@ line-height: 1.4;
   }
 
   .restaurant-layout {
-    flex-direction: column-reverse;
+    display: grid !important;
+    position: relative !important;
+    height: auto !important;
+    padding: 0 !important;
   }
 
   .restaurant-image {
-    width: 100%;
-    height: 40%;
+    order: 1 !important;
+    display: grid !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 100vh !important;
+    background-size: cover !important;
+    background-position: top center !important;
   }
 
   .restaurant-info {
-    width: 100%;
-    height: 60%;
-    padding: 20px;
+    width: 100% !important;
+    padding: 20px !important;
   }
 
-  .restaurant-content h1 {
-    font-size: 32px;
+  .restaurant-content {
+    display: grid !important;
+    padding-top: 1500px;
+    text-align: center;
+    color: #ffffff;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 20px;
   }
 
   .info-grid {
@@ -742,26 +778,36 @@ line-height: 1.4;
   }
 
   .wish-layout {
-    flex-direction: column-reverse;
+    display: grid !important;
+    position: relative !important;
+    height: auto !important;
+    padding: 0 !important;
   }
 
   .wish-image {
-    width: 100%;
-    height: 40%;
+    order: 1 !important;
+    display: grid !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 100vh !important;
+    background-size: cover !important;
+    background-position: top center !important;
   }
 
   .wish-info {
-    width: 100%;
-    height: 60%;
-    padding: 20px;
+    width: 100% !important;
+    padding: 20px !important;
   }
 
   .wish-content h1 {
-    font-size: 32px;
-  }
-
-  .wish-content .couple-names {
-    font-size: 24px;
+    display: grid !important;
+    padding-top: 1000px;
+    text-align: center;
+    color: #ffffff;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 20px;
   }
 
   .qr-codes {
