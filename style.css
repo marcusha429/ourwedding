@@ -823,6 +823,10 @@ line-height: 1.4;
   .qr-note {
     font-size: 12px;
   }
+
+  .grid-text{
+    font-size: 20px;
+  }
 }
 @media screen and (max-width: 380px) {
   .groom-name, .bride-name { font-size:3rem; }
