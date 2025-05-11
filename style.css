@@ -647,8 +647,8 @@ line-height: 1.4;
   .container { grid-template-columns: 1fr; grid-template-rows: repeat(4,1fr); }
   .names-container { height: 150px; }
   .groom-name, .bride-name { font-size: 4rem; width:100%; text-align:center; }
-  .countdown-box { min-width:60px; padding:8px; }
-  .countdown-number { font-size: 1.5rem; }
+  .countdown-box { min-width:50px; padding:4px; }
+  .countdown-number { font-size: 1.2rem; }
   .countdown-label { font-size:10px; }
   .wish-form-scroll { width:95%; padding:20px; }
   .wish-form-scroll h1 { font-size:28px; }
