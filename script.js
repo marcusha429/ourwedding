@@ -44,6 +44,33 @@ function playRandomMusic() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    const formMap = {
+        'wish-btn':       'wish-form-container',
+        'church-btn':     'church-form-container',
+        'restaurant-btn': 'restaurant-form-container',
+        'home-btn':       'home-form-container'
+      };
+      
+      const gridItems = document.querySelectorAll('.grid-item');
+      
+      gridItems.forEach(item => {
+        item.addEventListener('click', () => {
+          // first tap: activate (un-blur + zoom) and clear others
+          if (!item.classList.contains('active')) {
+            gridItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            return;
+          }
+      
+          // second tap: open the form
+          const formId = formMap[item.id];
+          if (formId) {
+            document.getElementById(formId).style.display = 'flex';
+            // optionally reset active state so you always start from step 1:
+            gridItems.forEach(i => i.classList.remove('active'));
+          }
+        });
+      });
     // Create music controls
     const musicControls = document.createElement('div');
     musicControls.className = 'music-controls';
@@ -128,34 +155,6 @@ function toggleMusic() {
         document.getElementById('musicToggle').textContent = '🔇';
     }
 }
-
-const formMap = {
-    'wish-btn':       'wish-form-container',
-    'church-btn':     'church-form-container',
-    'restaurant-btn': 'restaurant-form-container',
-    'home-btn':       'home-form-container'
-  };
-  
-  const gridItems = document.querySelectorAll('.grid-item');
-  
-  gridItems.forEach(item => {
-    item.addEventListener('click', () => {
-      // first tap: activate (un-blur + zoom) and clear others
-      if (!item.classList.contains('active')) {
-        gridItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        return;
-      }
-  
-      // second tap: open the form
-      const formId = formMap[item.id];
-      if (formId) {
-        document.getElementById(formId).style.display = 'flex';
-        // optionally reset active state so you always start from step 1:
-        gridItems.forEach(i => i.classList.remove('active'));
-      }
-    });
-  });
 
 
 // Form close functions
