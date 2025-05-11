@@ -44,6 +44,26 @@ function playRandomMusic() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach(item => {
+        let alreadyClicked = false;
+        item.addEventListener('click', function() {
+            if (!alreadyClicked){
+                item.classList.add('unblurred');
+                alreadyClicked = true;
+            }else{
+                if(item.id =='home-btn'){
+                    openHomeForm();
+                }else if(item.id == 'wish-btn'){
+                    openWishForm();
+                }else if(item.id == 'church-btn'){
+                    openChurchForm();
+                }else if(item.id == 'restaurant-btn'){
+                    openRestaurantForm();
+                }
+            }
+        });
+    });
 
     const musicControls = document.createElement('div');
     musicControls.className = 'music-controls';
