@@ -5,136 +5,89 @@ const musicList = [
     'music/mylovemineallmine.mp3',
     'music/ithinktheycallthislove.mp3',
     'music/blue.mp3',
-]
-
-let currentAudio = null;
-let isPlaying = false;
-
-function initAudio() {
+  ];
+  let currentAudio = null;
+  let isPlaying = false;
+  
+  function initAudio() {
     playRandomMusic();
-}
-
-function playRandomMusic() {
-    if (isPlaying) {
-        return;
-    }
-
-    const randomIndex = Math.floor(Math.random() * musicList.length);
-    currentAudio = new Audio(musicList[randomIndex]);
-    currentAudio.volume = 0.5; 
-    
+  }
+  function playRandomMusic() {
+    if (isPlaying) return;
+  
+    const idx = Math.floor(Math.random() * musicList.length);
+    currentAudio = new Audio(musicList[idx]);
+    currentAudio.volume = 0.5;
     currentAudio.addEventListener('ended', () => {
-        const nextIndex = (musicList.indexOf(currentAudio.src.split('/').pop()) + 1) % musicList.length;
-        currentAudio.src = musicList[nextIndex];
-        currentAudio.play().catch(error => console.log("Playback failed:", error));
+      const next = (musicList.indexOf(currentAudio.src.split('/').pop()) + 1) % musicList.length;
+      currentAudio.src = musicList[next];
+      currentAudio.play().catch(e => console.log("Playback failed:", e));
     });
-    
     currentAudio.play()
-        .then(() => {
-            isPlaying = true;
-            document.getElementById('musicToggle').textContent = '🎵';
-        })
-        .catch(error => {
-            console.log("Audio playback failed:", error);
-            isPlaying = false;
-            document.getElementById('musicToggle').textContent = '🔇';
-            document.addEventListener('click', initAudio, { once: true });
-        });
-}
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const formMap = {
-        'wish-btn':       'wish-form-container',
-        'church-btn':     'church-form-container',
-        'restaurant-btn': 'restaurant-form-container',
-        'home-btn':       'home-form-container'
-      };
-      
-      const gridItems = document.querySelectorAll('.grid-item');
-      
-      gridItems.forEach(item => {
-        item.addEventListener('click', () => {
-          // first tap: activate (un-blur + zoom) and clear others
-          if (!item.classList.contains('active')) {
-            gridItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-            return;
-          }
-      
-          // second tap: open the form
-          const formId = formMap[item.id];
-          if (formId) {
-            document.getElementById(formId).style.display = 'flex';
-            // optionally reset active state so you always start from step 1:
-            gridItems.forEach(i => i.classList.remove('active'));
-          }
-        });
+      .then(() => {
+        isPlaying = true;
+        document.getElementById('musicToggle').textContent = '🎵';
+      })
+      .catch(err => {
+        console.log("Audio failed:", err);
+        isPlaying = false;
+        document.getElementById('musicToggle').textContent = '🔇';
+        document.addEventListener('click', initAudio, { once: true });
       });
-    // Create music controls
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    // —— two-step grid logic ——
+    const formMap = {
+      'wish-btn':       'wish-form-container',
+      'church-btn':     'church-form-container',
+      'restaurant-btn': 'restaurant-form-container',
+      'home-btn':       'home-form-container',
+    };
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach(item => {
+      item.addEventListener('click', () => {
+        if (!item.classList.contains('active')) {
+          gridItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+          return;  // stop here on first tap
+        }
+        // second tap → open form
+        const formId = formMap[item.id];
+        if (formId) {
+          document.getElementById(formId).style.display = 'flex';
+          gridItems.forEach(i => i.classList.remove('active'));
+        }
+      });
+    });
+  
+    // —— single music-control creation ——
     const musicControls = document.createElement('div');
     musicControls.className = 'music-controls';
     musicControls.style = 'position: fixed; bottom: 20px; right: 20px; z-index: 1000;';
     musicControls.innerHTML = `
-        <button id="musicToggle" style="padding: 10px; border-radius: 50%; background: rgba(255,255,255,0.8);">
-            🔇
-        </button>
-    `;
+      <button onclick="toggleMusic()" id="musicToggle"
+              style="padding:10px; border-radius:50%; background:rgba(255,255,255,0.8);">
+        🔇
+      </button>`;
     document.body.appendChild(musicControls);
-
-    // Start music immediately when page loads
-    initAudio();
-
-    // Door click handlers
+  
+    initAudio();  // kick off music
+  
+    // —— door logic ——
     const landing = document.getElementById("landing");
-    const doors = document.querySelectorAll(".door");
-
-    doors.forEach(door => {
-        door.addEventListener("click", () => {
-            if (!landing.classList.contains("open")) {
-                landing.classList.add("open");
-                // Remove this line since music should already be playing
-                // playRandomMusic(); 
-            }
-        });
+    document.querySelectorAll(".door").forEach(door => {
+      door.addEventListener("click", () => {
+        if (!landing.classList.contains("open")) {
+          landing.classList.add("open");
+        }
+      });
     });
-
-    // Add music controls to your page
-    musicControls.innerHTML = `
-        <div class="music-controls" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-            <button onclick="toggleMusic()" id="musicToggle" style="padding: 10px; border-radius: 50%; background: rgba(255,255,255,0.8);">
-                🎵
-            </button>
-        </div>
-    `;
-    document.body.appendChild(musicControls);
-
-    // Show/hide forms
-    document.getElementById("wish-btn")
-        .addEventListener("click", () => 
-            document.getElementById("wish-form-container").style.display = "flex"
-        );
-    
-    document.getElementById("church-btn")
-        .addEventListener("click", () => 
-            document.getElementById("church-form-container").style.display = "flex"
-        );
-    
-    document.getElementById("restaurant-btn")
-        .addEventListener("click", () => 
-            document.getElementById("restaurant-form-container").style.display = "flex"
-        );
-    
-    document.getElementById("home-btn")
-        .addEventListener("click", () => 
-            document.getElementById("home-form-container").style.display = "flex"
-        );
-
-    // Start countdown immediately
+  
+    // —— countdown ——
     updateCountdown();
-    // Set interval for countdown
     setInterval(updateCountdown, 1000);
-});
+  });
 
 function toggleMusic() {
     if (!currentAudio) {
