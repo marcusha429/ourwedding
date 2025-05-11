@@ -44,27 +44,7 @@ function playRandomMusic() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    const gridItems = document.querySelectorAll('.grid-item');
-    gridItems.forEach(item => {
-        let alreadyClicked = false;
-        item.addEventListener('click', function() {
-            if (!alreadyClicked){
-                item.classList.add('unblurred');
-                alreadyClicked = true;
-            }else{
-                if(item.id =='home-btn'){
-                    openHomeForm();
-                }else if(item.id == 'wish-btn'){
-                    openWishForm();
-                }else if(item.id == 'church-btn'){
-                    openChurchForm();
-                }else if(item.id == 'restaurant-btn'){
-                    openRestaurantForm();
-                }
-            }
-        });
-    });
-
+    // Create music controls
     const musicControls = document.createElement('div');
     musicControls.className = 'music-controls';
     musicControls.style = 'position: fixed; bottom: 20px; right: 20px; z-index: 1000;';
@@ -149,21 +129,54 @@ function toggleMusic() {
     }
 }
 
+const formMap = {
+    'wish-btn':       'wish-form-container',
+    'church-btn':     'church-form-container',
+    'restaurant-btn': 'restaurant-form-container',
+    'home-btn':       'home-form-container'
+  };
+  
+  const gridItems = document.querySelectorAll('.grid-item');
+  
+  gridItems.forEach(item => {
+    item.addEventListener('click', () => {
+      // first tap: activate (un-blur + zoom) and clear others
+      if (!item.classList.contains('active')) {
+        gridItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        return;
+      }
+  
+      // second tap: open the form
+      const formId = formMap[item.id];
+      if (formId) {
+        document.getElementById(formId).style.display = 'flex';
+        // optionally reset active state so you always start from step 1:
+        gridItems.forEach(i => i.classList.remove('active'));
+      }
+    });
+  });
+
+
 // Form close functions
 function closeWishForm() {
     document.getElementById("wish-form-container").style.display = "none";
+    document.querySelector('.grid-item.active')?.classList.remove('active');
 }
 
 function closeChurchForm() {
     document.getElementById("church-form-container").style.display = "none";
+    document.querySelector('.grid-item.active')?.classList.remove('active');
 }
 
 function closeRestaurantForm() {
     document.getElementById("restaurant-form-container").style.display = "none";
+    document.querySelector('.grid-item.active')?.classList.remove('active');
 }
 
 function closeHomeForm() {
     document.getElementById("home-form-container").style.display = "none";
+    document.querySelector('.grid-item.active')?.classList.remove('active');
 }
 
 function sendWish() {

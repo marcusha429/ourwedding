@@ -598,16 +598,8 @@ line-height: 1.4;
 /* Responsive */
 @media (max-width: 768px) {
   /* adjust grid to one column, names to smaller font, etc. */
-  .grid-item {
-    filter: blur(5px);
-    transition: filter 0.5s ease, transform 0.5s ease;
-    cursor: pointer;
-  }
-  .grid-item.unblurred {
-    filter: blur(0);
-    transform: scale(1.05);
-  }
-  
+
+
   #home-form-container {
     position: fixed;
     top: 0;
@@ -837,4 +829,19 @@ line-height: 1.4;
   .countdown-box { min-width:60px; }
   .countdown-number { width:50px; height:50px; }
   .countdown-label { font-size:12px; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .grid-item:hover {
+    filter: blur(0);
+    transform: scale(1.1);
+    z-index: 1;
+  }
+}
+
+/* active state: unblur + zoom for both desktop & mobile */
+.grid-item.active {
+  filter: blur(0);
+  transform: scale(1.1);
+  z-index: 1;
 }
