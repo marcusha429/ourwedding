@@ -1,3 +1,4 @@
+emailjs.init('uslz-38maofgET7_g');
 //MUSIC 
 const musicList = [
     'music/summerisforfallinginlove.mp3',
@@ -132,14 +133,37 @@ function closeHomeForm() {
 }
 
 function sendWish() {
-    const name = document.getElementById("name").value.trim();
-    const wish = document.getElementById("wish").value.trim();
-    if (name && wish) {
-        alert("Thank you for your wish!");
-        closeWishForm();
-    } else {
-        alert("Please fill out your name and wish!");
-    }
+  const nameEl = document.getElementById("name");
+  const wishEl = document.getElementById("wish");
+  const name = nameEl.value.trim();
+  const wish = wishEl.value.trim();
+
+  if (!name || !wish) {
+    alert("Please fill out both your name and your wish!");
+    return;
+  }
+
+  // build the parameters object — 
+  // make sure the keys here match the variable names in your EmailJS template
+  const templateParams = {
+    user_name: name,
+    message: wish
+  };
+
+  // send via EmailJS
+  emailjs.send('service_g7g3w0g', 'template_xyez4a7', templateParams)
+    .then(response => {
+      console.log('SUCCESS:', response.status, response.text);
+      alert("Thank you! Your wish has been sent.");
+      closeWishForm();
+      // reset form fields if you like:
+      nameEl.value = "";
+      wishEl.value = "";
+    })
+    .catch(err => {
+      console.error('FAILED to send wish:', err);
+      alert("Oops—something went wrong. Please try again later.");
+    });
 }
 
 function updateCountdown() {
