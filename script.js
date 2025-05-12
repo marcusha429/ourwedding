@@ -34,7 +34,13 @@ const translations = {
     drinks: "Drinks",
     alldrinks: "• Coke • Beer • Water",
     goodeats: "Good Eats",
-    allfoods: "• Mon 1 • Mon 2 • Mon 3 • Mon 4 • Mon 5",
+    allfoods: "• Roasted Chicken & Pumpkin Salad<br>"+ 
+    " • Oven-Baked Pork Rolls with Kimchi<br>"+ 
+    " • Fish Maw Soup with Black Moss<br>"+ 
+    " • Seafood in Pumpkin Sauce<br>" + 
+    " • Roasted Chicken with Miso Sauce & Chef's Special Sticky Rice<br>"+
+    " • Teochew-Style Seafood Hot Pot with Steamed Noodles<br>"+
+    " • Sweet Red Date Soup with Palm Seeds",
     ourstory: "Our Story",
     firstsentence: "Seven years woven tightly.",
     secondsentence: "I greets the sun in Vietnam as he whispers goodnight from the U.S.",
@@ -81,7 +87,13 @@ const translations = {
     drinks: "Đồ Uống",
     alldrinks: "• Coca • Bia • Nước Suối",
     goodeats: "Món Ăn",
-    allfoods: "• Món 1 • Món 2 • Món 3 • Món 4 • Món 5",
+    allfoods: "• Xà Lách Bí Đỏ - Gà Nướng<br>"+ 
+    " • Heo Cuộn Kim Chi Đút Lò<br>"+ 
+    " • Súp Bóng Cá Tóc Tiên<br>"+
+    " • Hải Sản Xốt Bí Đỏ<br>" +
+    " • Gà Quay Xốt Miso - Xôi Đặc Biệt<br>" + 
+    " • Lẩu Hải Sản Triều Châu - Mì Hấp<br>" +
+    " • Chè Táo Đỏ Hạt Đác",
     ourstory: "Câu Chuyện Của Chúng Tôi",
     firstsentence: "Bảy năm gắn bó.",
     secondsentence: "Tôi chào đón ánh nắng ở Việt Nam khi anh ấy thì thầm lời chúc ngủ ngon từ Mỹ.",
