@@ -12,13 +12,21 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Language Selection Overlay -->
+  <div id="lang-overlay">
+    <div class="lang-box">
+      <h2>Please select your language</h2>
+      <button data-lang="en">English</button>
+      <button data-lang="vi">Tiếng Việt</button>
+    </div>
+  </div>
   <div id="landing">
     <!-- Doors -->
     <div id="door-left" class="door"></div>
     <div id="door-right" class="door">
       <div class="names-container">
-        <div class="groom-name">MARCUS HA</div>
-        <div class="bride-name">THANH THUY</div>
+        <div class="groom-name" data-i18n="groomname">MARCUS HA</div>
+        <div class="bride-name" data-i18n="bridename">THANH THUY</div>
       </div>
     </div>
 
@@ -32,42 +40,42 @@
             id="home-btn"
             style="background-image: url('image/tcl.jpg')"
           >
-            <div class="grid-text">Meet The Bride</div>
+            <div class="grid-text" data-i18n="meetthebride">Meet The Bride</div>
           </div>
           <div
             class="grid-item item-2"
             id="church-btn"
             style="background-image: url('image/asiana.jpg')"
           >
-            <div class="grid-text">The Church</div>
+            <div class="grid-text" data-i18n="thechurch">The Church</div>
           </div>
           <div
             class="grid-item item-3"
             id="restaurant-btn"
             style="background-image: url('image/wish.jpg')"
           >
-            <div class="grid-text">The Restaurant</div>
+            <div class="grid-text" data-i18n="therestaurant">The Restaurant</div>
           </div>
           <div
             class="grid-item item-4"
             id="wish-btn"
             style="background-image: url('image/ruocdau.jpg')"
           >
-            <div class="grid-text">Your Wish</div>
+            <div class="grid-text" data-i18n="yourwish">Your Wish</div>
           </div>
           <div class="center-info">
             <div class="countdown-timer">
               <div class="countdown-box">
                 <div class="countdown-number" id="days">00</div>
-                <div class="countdown-label">Days</div>
+                <div class="countdown-label" data-i18n="days">Days</div>
               </div>
               <div class="countdown-box">
                 <div class="countdown-number" id="hours">00</div>
-                <div class="countdown-label">Hours</div>
+                <div class="countdown-label" data-i18n="hours">Hours</div>
               </div>
               <div class="countdown-box">
                 <div class="countdown-number" id="minutes">00</div>
-                <div class="countdown-label">Mins</div>
+                <div class="countdown-label" data-i18n="mins">Mins</div>
               </div>
             </div>
           </div>
@@ -79,15 +87,15 @@
         <div class="wish-layout">
           <div class="wish-info">
             <div class="wish-content">
-              <h1>Send Us Your Wish</h1>
+              <h1 data-i18n="sendusyourwish">Send Us Your Wish</h1>
 
               <p>
-                <em>We cherish your heartfelt wishes. Please leave your blessing below.</em>
+                <em data-i18n="message">We cherish your heartfelt wishes. Please leave your blessing below.</em>
               </p>
               <div class="wish-form">
                 <input type="text" placeholder="Your Name" id="name" />
                 <textarea placeholder="Your Wish" id="wish" rows="5"></textarea>
-                <button class="submit-btn" onclick="sendWish()">Send Wish</button>
+                <button class="submit-btn" data-i18n="send" onclick="sendWish()">Send Wish</button>
               </div>
       
               <hr class="divider" />
@@ -109,7 +117,7 @@
                   </div>
                 </div>
               </div>
-              <button class="back-btn" onclick="closeWishForm()">Back</button>
+              <button class="back-btn" data-i18n="back" onclick="closeWishForm()">Back</button>
             </div>
           </div>
           <div class="wish-image"></div>
@@ -122,21 +130,21 @@
           <div class="church-image"></div>
           <div class="church-info">
             <div class="church-content">
-              <h1>You're Invited!</h1>
-              <p class="couple-names"> Joseph Marcus Ha </p>
+              <h1 data-i18n="youreinvited">You're Invited!</h1>
+              <p class="couple-names" data-i18n="tenthanhgroom"> Joseph Marcus Ha </p>
                 <p class ="couple-names"> &</p>
-                <p class="couple-names"> Clara Tran Thi Thanh Thuy </p>
-              <p class="church-address">
+                <p class="couple-names" data-i18n="tenthanhbride"> Clara Tran Thi Thanh Thuy </p>
+              <p class="church-address" data-i18n-html="churchaddress">
                 Join us at Tan Chi Linh Church<br>
                 6/25 Pham Van Hai, Ward 3, Tan Binh District
               </p>
-              <p class ="church-time"> June 28th, 2025</p>
-              <p class="church-time">4:00 PM (GMT+7)</p>
-              <p class="church-quote">
+              <p class ="church-time" data-i18n="churchtime"> June 28th, 2025</p>
+              <p class="church-time" data-i18n="churchhour">4:00 PM (GMT+7)</p>
+              <p class="church-quote" data-i18n-html="quote">
                 "We become what we love and who we love shapes what we become."<br>
                 — St. Clare of Assisi
               </p>
-              <button class="back-btn" onclick="closeChurchForm()">Back</button>
+              <button class="back-btn" data-i18n="back" onclick="closeChurchForm()">Back</button>
             </div>
           </div>
         </div>
@@ -147,25 +155,26 @@
         <div class="restaurant-layout">
           <div class="restaurant-info">
             <div class="restaurant-content">
-              <h1>Wedding Details</h1>
+              <h1 data-i18n="weddingdetails">Wedding Details</h1>
               <p class="restaurant-time">
-                <strong>June 28th, 2025<br />6:00 PM (GMT+7)</strong>
+                <strong data-i18n-html="restauranttime">June 28th, 2025<br />6:00 PM (GMT+7)</strong>
               </p>
-              <p class="restaurant-address"><strong>284–286 Vuon Lai, Phu Tho Hoa, Tan Phu</strong></p>
+              <p class="restaurant-address" data-i18n="restaurantaddress"><strong>284–286 Vuon Lai, Phu Tho Hoa, Tan Phu</strong></p>
               <hr class="divider" />
               <div class="info-grid">
                 <div class="info-column">
-                  <h2>Getting There</h2>
-                  <p>• 15–20′ from Church<br />• 25′ from Bride's House</p>
+                  <h2 
+                  data-i18n="gettingthere">Getting There</h2>
+                  <p data-i18n-html="dir">• 15–20′ from Church<br />• 25′ from Bride's House</p>
                 </div>
                 <div class="info-column">
-                  <h2>☕ Drinks</h2>
-                  <p>• Coke • Beer • Water</p>
-                  <h2>Good Eats</h2>
-                  <p>• Mon 1 • Mon 2 • Mon 3 • Mon 4 • Mon 5</p>
+                  <h2 data-i18n="drinks">☕ Drinks</h2>
+                  <p data-i18n="alldrinks">• Coke • Beer • Water</p>
+                  <h2 data-i18n="goodeats">Good Eats</h2>
+                  <p data-i18n="allfoods">• Mon 1 • Mon 2 • Mon 3 • Mon 4 • Mon 5</p>
                 </div>
               </div>
-              <button class="back-btn" onclick="closeRestaurantForm()">Back</button>
+              <button class="back-btn" data-i18n="back" onclick="closeRestaurantForm()">Back</button>
             </div>
           </div>
           <div class="restaurant-image"></div>
@@ -178,33 +187,33 @@
           <div class="bride-image"></div>
           <div class="bride-info">
             <div class="bride-content">
-              <h1>Our Story</h1>
+              <h1 data-i18n="ourstory">Our Story</h1>
               
               <div class="bride-story">
-                <p>Seven years woven tightly.</p>
-                <p>I greets the sun in Vietnam as he whispers goodnight from the U.S.</p>
-                <p>Our love, tested by miles and strengthened by patience, waits joyfully for the day we'll finally share every sunrise side by side. </p>
+                <p data-i18n="firstsentence">Seven years woven tightly.</p>
+                <p data-i18n="secondsentence">I greets the sun in Vietnam as he whispers goodnight from the U.S.</p>
+                <p data-i18n="thirdsentence">Our love, tested by miles and strengthened by patience, waits joyfully for the day we'll finally share every sunrise side by side. </p>
                 <p>.</p>
                 <p>.</p>
-                <p style="margin-top: 20px">And our new chapter begins...</p>
+                <p data-i18n="lastsentence" style="margin-top: 20px">And our new chapter begins...</p>
               </div>
       
               <hr class="divider" />
       
               <div class="reception-info">
-                <h1>Reception Invitation</h1>
-                <p>Together with our families,</p>
-                <p class="couple-names"> Marcus Ha </p>
+                <h1 data-i18n="invitation">Reception Invitation</h1>
+                <p data-i18n="togetherwithourfamilies">Together with our families,</p>
+                <p data-i18n="groomName" class="couple-names"> Marcus Ha </p>
                 <p class ="couple-names"> &</p>
-                <p class="couple-names"> Thanh Thuy </p>
-                <p>invite you to celebrate at <strong>Home</strong>.</p>
-                <p class="reception-time"><strong>June 28th, 2025<br />1:00 PM (GMT+7)</strong>
-                <p class="reception-note">
+                <p data-i18n="brideName" class="couple-names"> Thanh Thuy </p>
+                <p data-i18n="inviteat">invite you to celebrate at <strong>Home</strong>.</p>
+                <p data-i18n-html="meettime" class="reception-time"><strong>June 28th, 2025<br />1:00 PM (GMT+7)</strong>
+                <p data-i18n="lastword" class="reception-note">
                   We look forward to sharing this joyful moment!
                 </p>
               </div>
               
-              <button class="back-btn" onclick="closeHomeForm()">Back</button>
+              <button class="back-btn" data-i18n="back" onclick="closeHomeForm()">Back</button>
             </div>
           </div>
         </div>
