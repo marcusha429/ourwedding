@@ -99,7 +99,7 @@
               </div>
       
               <hr class="divider" />
-      
+              <h2 data-i18n="yourgift">Your Gift</h2>
               <div class="qr-codes">
                 <div class="qr-code">
                   <img src="image/qr1.png" alt="QR Payment" />
@@ -155,31 +155,59 @@
         <div class="restaurant-layout">
           <div class="restaurant-info">
             <div class="restaurant-content">
+              <p class="restaurant-time" data-i18n="additional"><strong>  </strong></p>
               <h1 data-i18n="weddingdetails">Wedding Details</h1>
-              <p class="restaurant-time">
-                <strong data-i18n-html="restauranttime">June 28th, 2025<br />6:00 PM (GMT+7)</strong>
-              </p>
-              <p class="restaurant-address" data-i18n="restaurantaddress"><strong>284–286 Vuon Lai, Phu Tho Hoa, Tan Phu</strong></p>
-              <hr class="divider" />
-              <div class="info-grid">
-                <div class="info-column">
-                  <h2 
-                  data-i18n="gettingthere">Getting There</h2>
-                  <p data-i18n-html="dir">• 15–20′ from Church<br />• 25′ from Bride's House</p>
-                </div>
-                <div class="info-column">
-                  <h2 data-i18n="drinks">☕ Drinks</h2>
-                  <p data-i18n="alldrinks">• Coke • Beer • Water</p>
-                  <h2 data-i18n="goodeats">Good Eats</h2>
-                  <p data-i18n-html="allfoods">• Roasted Chicken & Pumpkin Salad<br> 
-                    • Oven-Baked Pork Rolls with Kimchi<br> 
-                    • Fish Maw Soup with Black Moss<br> 
-                    • Seafood in Pumpkin Sauce<br> 
-                    • Roasted Chicken with Miso Sauce & Chef's Special Sticky Rice<br>
-                    • Teochew-Style Seafood Hot Pot with Steamed Noodles<br>
-                    • Sweet Red Date Soup with Palm Seeds</p>
+              <div class="restaurant-event-info">
+                <p class="restaurant-time" data-i18n-html="restauranttime"><strong>June 28th, 2025<br>6:00 PM (GMT+7)</strong></p>
+                <p class="restaurant-address" data-i18n="restaurantaddress"><strong>284–286 Vuon Lai, Phu Tho Hoa, Tan Phu</strong></p>
+              </div>
+      
+              <hr class="divider"/>
+      
+              <div class="getting-there-section">
+                <h2 data-i18n="gettingthere">Getting There</h2>
+      
+                <!-- MAP EMBED BELOW -->
+                <div class="map-container">
+                  <iframe
+                    width="100%"
+                    height="250"
+                    style="border-radius: 10px;"
+                    frameborder="0"
+                    scrolling="no"
+                    marginheight="0"
+                    marginwidth="0"
+                    src="https://maps.google.com/maps?q=284%20Vuon%20Lai%20Phu%20Tho%20Hoa&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  ></iframe>
                 </div>
               </div>
+
+              <hr class="divider"/>
+      
+              <div class="drink-food-section">
+                <div class="drinks-section">
+                  <h3 data-i18n="drinks">☕ Drinks</h3>
+                  <ul class="styled-list" data-i18n-html="alldrinks">
+                    <li>Coke</li>
+                    <li>Beer</li>
+                    <li>Water</li>
+                  </ul>
+                </div>
+      
+                <div class="foods-section">
+                  <h3 data-i18n="goodeats">🍽️ Good Eats</h3>
+                  <ul class="styled-list foods" data-i18n-html="allfoods">
+                    <li>Roasted Chicken & Pumpkin Salad</li>
+                    <li>Oven-Baked Pork Rolls with Kimchi</li>
+                    <li>Fish Maw Soup with Black Moss</li>
+                    <li>Seafood in Pumpkin Sauce</li>
+                    <li>Roasted Chicken with Miso Sauce & Chef's Special Sticky Rice</li>
+                    <li>Teochew-Style Seafood Hot Pot with Steamed Noodles</li>
+                    <li>Sweet Red Date Soup with Palm Seeds</li>
+                  </ul>
+                </div>
+              </div>
+      
               <button class="back-btn" data-i18n="back" onclick="closeRestaurantForm()">Back</button>
             </div>
           </div>

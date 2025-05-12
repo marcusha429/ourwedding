@@ -15,6 +15,7 @@ const translations = {
     message: "We cherish your heartfelt wishes. Please leave your blessing below.",
     send: "Send Wish",
     back: "Back",
+    yourgift: "Your Gift",
     youreinvited: "You're Invited",
     tenthanhgroom: "Joseph Marcus Ha",
     tenthanhbride: "Clara Tran Thi Thanh Thuy",
@@ -24,13 +25,12 @@ const translations = {
     churchhour: "4:00 PM (GMT+7)",
     quote: "We become what we love and who we love shapes what we become.<br>" +
     "— St. Clare of Assisi",
+    additional : "  ",
     weddingdetails: "Wedding Details",
     restauranttime: "June 28th, 2025<br>" + 
     "6:00 PM (GMT+7)",
     restaurantaddress: "284–286 Vuon Lai, Phu Tho Hoa, Tan Phu",
     gettingthere: "Getting There",
-    dir: "• 15–20′ from Church<br />"+
-    "• 25′ from Bride's House",
     drinks: "Drinks",
     alldrinks: "• Coke • Beer • Water",
     goodeats: "Good Eats",
@@ -64,28 +64,30 @@ const translations = {
     mins: "Phút",
     days: "Ngày",
     hours: "Giờ",
-    sendusyourwish: "Hãy Gửi Lời Chúc Của Bạn",
-    message: "Chúng tôi rất trân trọng những lời chúc phúc của bạn. Xin hãy để lại lời chúc của bạn bên dưới.",
+    sendusyourwish: "Lời Chúc Mừng",
+    message: "Hãy để lại lời chúc mừng của bạn bên dưới. Xin gửi lời cảm ơn sâu sắc đến bạn. ",
     send: "Gửi",
     back: "Quay Lại",
-    youreinvited: "Bạn Được Mời",
-    tenthanhgroom: "Giuse Hà Marcus",
+    yourgift: "Quà Mừng Cưới",
+    youreinvited: "Lễ Thành Hôn",
+    tenthanhgroom: "Giuse Marcus Hà",
     tenthanhbride: "Clara Trần Thị Thanh Thùy",
-    churchaddress: "Tham dự tại Nhà Thờ Tân Chi Linh<br>" + 
+    churchaddress: "Hôn lễ được cử hành tại Nhà Thờ Tân Chí Linh<br>" + 
     "6/25 Phạm Văn Hai, Phường 3, Quận Tân Bình",
-    churchtime: "Ngày 28 tháng 6 năm 2025",
-    churchhour: "4:00 chiều (Giờ Việt Nam)",
-    quote: " ''Chúng ta trở thành những gì chúng ta yêu và người chúng ta yêu thương sẽ định hình nên con người chúng ta.''<br>" +
-    "— Thánh Clara Assisi",
-    weddingdetails: "Thông Tin Tiệc Cưới",
-    restauranttime: "Ngày 28 tháng 6 năm 2025<br>" + 
-    "6:00 chiều (Giờ Việt Nam)",
+    churchtime: "28.06.2025",
+    churchhour: "16:00 (Giờ Việt Nam)",
+    quote: " ''Chúng ta sẽ trở thành những gì chúng ta yêu thương và người chúng ta yêu thương sẽ định hình nên con người chúng ta.''<br>" +
+    "— Thánh Clara, Đồng Trinh",
+    additional: "Thân mời bạn đến dự",
+    weddingdetails: "Lễ Thành Hôn",
+    restauranttime: "28.06.2025<br>" + 
+    "18:00 (Giờ Việt Nam)<br><br>" +
+    "Nhà Hàng Tiệc Cưới Asiana Plaza Tân Phú<br>" +
+    "Sảnh Alexa - Tầng 10",
     restaurantaddress: "284–286 Vườn Lài, Phú Thọ Hòa, Tân Phú",
-    gettingthere: "Đường Đến Nhà Hàng",
-    dir: "• 15–20′ từ Nhà Thờ<br />"+
-    "• 25′ từ Nhà Cô Dâu",
-    drinks: "Đồ Uống",
-    alldrinks: "• Coca • Bia • Nước Suối",
+    gettingthere: "Bản Đồ",
+    drinks: "Thức Uống",
+    alldrinks: "• Nước Ngọt • Bia • Nước Suối",
     goodeats: "Món Ăn",
     allfoods: "• Xà Lách Bí Đỏ - Gà Nướng<br>"+ 
     " • Heo Cuộn Kim Chi Đút Lò<br>"+ 
@@ -94,17 +96,17 @@ const translations = {
     " • Gà Quay Xốt Miso - Xôi Đặc Biệt<br>" + 
     " • Lẩu Hải Sản Triều Châu - Mì Hấp<br>" +
     " • Chè Táo Đỏ Hạt Đác",
-    ourstory: "Câu Chuyện Của Chúng Tôi",
-    firstsentence: "Bảy năm gắn bó.",
-    secondsentence: "Tôi chào đón ánh nắng ở Việt Nam khi anh ấy thì thầm lời chúc ngủ ngon từ Mỹ.",
-    thirdsentence: "Tình yêu của chúng tôi, thử thách bởi khoảng cách và củng cố bởi sự kiên nhẫn, vui mừng chờ đợi ngày chúng tôi sẽ cùng nhau chia sẻ mọi ánh bình minh.",
-    lastsentence: "Và chương mới của chúng tôi bắt đầu...",
-    invitation: "Lời Mời",
-    togetherwithourfamilies: "Cùng với gia đình chúng tôi,",
-    inviteat: "mời bạn đến tham dự lễ rước dâu tại Nhà Cô Dâu.",
+    ourstory: "Một Hành Trình Dài",
+    firstsentence: "Bảy năm bên nhau.",
+    secondsentence: "Tớ đón bình minh ở Việt Nam cũng là lúc anh ấy nhắn chúc ngủ ngon từ Mỹ.",
+    thirdsentence: "Tình yêu của tụi mình, bị thách thức bởi khoảng cách và bền bỉ cùng với sự kiên nhẫn, và giờ đây cùng nhau chờ đợi ngày tụi mình sẽ về  chung một nhà.",
+    lastsentence: "Và một bước ngoặt mới của cuộc đời đã bắt đầu...",
+    invitation: "Trân Trọng Kính Mời",
+    togetherwithourfamilies: "Đến dự buổi tiệc cùng với gia đình chúng tôi,",
+    inviteat: "Hôn lễ được cử hành tại Tư Gia",
     meettime: "Ngày 28 tháng 6 năm 2025<br />"+
-    "1:00 chiều (Giờ Việt Nam)",
-    lastword: "Chúng tôi rất mong được chia sẻ khoảnh khắc vui vẻ này với bạn!"
+    "13:00 (Giờ Việt Nam)",
+    lastword: "Sự hiện diện của bạn là niềm vinh hạnh cho chúng tôi!"
   }
 };
 

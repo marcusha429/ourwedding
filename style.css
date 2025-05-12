@@ -395,6 +395,7 @@ body {
 /*-------------------------------------------------------*/
 /*------------------RESUTAURANT LAYOUT-------------------*/
 /*-------------------------------------------------------*/
+
 .restaurant-layout {
   position: fixed;
   top: 0;
@@ -433,40 +434,10 @@ body {
   margin-bottom: 30px;
 }
 
-.restaurant-time {
-  font-size: 24px;
-  margin: 20px 0;
-}
-
-.restaurant-address {
-  font-size: 22px;
-  margin-bottom: 20px;
-}
-
 .divider {
   margin: 25px 0;
   border: none;
   border-top: 2px dashed #8b5a2b;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  text-align: left;
-  margin: 30px 0;
-}
-
-.info-column h2 {
-  color: #5b3920;
-  margin-bottom: 15px;
-  font-size: 24px;
-}
-
-.info-column p {
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 20px;
 }
 
   /*----------------------------------------------------------*/
@@ -645,8 +616,6 @@ line-height: 1.4;
 
 /* Responsive */
 @media (max-width: 768px) {
-  /* adjust grid to one column, names to smaller font, etc. */
-
 
   #home-form-container {
     position: fixed;
@@ -767,18 +736,6 @@ line-height: 1.4;
     width: 100%;
     margin: 0 auto;
     padding-bottom: 20px;
-  }
-
-  .info-grid {
-    gap: 15px;
-  }
-
-  .info-column h2 {
-    font-size: 20px;
-  }
-
-  .info-column p {
-    font-size: 16px;
   }
   
   .bride-layout {
