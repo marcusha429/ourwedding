@@ -2,6 +2,7 @@
   font-family: "Elegist";
   src: url("fonts/Elegist.otf") format("opentype");
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -9,30 +10,33 @@
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
+
 html,
 body {
   height: 100%;
   overflow: hidden;
   font-family: "Literata", "Playfair Display", serif;
-  background: url("https://www.transparenttextures.com/patterns/aged-paper.png")
-    repeat;
+  background: url("https://www.transparenttextures.com/patterns/aged-paper.png") repeat;
   background-color: #728c69;
 }
 
 /* Language selection overlay */
 #lang-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(115, 134, 120, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
+
 #lang-overlay .lang-box {
   background: #FFFFFF;
-  color: #738678;  
+  color: #738678;
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
@@ -43,11 +47,11 @@ body {
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #4a5a52; 
+  color: #4a5a52;
 }
 
 #lang-overlay button {
-  background: #738678;   
+  background: #738678;
   color: #FFFFFF;
   border: 2px solid #FFFFFF;
   border-radius: 6px;
@@ -58,7 +62,7 @@ body {
 }
 
 #lang-overlay button:hover {
-  background: #FFFFFF;      
+  background: #FFFFFF;
   color: #738678;
   transform: translateY(-2px);
 }
@@ -73,6 +77,7 @@ body {
   width: 100%;
   height: 100%;
 }
+
 .door {
   position: fixed;
   height: 100%;
@@ -82,11 +87,13 @@ body {
   z-index: 10;
   cursor: pointer;
 }
+
 #door-left {
   left: 0;
   width: 33.3333%;
   background: url("image/main.jpg") center/cover no-repeat;
 }
+
 #door-right {
   right: 0;
   width: 66.6667%;
@@ -95,6 +102,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
 .names-container {
   width: 100%;
   height: 200px;
@@ -103,6 +111,7 @@ body {
   align-items: center;
   position: relative;
 }
+
 .groom-name,
 .bride-name {
   position: absolute;
@@ -114,22 +123,27 @@ body {
   line-height: 1.2;
   font-size: 10rem;
 }
+
 .bride-name {
   top: 50%;
   right: 0;
   text-align: right;
 }
+
 .groom-name {
   bottom: 50%;
   left: 0;
   text-align: left;
 }
+
 #landing.open #door-left {
   transform: translateX(-100%);
 }
+
 #landing.open #door-right {
   transform: translateX(100%);
 }
+
 #main-content {
   position: absolute;
   top: 0;
@@ -139,6 +153,7 @@ body {
   visibility: hidden;
   z-index: 1;
 }
+
 #landing.open #main-content {
   visibility: visible;
 }
@@ -147,7 +162,7 @@ body {
   border: none;
   cursor: pointer;
   transition: transform 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .music-controls button:hover {
@@ -160,6 +175,7 @@ body {
   width: 100%;
   position: relative;
 }
+
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -167,6 +183,7 @@ body {
   height: 100%;
   width: 100%;
 }
+
 .grid-item {
   background-size: cover;
   background-position: center;
@@ -175,15 +192,18 @@ body {
   cursor: pointer;
   position: relative;
 }
+
 .item-3 {
   background-size: 250%;
   background-position: calc(50% + 120px) 60%;
 }
+
 .grid-item:hover {
   filter: blur(0);
   transform: scale(1.1);
   z-index: 1;
 }
+
 .grid-text {
   position: absolute;
   top: 50%;
@@ -206,6 +226,7 @@ body {
   z-index: 2;
   max-width: 80%;
 }
+
 .countdown-timer {
   display: flex;
   gap: 20px;
@@ -213,6 +234,7 @@ body {
   align-items: center;
   font-family: "Literata", serif;
 }
+
 .countdown-box {
   background: #fff;
   padding: 20px;
@@ -221,12 +243,14 @@ body {
   min-width: 100px;
   text-align: center;
 }
+
 .countdown-number {
   font-size: 48px;
   font-weight: bold;
   color: #333;
   margin-bottom: 5px;
 }
+
 .countdown-label {
   font-size: 14px;
   color: #666;
@@ -250,6 +274,7 @@ body {
   align-items: center;
   z-index: 5;
 }
+
 .wish-form-scroll {
   background: rgba(114, 140, 105, 0.95);
   border: 10px solid #4a5c44;
@@ -261,26 +286,31 @@ body {
   text-align: center;
   animation: fadeIn 0.5s ease;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
   }
 }
+
 .wish-form-scroll h1 {
   margin-bottom: 10px;
   font-size: 40px;
   color: #ffffff;
 }
+
 .wish-form-scroll p {
   font-size: 20px;
   margin-bottom: 15px;
   color: #ffffff;
 }
+
 .wish-form-scroll input,
 .wish-form-scroll textarea {
   width: 100%;
@@ -293,6 +323,7 @@ body {
   font-size: 18px;
   color: #4a5c44;
 }
+
 .submit-btn,
 .back-btn {
   margin-top: 10px;
@@ -307,10 +338,12 @@ body {
   font-family: "Playfair Display", serif;
   margin-bottom: 10px;
 }
+
 .submit-btn:hover,
 .back-btn:hover {
   background-color: #5d7456;
 }
+
 .qr-codes {
   display: flex;
   justify-content: center;
@@ -318,20 +351,24 @@ body {
   flex-wrap: wrap;
   margin-top: 20px;
 }
+
 .qr-code img {
   width: 140px;
   height: 140px;
   border-radius: 10px;
   object-fit: contain;
 }
+
 .qr-note {
   font-size: 16px;
   margin-top: 8px;
   color: #ffffff;
 }
+
 .wish-form-scroll .qr-codes {
   margin-top: 0;
 }
+
 /*-------------------------------------------------------*/
 /*--------------------CHURCH LAYOUT----------------------*/
 /*-------------------------------------------------------*/
@@ -365,23 +402,12 @@ body {
   text-align: center;
   color: #ffffff;
   max-width: 800px;
+  width: 100%;
 }
 
 .church-content h1 {
   font-size: 40px;
-  margin-bottom: 20px;
-}
-
-.church-address {
-  font-size: 24px;
-  margin: 30px 0;
-  line-height: 1.5;
-}
-
-.church-time {
-  font-size: 28px;
-  font-weight: bold;
-  margin: 0;
+  margin-bottom: 30px;
 }
 
 .church-quote {
@@ -440,178 +466,182 @@ body {
   border-top: 2px dashed #8b5a2b;
 }
 
-  /*----------------------------------------------------------*/
-  /*------------------MEET THE BRIDE LAYOUT-------------------*/
-  /*----------------------------------------------------------*/
-  .bride-layout {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    background: #728c69;
-  }
-  
-  .bride-image {
-    width: 33.333%;
-    height: 100%;
-    background: url('image/home2.jpg') center/cover no-repeat;
-  }
-  
-  .bride-info {
-    width: 66.667%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    background-color: rgba(114, 140, 105, 0.95);
-  }
-  
-  .bride-content {
-    text-align: center;
-    color: #ffffff;
-    max-width: 800px;
-    width: 100%;
-  }
-  
-  .bride-content h1 {
-    font-size: 40px;
-    margin-bottom: 30px;
-  }
-  
-  .bride-story {
-    font-size: 20px;
-    line-height: 1.8;
-    margin: 30px 0;
-    text-align: left;
-  }
+/*----------------------------------------------------------*/
+/*------------------MEET THE BRIDE LAYOUT-------------------*/
+/*----------------------------------------------------------*/
+.bride-layout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: #728c69;
+}
 
-  .reception-info {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .reception-info h2 {
-    font-size: 20px;
-    margin-bottom: 30px;
-    color: #ffffff;
-    font-family: "Literata", serif;
-  }
-  
-  .reception-info .couple-names {
-    font-size: 40px;
-    margin: 0;
-    color: #ffffff;
-    line-height: 1.4;
-    font-family: "Literata", serif;
-  }
-  
-  .reception-info p {
-    font-size: 18px;
-    margin: 15px 0;
-    color: #ffffff;
-  }
+.bride-image {
+  width: 33.333%;
+  height: 100%;
+  background: url('image/home2.jpg') center/cover no-repeat;
+}
 
-  .bride-story p{
-    font-size: 18px;
-  }
-  
-  .reception-time {
-    font-size: 25px !important;
-    margin: 25px 0 !important;
-  }
-  
-  .reception-note {
-    font-style: italic;
-    margin-top: 30px !important;
-  }
+.bride-info {
+  width: 66.667%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: rgba(114, 140, 105, 0.95);
+}
 
-  /*-------------------------------------------------------*/
+.bride-content {
+  text-align: center;
+  color: #ffffff;
+  max-width: 800px;
+  width: 100%;
+}
+
+.bride-content h1 {
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.bride-story {
+  font-size: 20px;
+  line-height: 1.8;
+  margin: 30px 0;
+  text-align: left;
+}
+
+.reception-info {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.reception-info h2 {
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: #ffffff;
+  font-family: "Literata", serif;
+}
+
+.reception-info .couple-names {
+  font-size: 40px;
+  margin: 0;
+  color: #ffffff;
+  line-height: 1.4;
+  font-family: "Literata", serif;
+}
+
+.reception-info p {
+  font-size: 18px;
+  margin: 15px 0;
+  color: #ffffff;
+}
+
+.bride-story p {
+  font-size: 18px;
+}
+
+.reception-time {
+  font-size: 25px !important;
+  margin: 25px 0 !important;
+}
+
+.reception-note {
+  font-style: italic;
+  margin-top: 30px !important;
+}
+
+/*-------------------------------------------------------*/
 /*------------------WISH FORM LAYOUT---------------------*/
 /*-------------------------------------------------------*/
 .wish-layout {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-display: flex;
-background: #728c69;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: #728c69;
 }
 
 .wish-image {
-width: 50%;
-height: 100%;
-background: url('image/wish2.jpg') center/cover no-repeat;
+  width: 50%;
+  height: 100%;
+  background: url('image/wish2.jpg') center/cover no-repeat;
 }
 
 .wish-info {
-width: 66.667%;
-height: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 40px;
-background-color: rgba(114, 140, 105, 0.95);
+  width: 66.667%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: rgba(114, 140, 105, 0.95);
 }
 
 .wish-content {
-text-align: center;
-color: #ffffff;
-max-width: 800px;
-width: 100%;
+  text-align: center;
+  color: #ffffff;
+  max-width: 800px;
+  width: 100%;
 }
 
 .wish-content h1 {
-font-size: 40px;
-margin-bottom: 20px;
+  font-size: 40px;
+  margin-bottom: 20px;
 }
 
 .wish-content .couple-names {
-font-size: 28px;
-margin: 20px 0;
+  font-size: 28px;
+  margin: 20px 0;
 }
 
 .wish-form {
-margin: 30px 0;
+  margin: 30px 0;
 }
 
 .wish-form input,
 .wish-form textarea {
-width: 100%;
-margin-bottom: 15px;
-padding: 12px;
-border: 2px solid #4a5c44;
-border-radius: 5px;
-background-color: rgba(255, 255, 255, 0.9);
-font-family: "Literata", serif;
-font-size: 16px;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 2px solid #4a5c44;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.9);
+  font-family: "Literata", serif;
+  font-size: 16px;
 }
 
 .wish-form textarea {
-min-height: 120px;
-resize: vertical;
+  min-height: 120px;
+  resize: vertical;
 }
 
 .qr-codes {
-display: flex;
-justify-content: center;
-gap: 40px;
-margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 30px 0;
 }
 
 .qr-code img {
-width: 140px;
-height: 140px;
-border-radius: 10px;
-margin-bottom: 10px;
+  width: 140px;
+  height: 140px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .qr-note {
-font-size: 14px;
-line-height: 1.4;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.getting-there-section .map-container {
+  margin-top: 15px;
 }
 
 /* Responsive */
@@ -636,7 +666,7 @@ line-height: 1.4;
     height: 100vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    background: rgba(0, 0, 0, 0.5); 
+    background: rgba(0, 0, 0, 0.5);
   }
 
   #restaurant-form-container {
@@ -647,7 +677,7 @@ line-height: 1.4;
     height: 100vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    background: rgba(0, 0, 0, 0.5); 
+    background: rgba(0, 0, 0, 0.5);
   }
 
   #wish-form-container {
@@ -658,28 +688,64 @@ line-height: 1.4;
     height: 100vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    background: rgba(0, 0, 0, 0.5); 
+    background: rgba(0, 0, 0, 0.5);
   }
 
-  .container { grid-template-columns: 1fr; grid-template-rows: repeat(4,1fr); }
-  .names-container { height: 150px; }
-  .groom-name, .bride-name { font-size: 4rem; width:100%; text-align:center; }
-  .countdown-box { min-width:50px; padding:4px; }
-  .countdown-number { font-size: 1.2rem; }
-  .countdown-label { font-size:10px; }
-  .wish-form-scroll { width:95%; padding:20px; }
-  .wish-form-scroll h1 { font-size:28px; }
-  .wish-form-scroll p { font-size:16px; }
-  .qr-code img { width:120px; height:120px; }
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
 
-  .church-layout { 
+  .names-container {
+    height: 150px;
+  }
+
+  .groom-name,
+  .bride-name {
+    font-size: 4rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .countdown-box {
+    min-width: 50px;
+    padding: 4px;
+  }
+
+  .countdown-number {
+    font-size: 1.2rem;
+  }
+
+  .countdown-label {
+    font-size: 10px;
+  }
+
+  .wish-form-scroll {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .wish-form-scroll h1 {
+    font-size: 28px;
+  }
+
+  .wish-form-scroll p {
+    font-size: 16px;
+  }
+
+  .qr-code img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .church-layout {
     display: grid !important;
     position: relative !important;
     height: auto !important;
     padding: 0 !important;
   }
 
-  .church-image { 
+  .church-image {
     order: 1 !important;
     display: grid !important;
     position: relative !important;
@@ -689,7 +755,7 @@ line-height: 1.4;
     background-position: top center !important;
   }
 
-  .church-info { 
+  .church-info {
     width: 100% !important;
     padding: 20px !important;
   }
@@ -737,7 +803,7 @@ line-height: 1.4;
     margin: 0 auto;
     padding-bottom: 20px;
   }
-  
+
   .bride-layout {
     display: grid !important;
     position: relative !important;
@@ -829,15 +895,30 @@ line-height: 1.4;
     font-size: 12px;
   }
 
-  .grid-text{
+  .grid-text {
     font-size: 20px;
   }
 }
+
 @media screen and (max-width: 380px) {
-  .groom-name, .bride-name { font-size:3rem; }
-  .countdown-box { min-width:60px; }
-  .countdown-number { width:50px; height:50px; }
-  .countdown-label { font-size:12px; }
+
+  .groom-name,
+  .bride-name {
+    font-size: 3rem;
+  }
+
+  .countdown-box {
+    min-width: 60px;
+  }
+
+  .countdown-number {
+    width: 50px;
+    height: 50px;
+  }
+
+  .countdown-label {
+    font-size: 12px;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {

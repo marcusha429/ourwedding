@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wedding Invitation</title>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Literata&family=MonteCarlo&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Literata&family=MonteCarlo&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <!-- Language Selection Overlay -->
   <div id="lang-overlay">
@@ -35,32 +34,16 @@
       <!-- Main Grid -->
       <div id="content">
         <div class="container">
-          <div
-            class="grid-item item-1"
-            id="home-btn"
-            style="background-image: url('image/tcl.jpg')"
-          >
+          <div class="grid-item item-1" id="home-btn" style="background-image: url('image/tcl.jpg')">
             <div class="grid-text" data-i18n="meetthebride">Meet The Bride</div>
           </div>
-          <div
-            class="grid-item item-2"
-            id="church-btn"
-            style="background-image: url('image/asiana.jpg')"
-          >
+          <div class="grid-item item-2" id="church-btn" style="background-image: url('image/asiana.jpg')">
             <div class="grid-text" data-i18n="thechurch">The Church</div>
           </div>
-          <div
-            class="grid-item item-3"
-            id="restaurant-btn"
-            style="background-image: url('image/wish.jpg')"
-          >
+          <div class="grid-item item-3" id="restaurant-btn" style="background-image: url('image/wish.jpg')">
             <div class="grid-text" data-i18n="therestaurant">The Restaurant</div>
           </div>
-          <div
-            class="grid-item item-4"
-            id="wish-btn"
-            style="background-image: url('image/ruocdau.jpg')"
-          >
+          <div class="grid-item item-4" id="wish-btn" style="background-image: url('image/ruocdau.jpg')">
             <div class="grid-text" data-i18n="yourwish">Your Wish</div>
           </div>
           <div class="center-info">
@@ -97,7 +80,7 @@
                 <textarea placeholder="Your Wish" id="wish" rows="5"></textarea>
                 <button class="submit-btn" data-i18n="send" onclick="sendWish()">Send Wish</button>
               </div>
-      
+
               <hr class="divider" />
               <h2 data-i18n="yourgift">Your Gift</h2>
               <div class="qr-codes">
@@ -130,20 +113,37 @@
           <div class="church-image"></div>
           <div class="church-info">
             <div class="church-content">
-              <h1 data-i18n="youreinvited">You're Invited!</h1>
+              <h1 data-i18n="youreinvited">You're Invited</h1>
               <p class="couple-names" data-i18n="tenthanhgroom"> Joseph Marcus Ha </p>
-                <p class ="couple-names"> &</p>
-                <p class="couple-names" data-i18n="tenthanhbride"> Clara Tran Thi Thanh Thuy </p>
-              <p class="church-address" data-i18n-html="churchaddress">
-                Join us at Tan Chi Linh Church<br>
-                6/25 Pham Van Hai, Ward 3, Tan Binh District
-              </p>
-              <p class ="church-time" data-i18n="churchtime"> June 28th, 2025</p>
-              <p class="church-time" data-i18n="churchhour">4:00 PM (GMT+7)</p>
+              <p class="couple-names"> &</p>
+              <p class="couple-names" data-i18n="tenthanhbride"> Clara Tran Thi Thanh Thuy </p>
+              <div class="church-event-info">
+                <p class="church-time" data-i18n-html="churchtime"><strong>June 28th, 2025<br>4:00 PM
+                    (GMT+7)</strong></p>
+                <p class="church-address" data-i18n-html="churchaddress" ><strong>Join us at Tan Chi Linh Church<br> 
+                  6/25 Pham Van Hai, Ward 3, Tan Binh District</strong></p>
+              </div>
+
+              <hr class="divider" />
+
+              <div class="getting-there-section">
+                <h2 data-i18n="gettingthere">Getting There</h2>
+
+                <!-- MAP EMBED BELOW -->
+                <div class="map-container">
+                  <iframe width="100%" height="250" style="border-radius: 10px;" frameborder="0" scrolling="no"
+                    marginheight="0" marginwidth="0"
+                    src="https://maps.google.com/maps?q=6%2F25%20Pham%20Van%20Hai%20Ward%203%20Tan%20Binh%20District&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+                </div>
+              </div>
+
+              <hr class="divider" />
+
               <p class="church-quote" data-i18n-html="quote">
                 "We become what we love and who we love shapes what we become."<br>
                 — St. Clare of Assisi
               </p>
+
               <button class="back-btn" data-i18n="back" onclick="closeChurchForm()">Back</button>
             </div>
           </div>
@@ -155,35 +155,29 @@
         <div class="restaurant-layout">
           <div class="restaurant-info">
             <div class="restaurant-content">
-              <p class="restaurant-time" data-i18n="additional"><strong>  </strong></p>
+              <p class="restaurant-time" data-i18n="additional"><strong> </strong></p>
               <h1 data-i18n="weddingdetails">Wedding Details</h1>
               <div class="restaurant-event-info">
-                <p class="restaurant-time" data-i18n-html="restauranttime"><strong>June 28th, 2025<br>6:00 PM (GMT+7)</strong></p>
-                <p class="restaurant-address" data-i18n="restaurantaddress"><strong>284–286 Vuon Lai, Phu Tho Hoa, Tan Phu</strong></p>
+                <p class="restaurant-time" data-i18n-html="restauranttime"><strong>June 28th, 2025<br>6:00 PM
+                    (GMT+7)</strong></p>
+                <p class="restaurant-address" data-i18n="restaurantaddress"><strong>284–286 Vuon Lai, Phu Tho Hoa, Tan
+                    Phu</strong></p>
               </div>
-      
-              <hr class="divider"/>
-      
+
+              <hr class="divider" />
+
               <div class="getting-there-section">
                 <h2 data-i18n="gettingthere">Getting There</h2>
-      
                 <!-- MAP EMBED BELOW -->
                 <div class="map-container">
-                  <iframe
-                    width="100%"
-                    height="250"
-                    style="border-radius: 10px;"
-                    frameborder="0"
-                    scrolling="no"
-                    marginheight="0"
-                    marginwidth="0"
-                    src="https://maps.google.com/maps?q=284%20Vuon%20Lai%20Phu%20Tho%20Hoa&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                  ></iframe>
+                  <iframe width="100%" height="250" style="border-radius: 10px;" frameborder="0" scrolling="no"
+                    marginheight="0" marginwidth="0"
+                    src="https://maps.google.com/maps?q=284%20Vuon%20Lai%20Phu%20Tho%20Hoa&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
                 </div>
               </div>
 
-              <hr class="divider"/>
-      
+              <hr class="divider" />
+
               <div class="drink-food-section">
                 <div class="drinks-section">
                   <h3 data-i18n="drinks">☕ Drinks</h3>
@@ -193,7 +187,7 @@
                     <li>Water</li>
                   </ul>
                 </div>
-      
+
                 <div class="foods-section">
                   <h3 data-i18n="goodeats">🍽️ Good Eats</h3>
                   <ul class="styled-list foods" data-i18n-html="allfoods">
@@ -207,7 +201,7 @@
                   </ul>
                 </div>
               </div>
-      
+
               <button class="back-btn" data-i18n="back" onclick="closeRestaurantForm()">Back</button>
             </div>
           </div>
@@ -222,31 +216,33 @@
           <div class="bride-info">
             <div class="bride-content">
               <h1 data-i18n="ourstory">Our Story</h1>
-              
+
               <div class="bride-story">
                 <p data-i18n="firstsentence">Seven years woven tightly.</p>
                 <p data-i18n="secondsentence">I greets the sun in Vietnam as he whispers goodnight from the U.S.</p>
-                <p data-i18n="thirdsentence">Our love, tested by miles and strengthened by patience, waits joyfully for the day we'll finally share every sunrise side by side. </p>
+                <p data-i18n="thirdsentence">Our love, tested by miles and strengthened by patience, waits joyfully for
+                  the day we'll finally share every sunrise side by side. </p>
                 <p>.</p>
                 <p>.</p>
                 <p data-i18n="lastsentence" style="margin-top: 20px">And our new chapter begins...</p>
               </div>
-      
+
               <hr class="divider" />
-      
+
               <div class="reception-info">
                 <h1 data-i18n="invitation">Reception Invitation</h1>
                 <p data-i18n="togetherwithourfamilies">Together with our families,</p>
                 <p data-i18n="groomName" class="couple-names"> Marcus Ha </p>
-                <p class ="couple-names"> &</p>
+                <p class="couple-names"> &</p>
                 <p data-i18n="brideName" class="couple-names"> Thanh Thuy </p>
                 <p data-i18n="inviteat">invite you to celebrate at <strong>Home</strong>.</p>
-                <p data-i18n-html="meettime" class="reception-time"><strong>June 28th, 2025<br />1:00 PM (GMT+7)</strong>
+                <p data-i18n-html="meettime" class="reception-time"><strong>June 28th, 2025<br />1:00 PM
+                    (GMT+7)</strong>
                 <p data-i18n="lastword" class="reception-note">
                   We look forward to sharing this joyful moment!
                 </p>
               </div>
-              
+
               <button class="back-btn" data-i18n="back" onclick="closeHomeForm()">Back</button>
             </div>
           </div>
@@ -254,9 +250,9 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
   </script>
   <script src="script.js"></script>
 </body>
+
 </html>

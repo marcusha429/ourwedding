@@ -28,8 +28,10 @@ const translations = {
     additional : "  ",
     weddingdetails: "Wedding Details",
     restauranttime: "June 28th, 2025<br>" + 
-    "6:00 PM (GMT+7)",
-    restaurantaddress: "284–286 Vuon Lai, Phu Tho Hoa, Tan Phu",
+    "6:00 PM (GMT+7)<br><br>" +
+    "Asiana Plaza Convention Center<br>" +
+    "Alexa Hall - 10th Floor",
+    restaurantaddress: "284–286 Vuon Lai, Phu Tho Hoa, Tan Phu District",
     gettingthere: "Getting There",
     drinks: "Drinks",
     alldrinks: "• Coke • Beer • Water",
@@ -75,14 +77,14 @@ const translations = {
     churchaddress: "Hôn lễ được cử hành tại Nhà Thờ Tân Chí Linh<br>" + 
     "6/25 Phạm Văn Hai, Phường 3, Quận Tân Bình",
     churchtime: "28.06.2025",
-    churchhour: "16:00 (Giờ Việt Nam)",
+    churchhour: "Vào Lúc 16:00",
     quote: " ''Chúng ta sẽ trở thành những gì chúng ta yêu thương và người chúng ta yêu thương sẽ định hình nên con người chúng ta.''<br>" +
     "— Thánh Clara, Đồng Trinh",
     additional: "Thân mời bạn đến dự",
     weddingdetails: "Lễ Thành Hôn",
     restauranttime: "28.06.2025<br>" + 
-    "18:00 (Giờ Việt Nam)<br><br>" +
-    "Nhà Hàng Tiệc Cưới Asiana Plaza Tân Phú<br>" +
+    "Vào Lúc 18:00<br><br>" +
+    "Asiana Plaza<br>" +
     "Sảnh Alexa - Tầng 10",
     restaurantaddress: "284–286 Vườn Lài, Phú Thọ Hòa, Tân Phú",
     gettingthere: "Bản Đồ",
@@ -105,7 +107,7 @@ const translations = {
     togetherwithourfamilies: "Đến dự buổi tiệc cùng với gia đình chúng tôi,",
     inviteat: "Hôn lễ được cử hành tại Tư Gia",
     meettime: "Ngày 28 tháng 6 năm 2025<br />"+
-    "13:00 (Giờ Việt Nam)",
+    "Vào Lúc 13:00",
     lastword: "Sự hiện diện của bạn là niềm vinh hạnh cho chúng tôi!"
   }
 };
