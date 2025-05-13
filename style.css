@@ -3,6 +3,8 @@
   src: url("fonts/Elegist.otf") format("opentype");
 }
 
+
+
 * {
   margin: 0;
   padding: 0;
@@ -372,6 +374,66 @@ body {
 /*-------------------------------------------------------*/
 /*--------------------CHURCH LAYOUT----------------------*/
 /*-------------------------------------------------------*/
+
+.names-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+}
+
+.name-column-groom,
+.name-column-bride {
+  position: absolute;
+  width: 100%;
+  max-width: 100vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.name-column-groom {
+  bottom: 50%;
+  left: 18%;
+  text-align: left;
+}
+
+.name-column-bride {
+  top: 50%;
+  right: 18%;
+  text-align: right;
+}
+
+.name-column-groom .tenthanh,
+.name-column-bride .tenthanh {
+  font-family: "UNV", serif;
+  font-size: 2rem;
+  color: rgba(250, 250, 250, 0.8);
+  text-shadow: 1px 1px 2px #4a5c44;
+}
+
+.name-column-groom .fullname,
+.name-column-bride .fullname {
+  font-family: "UVN", serif;
+  font-size: 4rem;
+  /* color: rgba(170, 90, 43, 0.8);
+  text-shadow: 1px 1px 2px black; */
+  color: rgba(250, 250, 250, 0.8);
+  text-shadow: 8px 8px 8px #4a5c44;
+}
+
+.and-and {
+  font-family: "Championr", serif;
+  font-size: 140px;
+  color: rgba(250, 250, 250, 0.5);
+  text-shadow: 1px 1px 4px black;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
 .church-layout {
   position: fixed;
   top: 0;
@@ -396,9 +458,17 @@ body {
   justify-content: center;
   padding: 40px;
   background-color: rgba(114, 140, 105, 0.95);
+  padding-top: 80px;
+  margin-top: 50px;
+  overflow-y: auto;
+}
+
+.church-time, .church-address {
+  margin-top: 15px;
 }
 
 .church-content {
+  position: relative;
   text-align: center;
   color: #ffffff;
   max-width: 800px;
@@ -408,6 +478,8 @@ body {
 .church-content h1 {
   font-size: 40px;
   margin-bottom: 30px;
+  color: rgba(170, 90, 43, 1);
+  text-shadow: 1px 1px 2px black;
 }
 
 .church-quote {
@@ -644,7 +716,33 @@ body {
   margin-top: 15px;
 }
 
-/* Responsive */
+/*-------------------------------------------------------*/
+/*------------------COMMON LAYOUTS---------------------*/
+/*-------------------------------------------------------*/
+@font-face {
+  font-family: "UVN";
+  src: url("fonts/UVN.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "E";
+  src: url("fonts/Elegant.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "Championb";
+  src: url("fonts/Champion-b.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "Championr";
+  src: url("fonts/Champion-r.ttf") format("opentype");
+}
+
+
+/*-------------------------------------------------------*/
+/*------------------MOBILE RESPONSIVE---------------------*/
+/*-------------------------------------------------------*/
 @media (max-width: 768px) {
 
   #home-form-container {
@@ -738,6 +836,63 @@ body {
     height: 120px;
   }
 
+  .name-column-groom .tenthanh,
+  .name-column-bride .tenthanh {
+    font-family: "UNV", serif;
+    font-size: 1.5rem;
+    color: rgba(250, 250, 250, 0.8);
+    text-shadow: 1px 1px 2px #4a5c44;
+  }
+
+  .name-column-groom .fullname,
+  .name-column-bride .fullname {
+    font-size: 4rem;
+    color: rgba(250, 250, 250, 0.8);
+    text-shadow: 8px 8px 8px #4a5c44;
+  }
+
+  .and-and {
+    font-family: "Championr", serif;
+    font-size: 140px;
+    color: rgba(250, 250, 250, 0.5);
+    text-shadow: 1px 1px 4px black;
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    top: 50%;
+  }
+
+  .name-column-groom {
+    bottom: 10%;
+    left: 0;
+    text-align: left;
+  }
+  
+  .name-column-bride {
+    top: 10%;
+    right: 0;
+    text-align: right;
+  }
+
+  .name-column-groom,
+  .name-column-bride {
+    max-width: 90vw;
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
+    position: relative;
+    margin: 10px auto;
+  }
+
+  .names-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
   .church-layout {
     display: grid !important;
     position: relative !important;
@@ -758,6 +913,7 @@ body {
   .church-info {
     width: 100% !important;
     padding: 20px !important;
+    margin-top: 70px !important;
   }
 
   .church-content {

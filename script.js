@@ -2,36 +2,47 @@ emailjs.init('uslz-38maofgET7_g');
 
 const translations = {
   en: {
+     // —— Main ——
     groomName: "MARCUS HA",
     brideName: "THANH THUY",
     meetthebride: "Meet The Bride",
     thechurch: "The Church",
     therestaurant: "The Restaurant",
     yourwish: "Your Wish",
+
+     // —— Countdown Timer ——
     mins: "Mins",
     days: "Days",
     hours: "Hours",
+
+     // —— Wish Form ——
     sendusyourwish: "Send us your wish",
     message: "We cherish your heartfelt wishes. Please leave your blessing below.",
     send: "Send Wish",
     back: "Back",
     yourgift: "Your Gift",
+
+     // —— Church Form ——
     youreinvited: "You're Invited",
-    tenthanhgroom: "Joseph Marcus Ha",
-    tenthanhbride: "Clara Tran Thi Thanh Thuy",
+    tenthanhgroom: "Joseph",
+    tenthanhbride: "Clara",
+    groomNamefull: "Marcus Ha",
+    brideNamefull: "Tran Thi Thanh Thuy",
     churchaddress: "Join us at Tan Chi Linh Church<br>" + 
     "6/25 Pham Van Hai, Ward 3, Tan Binh District",
-    churchtime: "June 28th, 2025",
-    churchhour: "4:00 PM (GMT+7)",
+    churchtime: "June 28th, 2025<br>"+
+    "4:00 PM (GMT+7)",
     quote: "We become what we love and who we love shapes what we become.<br>" +
     "— St. Clare of Assisi",
+
+     // —— Restaurant Form ——
     additional : "  ",
     weddingdetails: "Wedding Details",
     restauranttime: "June 28th, 2025<br>" + 
-    "6:00 PM (GMT+7)<br><br>" +
-    "Asiana Plaza Convention Center<br>" +
-    "Alexa Hall - 10th Floor",
-    restaurantaddress: "284–286 Vuon Lai, Phu Tho Hoa, Tan Phu District",
+    "6:00 PM (GMT+7)<br><br>",
+    restaurantaddress: "Asiana Plaza Convention Center<br>" +
+    "Alexa Hall - 10th Floor<br>"+
+    "284–286 Vuon Lai, Phu Tho Hoa, Tan Phu District<br>",
     gettingthere: "Getting There",
     drinks: "Drinks",
     alldrinks: "• Coke • Beer • Water",
@@ -43,6 +54,8 @@ const translations = {
     " • Roasted Chicken with Miso Sauce & Chef's Special Sticky Rice<br>"+
     " • Teochew-Style Seafood Hot Pot with Steamed Noodles<br>"+
     " • Sweet Red Date Soup with Palm Seeds",
+
+     // —— Meet The Bride Form ——
     ourstory: "Our Story",
     firstsentence: "Seven years woven tightly.",
     secondsentence: "I greets the sun in Vietnam as he whispers goodnight from the U.S.",
@@ -57,36 +70,47 @@ const translations = {
 
   },
   vi: {
+     // —— Main ——
     groomName: "MARCUS HÀ",
     brideName: "THANH THUỲ",
     meetthebride: "Lễ Rước Dâu",
     thechurch: "Lễ Hôn Phối",
     therestaurant: "Tiệc Cưới",
     yourwish: "Gửi Lời Chúc",
+
+      // —— Countdown Timer ——
     mins: "Phút",
     days: "Ngày",
     hours: "Giờ",
+
+      // —— Wish Form ——
     sendusyourwish: "Lời Chúc Mừng",
     message: "Hãy để lại lời chúc mừng của bạn bên dưới. Xin gửi lời cảm ơn sâu sắc đến bạn. ",
     send: "Gửi",
     back: "Quay Lại",
     yourgift: "Quà Mừng Cưới",
+
+      // —— Church Form ——
     youreinvited: "Lễ Thành Hôn",
-    tenthanhgroom: "Giuse Marcus Hà",
-    tenthanhbride: "Clara Trần Thị Thanh Thùy",
+    tenthanhgroom: "Giuse",
+    tenthanhbride: "Clara",
+    groomNamefull: "Marcus Hà",
+    brideNamefull: "Trần Thị Thanh Thùy",
     churchaddress: "Hôn lễ được cử hành tại Nhà Thờ Tân Chí Linh<br>" + 
     "6/25 Phạm Văn Hai, Phường 3, Quận Tân Bình",
-    churchtime: "28.06.2025",
-    churchhour: "Vào Lúc 16:00",
+    churchtime: "28.06.2025<br>"+
+    "Vào lúc 16:00",
     quote: " ''Chúng ta sẽ trở thành những gì chúng ta yêu thương và người chúng ta yêu thương sẽ định hình nên con người chúng ta.''<br>" +
     "— Thánh Clara, Đồng Trinh",
+
+      // —— Restaurant Form ——
     additional: "Thân mời bạn đến dự",
     weddingdetails: "Lễ Thành Hôn",
     restauranttime: "28.06.2025<br>" + 
-    "Vào Lúc 18:00<br><br>" +
-    "Asiana Plaza<br>" +
-    "Sảnh Alexa - Tầng 10",
-    restaurantaddress: "284–286 Vườn Lài, Phú Thọ Hòa, Tân Phú",
+    "Vào lúc 18:00<br><br>",
+    restaurantaddress: "Asiana Plaza<br>" +
+    "Sảnh Alexa - Tầng 10<br>" +
+    "284–286 Vườn Lài, Phú Thọ Hòa, Tân Phú<br>",
     gettingthere: "Bản Đồ",
     drinks: "Thức Uống",
     alldrinks: "• Nước Ngọt • Bia • Nước Suối",
@@ -98,6 +122,8 @@ const translations = {
     " • Gà Quay Xốt Miso - Xôi Đặc Biệt<br>" + 
     " • Lẩu Hải Sản Triều Châu - Mì Hấp<br>" +
     " • Chè Táo Đỏ Hạt Đác",
+
+      // —— Meet The Bride Form ——
     ourstory: "Một Hành Trình Dài",
     firstsentence: "Bảy năm bên nhau.",
     secondsentence: "Tớ đón bình minh ở Việt Nam cũng là lúc anh ấy nhắn chúc ngủ ngon từ Mỹ.",
@@ -107,7 +133,7 @@ const translations = {
     togetherwithourfamilies: "Đến dự buổi tiệc cùng với gia đình chúng tôi,",
     inviteat: "Hôn lễ được cử hành tại Tư Gia",
     meettime: "Ngày 28 tháng 6 năm 2025<br />"+
-    "Vào Lúc 13:00",
+    "Vào lúc 13:00",
     lastword: "Sự hiện diện của bạn là niềm vinh hạnh cho chúng tôi!"
   }
 };
