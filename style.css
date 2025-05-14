@@ -447,6 +447,7 @@ body {
 .church-image {
   width: 50%;
   height: 100%;
+  z-index: 3;
   background: url('image/church2.jpg') center/cover no-repeat;
 }
 

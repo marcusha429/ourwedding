@@ -303,7 +303,7 @@ function sendWish() {
 }
 
 function updateCountdown() {
-    const target = new Date("June 25, 2025 13:00:00").getTime();
+    const target = new Date("June 28, 2025 13:00:00 GMT+0700").getTime();
     const now = Date.now();
     const diff = target - now;
 
