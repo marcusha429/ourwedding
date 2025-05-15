@@ -14,6 +14,7 @@ const translations = {
     mins: "Mins",
     days: "Days",
     hours: "Hours",
+    seconds: "Seconds",
 
      // —— Wish Form ——
     sendusyourwish: "Send us your wish",
@@ -32,8 +33,8 @@ const translations = {
     "6/25 Pham Van Hai, Ward 3, Tan Binh District",
     churchtime: "June 28th, 2025<br>"+
     "4:00 PM (GMT+7)",
-    quote: "We become what we love and who we love shapes what we become.<br>" +
-    "— St. Clare of Assisi",
+    quote: "&quotWe become what we love and who we love shapes what we become.&quot<br>" +
+    "— St. Clare of Assisi —",
 
      // —— Restaurant Form ——
     additional : "  ",
@@ -82,6 +83,7 @@ const translations = {
     mins: "Phút",
     days: "Ngày",
     hours: "Giờ",
+    seconds: "Giây",
 
       // —— Wish Form ——
     sendusyourwish: "Lời Chúc Mừng",
@@ -100,8 +102,8 @@ const translations = {
     "6/25 Phạm Văn Hai, Phường 3, Quận Tân Bình",
     churchtime: "28.06.2025<br>"+
     "Vào lúc 16:00",
-    quote: " ''Chúng ta sẽ trở thành những gì chúng ta yêu thương và người chúng ta yêu thương sẽ định hình nên con người chúng ta.''<br>" +
-    "— Thánh Clara, Đồng Trinh",
+    quote: " &quotChúng ta sẽ trở thành những gì chúng ta yêu thương và người chúng ta yêu thương sẽ định hình nên con người chúng ta.&quot<br>" +
+    "— Thánh Clara, Đồng Trinh —",
 
       // —— Restaurant Form ——
     additional: "Thân mời bạn đến dự",
@@ -316,10 +318,12 @@ function updateCountdown() {
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const sec = Math.floor((diff / 1000) % 60);
 
     document.getElementById("days").textContent = String(days).padStart(2, "0");
     document.getElementById("hours").textContent = String(hrs).padStart(2, "0");
     document.getElementById("minutes").textContent = String(mins).padStart(2, "0");
+    document.getElementById("seconds").textContent = String(sec).padStart(2, "0");
 }
 
 setInterval(updateCountdown, 1000);

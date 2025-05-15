@@ -329,7 +329,7 @@ body {
 /* Image + title on left */
 .church-img {
   width: 100%;
-  max-width: 280px;               
+  max-width: 500px;               
   aspect-ratio: 1 / 1;          
   object-fit: cover;
   border-radius: 8px;
@@ -337,7 +337,7 @@ body {
 }
 .church-title {
   font-family: "Literata", serif;
-  font-size: 28px;
+  font-size: 17px;
   color: #f5f5f5;
   text-align: center;
   margin-top: 0;                 
@@ -439,7 +439,7 @@ body {
 
 .restaurant-img {
   width: 100%;
-  max-width: 280px;
+  max-width: 500px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 8px;
@@ -501,6 +501,49 @@ body {
   color: #fff;
   overflow-y: auto;
 }
+/* Portrait row above “Our Story” */
+.home-side--left .info-images {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.info-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-image img {
+  width: 100%;
+  max-width: 300px;     /* adjust as needed */
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.info-image-title {
+  margin-top: 8px;
+  font-family: "Literata", serif;
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.info-image img.bride {
+  transform: scaleX(-1);
+  object-position: center 70%;
+}
+
+.info-image img.groom{
+  object-position: center 30%;
+}
+
+
 .home-content h1 {
   font-family: "Literata", serif;
   font-size: 28px;
@@ -550,17 +593,19 @@ body {
 .home-side--right {
   flex: 0 0 40%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background: #6b7d58;
-  padding: 24px;
+  padding: 32px 24px;
 }
 .home-img {
   width: 100%;
-  max-width: 280px;
+  max-width: 500px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 8px;
+  margin-bottom: 16px;
 }
 
 .home-timeline {
@@ -760,7 +805,7 @@ body {
   .restaurant-img,
   .home-img,
   .wish-image {
-    max-width: 200px;
+    max-width: 500px;
     aspect-ratio: 1/1;
     object-fit: cover;
     margin: 0 auto 12px;
@@ -771,7 +816,7 @@ body {
   .restaurant-title,
   .home-title,
   #wish-form-container .wish-content h1 {
-    font-size: 24px;
+    font-size: 17px;
     text-align: center;
     margin-bottom: 16px;
   }
@@ -791,6 +836,12 @@ body {
     line-height: 24px;
     margin-right: 8px;
   }
+
+  .home-side--left .info-images {
+    flex-direction: column;
+    gap: 16px;
+  }
+
   .info-box {
     padding: 12px;
   }
