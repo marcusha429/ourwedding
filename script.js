@@ -296,8 +296,15 @@ document.addEventListener('DOMContentLoaded', () => {
         item.classList.add('active');
         return;
       }
-      const id = formMap[item.id];
-      if (id) document.getElementById(id).style.display = 'flex';
+      const formId = formMap[item.id];
+      if (formId) {
+        const formE1 = document.getElementById(formId);
+        formE1.style.display = 'flex';
+
+        if (item.id === 'gallery-btn') {
+          setTimeout(layout, 50);
+        }
+      }
       document.querySelectorAll('.grid-item').forEach(i => i.classList.remove('active'));
     });
   });
@@ -353,14 +360,11 @@ document.addEventListener('DOMContentLoaded', () => {
   window.nextSlide = () => { curr = (curr + 1) % slides.length; layout(); };
   window.prevSlide = () => { curr = (curr - 1 + slides.length) % slides.length; layout(); };
 
-  const galleryBtn = document.getElementById('gallery-btn');
-  const galleryForm = document.getElementById('gallery-form-container');
-  galleryBtn.addEventListener('click', () => {
-    galleryForm.style.display = 'flex';
-    setTimeout(layout, 50);
-  });
+
   window.closeGalleryForm = () => {
-    galleryForm.style.display = 'none';
+    const form = document.getElementById('gallery-form-container');
+    form.style.display = 'none';
+    document.querySelector('.grid-item.active')?.classList.remove('active');
     curr = 0;
     layout();
   };
