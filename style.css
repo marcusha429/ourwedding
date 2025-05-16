@@ -474,7 +474,6 @@ body {
   flex: none;
   border-radius: 12px;
   flex-direction: row-reverse;
-  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); */
   overflow: visible;
 }
 
@@ -858,8 +857,8 @@ body {
   user-select: none;
   z-index: 30;
 }
-.slider-nav.prev { left: -20px; }
-.slider-nav.next { right: -20px; }
+.slider-nav.prev { left: 0; }
+.slider-nav.next { right: 0; }
 
 #gallery-form-container .back-btn {
   position: absolute;
@@ -898,7 +897,7 @@ body {
 /*------------------MOBILE RESPONSIVE---------------------*/
 /*-------------------------------------------------------*/
 @media (max-width: 600px) {
-  #schedule-form-container,
+  /* #schedule-form-container, */
   .church-form-container,
   .restaurant-form-container,
   .home-form-container,
@@ -1081,14 +1080,10 @@ body {
     font-size: 20px;
   }
 
-  .slider-nav.prev,
-  .slider-nav.next {
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+  .slider-nav {
+    display: none;
   }
-  .slider-nav.prev { top: 10px; }
-  .slider-nav.next { bottom: 10px; }
-
+  
   /* Make sure the wrapper stays centered vertically */
   .slider-wrapper {
     margin: 20px auto;

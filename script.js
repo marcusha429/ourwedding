@@ -414,22 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
       slide.style.transform = transformStr.trim();
       slide.style.zIndex    = slides.length - absOff;
     });
-    function updateNavSymbols() {
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
-      const prevBtn  = document.querySelector('.slider-nav.prev');
-      const nextBtn  = document.querySelector('.slider-nav.next');
-      if (isMobile) {
-        prevBtn.textContent = '↑';
-        nextBtn.textContent = '↓';
-      } else {
-        prevBtn.textContent = '‹';
-        nextBtn.textContent = '›';
-      }
-    }
-    updateNavSymbols();
-    window.addEventListener('resize', updateNavSymbols);
   }
-
   // initial layout
   layout();
 
@@ -461,5 +446,25 @@ document.addEventListener('DOMContentLoaded', () => {
     curr = 0;
     layout();
   };
+  const wrapper = document.querySelector('.slider-wrapper');
+  let touchStartY = 0;
+
+  wrapper.addEventListener('touchstart', e => {
+    touchStartY = e.changedTouches[0].clientY;
+  });
+
+  wrapper.addEventListener('touchend', e => {
+    const touchEndY = e.changedTouches[0].clientY;
+    const delta = touchStartY - touchEndY;
+    const threshold = 50;  // swipe threshold in px
+
+    if (Math.abs(delta) > threshold) {
+      if (delta > 0) {
+        nextSlide();     // swipe up → next
+      } else {
+        prevSlide();     // swipe down → previous
+      }
+    }
+  });
 });
 
