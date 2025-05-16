@@ -3,8 +3,6 @@ emailjs.init('uslz-38maofgET7_g');
 const translations = {
   en: {
     // —— Main ——
-    groomName: "MARCUS HA",
-    brideName: "THANH THUY",
     meetthebride: "Meet The Bride",
     ourschedule: "Our Schedule",
     weddinggallery: "Wedding Gallery",
@@ -70,8 +68,6 @@ const translations = {
   },
   vi: {
     // —— Main ——
-    groomName: "MARCUS HÀ",
-    brideName: "THANH THUỲ",
     meetthebride: "Lễ Rước Dâu",
     ourschedule: "Lịch Trình",
     weddinggallery: "Gallery",
