@@ -37,14 +37,14 @@
           <div class="grid-item item-1" id="home-btn" style="background-image: url('image/meetthebride-grid.jpg')">
             <div class="grid-text" data-i18n="meetthebride">Meet The Bride</div>
           </div>
-          <div class="grid-item item-2" id="church-btn" style="background-image: url('image/church-grid.jpg')">
-            <div class="grid-text" data-i18n="thechurch">The Church</div>
-          </div>
-          <div class="grid-item item-3" id="restaurant-btn" style="background-image: url('image/restaurant-grid.jpg')">
-            <div class="grid-text" data-i18n="therestaurant">The Restaurant</div>
+          <div class="grid-item item-2" id="schedule-btn" style="background-image: url('image/church-grid.jpg')">
+            <div class="grid-text" data-i18n="ourschedule">Our Schedule</div>
           </div>
           <div class="grid-item item-4" id="wish-btn" style="background-image: url('image/yourwish-grid.jpg')">
             <div class="grid-text" data-i18n="yourwish">Your Wish</div>
+          </div>
+          <div class="grid-item item-3" id="gallery-btn" style="background-image: url('image/restaurant-grid.jpg')">
+            <div class="grid-text" data-i18n="weddinggallery">Wedding Gallery</div>
           </div>
           <div class="center-info">
             <div class="countdown-timer">
@@ -110,153 +110,146 @@
           <div class="wish-image"></div>
         </div>
       </div>
+      <!-- Our Schedule Form -->
+      <div id="schedule-form-container">
+        <div class="schedule-layout">
+          <div class="church-form-redesign">
+            <!-- LEFT: image + title -->
+            <div class="church-side church-side--left">
+              <img src="image/church-1.jpg" alt="Tan Chi Linh Church" class="church-img" />
+              <p class="church-title" data-i18n-html="quote">
+                &quotWe become what we love and who we love shapes what we become.&quot
+                — St. Clare of Assisi —
+              </p>
+            </div>
 
-      <!-- Church Form -->
-      <div id="church-form-container">
-        <div class="church-form-redesign">
-          <!-- LEFT: image + title -->
-          <div class="church-side church-side--left">
-            <img src="image/church-1.jpg" alt="Tan Chi Linh Church" class="church-img" />
-            <p class="church-title" data-i18n-html="quote">
-              &quotWe become what we love and who we love shapes what we become.&quot
-              — St. Clare of Assisi — 
-            </p>
-          </div>
-
-          <!-- RIGHT: timeline cards + back -->
-          <div class="church-side church-side--right">
-            <div class="church-timeline">
-              <!-- Time -->
-              <div class="timeline-item">
-                <span class="timeline-icon">♡</span>
-                <div class="info-box">
-                  <h3 data-i18n="churchTimeTitle">Time</h3>
-                  <p data-i18n-html="churchtime">
-                    <strong>June 28th, 2025<br />4:00 PM (GMT+7)</strong>
-                  </p>
+            <!-- RIGHT: timeline cards + back -->
+            <div class="church-side church-side--right">
+              <div class="church-timeline">
+                <!-- Time -->
+                <div class="timeline-item">
+                  <span class="timeline-icon">♡</span>
+                  <div class="info-box">
+                    <h3 data-i18n="churchTimeTitle">Time</h3>
+                    <p data-i18n-html="churchtime">
+                      <strong>June 28th, 2025<br />4:00 PM (GMT+7)</strong>
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <!-- Location -->
-              <div class="timeline-item">
-                <span class="timeline-icon">♡</span>
-                <div class="info-box">
-                  <h3 data-i18n="churchAddressTitle">Location</h3>
-                  <p data-i18n-html="churchaddress">
-                    <strong>
-                      6/25 Pham Van Hai, Ward 3, Tan Binh District
-                    </strong>
-                  </p>
+                <!-- Location -->
+                <div class="timeline-item">
+                  <span class="timeline-icon">♡</span>
+                  <div class="info-box">
+                    <h3 data-i18n="churchAddressTitle">Location</h3>
+                    <p data-i18n-html="churchaddress">
+                      <strong>
+                        6/25 Pham Van Hai, Ward 3, Tan Binh District
+                      </strong>
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <!-- Map -->
-              <div class="timeline-item">
-                <span class="timeline-icon">♡</span>
-                <div class="info-box">
-                  <h3 data-i18n="gettingthere">Getting There</h3>
-                  <div class="map-container">
-                    <iframe width="100%" height="160" style="border-radius:8px;" frameborder="0"
-                      src="https://maps.google.com/maps?q=6%2F25%20Pham%20Van%20Hai%20Ward%203%20Tan%20Binh%20District&t=&z=15&ie=UTF8&iwloc=&output=embed">
-                    </iframe>
+                <!-- Map -->
+                <div class="timeline-item">
+                  <span class="timeline-icon">♡</span>
+                  <div class="info-box">
+                    <h3 data-i18n="gettingthere">Getting There</h3>
+                    <div class="map-container">
+                      <iframe width="100%" height="160" style="border-radius:8px;" frameborder="0"
+                        src="https://maps.google.com/maps?q=6%2F25%20Pham%20Van%20Hai%20Ward%203%20Tan%20Binh%20District&t=&z=15&ie=UTF8&iwloc=&output=embed">
+                      </iframe>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <button class="back-btn" data-i18n="back" onclick="closeChurchForm()">
-              Back
-            </button>
           </div>
+          <div class="restaurant-form-redesign">
+            <!-- LEFT: image + title -->
+            <div class="restaurant-side restaurant-side--left">
+              <img src="image/restaurant-1.jpg" alt="Asiana Plaza Convention Center" class="restaurant-img" />
+              <h2 class="restaurant-title" data-i18n="weddingdetails">
+                Wedding Details
+              </h2>
+            </div>
+
+            <!-- RIGHT: timeline cards + back -->
+            <div class="restaurant-side restaurant-side--right">
+              <div class="restaurant-timeline">
+                <!-- Time -->
+                <div class="timeline-item">
+                  <span class="timeline-icon">♡</span>
+                  <div class="info-box">
+                    <h3 data-i18n="restaurantTimeTitle">Time</h3>
+                    <p data-i18n-html="restauranttime">
+                      <strong>June 28th, 2025<br />6:00 PM (GMT+7)</strong>
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Location -->
+                <div class="timeline-item">
+                  <span class="timeline-icon">♡</span>
+                  <div class="info-box">
+                    <h3 data-i18n="restaurantAddressTitle">Location</h3>
+                    <p data-i18n-html="restaurantaddress">
+                      <strong>
+                        Asiana Plaza Convention Center<br />
+                        Alexa Hall – 10th Floor<br />
+                        284–286 Vuon Lai, Phu Tho Hoa, Tan Phu District
+                      </strong>
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Getting There (Map) -->
+                <div class="timeline-item">
+                  <span class="timeline-icon">♡</span>
+                  <div class="info-box">
+                    <h3 data-i18n="gettingthere">Getting There</h3>
+                    <div class="map-container">
+                      <iframe width="100%" height="160" style="border-radius:8px;" frameborder="0"
+                        src="https://maps.google.com/maps?q=284%20Vuon%20Lai%20Phu%20Tho%20Hoa&t=&z=15&ie=UTF8&iwloc=&output=embed">
+                      </iframe>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Drinks -->
+                <div class="timeline-item">
+                  <span class="timeline-icon">♡</span>
+                  <div class="info-box">
+                    <h3 data-i18n="drinks">Drinks</h3>
+                    <p data-i18n-html="alldrinks">• Coke • Beer • Water</p>
+                  </div>
+                </div>
+
+                <!-- Good Eats -->
+                <div class="timeline-item">
+                  <span class="timeline-icon">♡</span>
+                  <div class="info-box">
+                    <h3 data-i18n="goodeats">Good Eats</h3>
+                    <p data-i18n-html="allfoods">
+                      • Roasted Chicken & Pumpkin Salad<br />
+                      • Oven-Baked Pork Rolls with Kimchi<br />
+                      • Fish Maw Soup with Black Moss<br />
+                      • Seafood in Pumpkin Sauce<br />
+                      • Roasted Chicken with Miso Sauce & Sticky Rice<br />
+                      • Teochew-Style Seafood Hot Pot with Noodles<br />
+                      • Sweet Red Date Soup with Palm Seeds
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="back-btn" onclick="closeScheduleForm()">Back</button>
         </div>
       </div>
+      <!-- Church Form -->
 
       <!-- Restaurant Form -->
-      <div id="restaurant-form-container">
-        <div class="restaurant-form-redesign">
-          <!-- LEFT: image + title -->
-          <div class="restaurant-side restaurant-side--left">
-            <img src="image/restaurant-1.jpg" alt="Asiana Plaza Convention Center" class="restaurant-img" />
-            <h2 class="restaurant-title" data-i18n="weddingdetails">
-              Wedding Details
-            </h2>
-          </div>
-
-          <!-- RIGHT: timeline cards + back -->
-          <div class="restaurant-side restaurant-side--right">
-            <div class="restaurant-timeline">
-              <!-- Time -->
-              <div class="timeline-item">
-                <span class="timeline-icon">♡</span>
-                <div class="info-box">
-                  <h3 data-i18n="restaurantTimeTitle">Time</h3>
-                  <p data-i18n-html="restauranttime">
-                    <strong>June 28th, 2025<br />6:00 PM (GMT+7)</strong>
-                  </p>
-                </div>
-              </div>
-
-              <!-- Location -->
-              <div class="timeline-item">
-                <span class="timeline-icon">♡</span>
-                <div class="info-box">
-                  <h3 data-i18n="restaurantAddressTitle">Location</h3>
-                  <p data-i18n-html="restaurantaddress">
-                    <strong>
-                      Asiana Plaza Convention Center<br />
-                      Alexa Hall – 10th Floor<br />
-                      284–286 Vuon Lai, Phu Tho Hoa, Tan Phu District
-                    </strong>
-                  </p>
-                </div>
-              </div>
-
-              <!-- Getting There (Map) -->
-              <div class="timeline-item">
-                <span class="timeline-icon">♡</span>
-                <div class="info-box">
-                  <h3 data-i18n="gettingthere">Getting There</h3>
-                  <div class="map-container">
-                    <iframe width="100%" height="160" style="border-radius:8px;" frameborder="0"
-                      src="https://maps.google.com/maps?q=284%20Vuon%20Lai%20Phu%20Tho%20Hoa&t=&z=15&ie=UTF8&iwloc=&output=embed">
-                    </iframe>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Drinks -->
-              <div class="timeline-item">
-                <span class="timeline-icon">♡</span>
-                <div class="info-box">
-                  <h3 data-i18n="drinks">Drinks</h3>
-                  <p data-i18n-html="alldrinks">• Coke • Beer • Water</p>
-                </div>
-              </div>
-
-              <!-- Good Eats -->
-              <div class="timeline-item">
-                <span class="timeline-icon">♡</span>
-                <div class="info-box">
-                  <h3 data-i18n="goodeats">Good Eats</h3>
-                  <p data-i18n-html="allfoods">
-                    • Roasted Chicken & Pumpkin Salad<br />
-                    • Oven-Baked Pork Rolls with Kimchi<br />
-                    • Fish Maw Soup with Black Moss<br />
-                    • Seafood in Pumpkin Sauce<br />
-                    • Roasted Chicken with Miso Sauce & Sticky Rice<br />
-                    • Teochew-Style Seafood Hot Pot with Noodles<br />
-                    • Sweet Red Date Soup with Palm Seeds
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <button class="back-btn" data-i18n="back" onclick="closeRestaurantForm()">
-              Back
-            </button>
-          </div>
-        </div>
-      </div>
 
       <!-- Home / Meet the Bride Form -->
       <div id="home-form-container">
@@ -265,11 +258,11 @@
           <div class="home-side home-side--left">
             <div class="info-images">
               <div class="info-image">
-                <img src="image/bride.jpg" alt="The Bride" class="bride"/>
+                <img src="image/bride.jpg" alt="The Bride" class="bride" />
                 <div class="info-image-title">THE BRIDE</div>
               </div>
               <div class="info-image">
-                <img src="image/groom.jpg" alt="The Groom" class="groom"/>
+                <img src="image/groom.jpg" alt="The Groom" class="groom" />
                 <div class="info-image-title">THE GROOM</div>
               </div>
             </div>
@@ -325,6 +318,31 @@
           <div class="home-side home-side--right">
             <img src="image/meetthebride-1.jpg" alt="Our Home" class="home-img" />
           </div>
+        </div>
+      </div>
+
+      <div id="gallery-form-container">
+        <div class="slider-wrapper">
+          <div class="slider">
+            <!-- one .slide per image -->
+            <div class="slide" style="background-image:url('image/main.jpg')"></div>
+            <div class="slide" style="background-image:url('image/meetthebride-grid.jpg')"></div>
+            <div class="slide" style="background-image:url('image/church-grid.jpg')"></div>
+            <div class="slide" style="background-image:url('image/restaurant-grid.jpg')"></div>
+            <div class="slide" style="background-image:url('image/yourwish-grid.jpg')"></div>
+            <div class="slide" style="background-image:url('image/church-1.jpg')"></div>
+            <div class="slide" style="background-image:url('image/restaurant-1.jpg')"></div>
+            <div class="slide" style="background-image:url('image/bride.jpg')"></div>
+            <div class="slide" style="background-image:url('image/groom.jpg')"></div>
+            <div class="slide" style="background-image:url('image/meetthebride-1.jpg')"></div>
+          </div>
+      
+          <!-- navigation -->
+          <button class="slider-nav prev" onclick="prevSlide()">‹</button>
+          <button class="slider-nav next" onclick="nextSlide()">›</button>
+      
+          <!-- back button -->
+          <button class="back-btn" onclick="closeGalleryForm()">Back</button>
         </div>
       </div>
 

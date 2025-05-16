@@ -182,8 +182,8 @@ const musicList = [
     // —— two-step grid logic ——
     const formMap = {
       'wish-btn':       'wish-form-container',
-      'church-btn':     'church-form-container',
-      'restaurant-btn': 'restaurant-form-container',
+      'schedule-btn':     'schedule-form-container',
+      'gallery-btn': 'gallery-form-container',
       'home-btn':       'home-form-container',
     };
     const gridItems = document.querySelectorAll('.grid-item');
@@ -258,19 +258,19 @@ function closeWishForm() {
     document.querySelector('.grid-item.active')?.classList.remove('active');
 }
 
-function closeChurchForm() {
-    document.getElementById("church-form-container").style.display = "none";
-    document.querySelector('.grid-item.active')?.classList.remove('active');
-}
-
-function closeRestaurantForm() {
-    document.getElementById("restaurant-form-container").style.display = "none";
+function closeScheduleForm() {
+    document.getElementById("schedule-form-container").style.display = "none";
     document.querySelector('.grid-item.active')?.classList.remove('active');
 }
 
 function closeHomeForm() {
     document.getElementById("home-form-container").style.display = "none";
     document.querySelector('.grid-item.active')?.classList.remove('active');
+}
+
+function closeGalleryForm() {
+  document.getElementById("gallery-form-container").style.display = "none";
+  document.querySelector('.grid-item.active')?.classList.remove('active');
 }
 
 function sendWish() {
@@ -368,3 +368,98 @@ function applyLanguage(lang) {
     }
   });
 }
+
+
+// ─── cover-flow angle (in degrees) ───
+const ANGLE = 30;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const slides   = Array.from(document.querySelectorAll('.slide'));
+  const sliderEl = document.querySelector('.slider');
+  let curr = 0;
+
+  // layout function handles both desktop (horizontal) and mobile (vertical)
+  function layout() {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const W = sliderEl.offsetWidth;
+    const H = sliderEl.offsetHeight;
+
+    slides.forEach((slide, i) => {
+      const offset = i - curr;
+      const absOff = Math.abs(offset);
+      let transformStr;
+
+      if (!isMobile) {
+        // ── Desktop: horizontal cover-flow ──
+        const x     = offset * (W * 0.5);
+        const rotY  = offset * ANGLE;
+        const scale = offset === 0 ? 1.2 : 0.6;
+        transformStr = `
+          translateX(${x}px)
+          rotateY(${rotY}deg)
+          scale(${scale})
+        `;
+      } else {
+        // ── Mobile: vertical slide-down ──
+        const y     = offset * (H * 0.5);
+        const rotX  = offset * (ANGLE * 0.6);
+        const scale = offset === 0 ? 1.2 : 0.6;
+        transformStr = `
+          translateY(${y}px)
+          rotateX(${rotX}deg)
+          scale(${scale})
+        `;
+      }
+
+      slide.style.transform = transformStr.trim();
+      slide.style.zIndex    = slides.length - absOff;
+    });
+    function updateNavSymbols() {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const prevBtn  = document.querySelector('.slider-nav.prev');
+      const nextBtn  = document.querySelector('.slider-nav.next');
+      if (isMobile) {
+        prevBtn.textContent = '↑';
+        nextBtn.textContent = '↓';
+      } else {
+        prevBtn.textContent = '‹';
+        nextBtn.textContent = '›';
+      }
+    }
+    updateNavSymbols();
+    window.addEventListener('resize', updateNavSymbols);
+  }
+
+  // initial layout
+  layout();
+
+  // re-layout on browser resize/orientation change
+  window.addEventListener('resize', layout);
+
+  // ─── navigation handlers ───
+  window.nextSlide = () => {
+    curr = (curr + 1) % slides.length;
+    layout();
+  };
+  window.prevSlide = () => {
+    curr = (curr - 1 + slides.length) % slides.length;
+    layout();
+  };
+
+  // ─── open/close gallery overlay ───
+  const openBtn = document.getElementById('gallery-btn');
+  const form    = document.getElementById('gallery-form-container');
+
+  openBtn.addEventListener('click', () => {
+    form.style.display = 'flex';
+    // slight delay so CSS applies before measuring
+    setTimeout(layout, 50);
+  });
+
+  window.closeGalleryForm = () => {
+    form.style.display = 'none';
+    curr = 0;
+    layout();
+  };
+});
+
