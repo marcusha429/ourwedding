@@ -370,7 +370,6 @@ function applyLanguage(lang) {
 }
 
 
-// ─── cover-flow angle (in degrees) ───
 const ANGLE = 30;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -378,47 +377,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const sliderEl = document.querySelector('.slider');
   let curr = 0;
 
-  // layout function handles both desktop (horizontal) and mobile (vertical)
+  // single horizontal cover-flow layout for all viewports
   function layout() {
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const W = sliderEl.offsetWidth;
-    const H = sliderEl.offsetHeight;
-
     slides.forEach((slide, i) => {
       const offset = i - curr;
-      const absOff = Math.abs(offset);
-      let transformStr;
+      const x      = offset * (W * 0.5);
+      const rotY   = offset * ANGLE;
+      const scale  = offset === 0 ? 1.2 : 0.6;
 
-      if (!isMobile) {
-        // ── Desktop: horizontal cover-flow ──
-        const x     = offset * (W * 0.5);
-        const rotY  = offset * ANGLE;
-        const scale = offset === 0 ? 1.2 : 0.6;
-        transformStr = `
-          translateX(${x}px)
-          rotateY(${rotY}deg)
-          scale(${scale})
-        `;
-      } else {
-        // ── Mobile: vertical slide-down ──
-        const y     = offset * (H * 0.5);
-        const rotX  = offset * (ANGLE * 0.6);
-        const scale = offset === 0 ? 1.2 : 0.6;
-        transformStr = `
-          translateY(${y}px)
-          rotateX(${rotX}deg)
-          scale(${scale})
-        `;
-      }
-
-      slide.style.transform = transformStr.trim();
-      slide.style.zIndex    = slides.length - absOff;
+      slide.style.transform = `
+        translateX(${x}px)
+        rotateY(${rotY}deg)
+        scale(${scale})
+      `.trim();
+      slide.style.zIndex = slides.length - Math.abs(offset);
     });
   }
-  // initial layout
-  layout();
 
-  // re-layout on browser resize/orientation change
+  // initial positioning
+  layout();
+  // re-layout on window resize
   window.addEventListener('resize', layout);
 
   // ─── navigation handlers ───
@@ -431,46 +410,19 @@ document.addEventListener('DOMContentLoaded', () => {
     layout();
   };
 
-  // ─── integrate gallery into the grid’s double-tap logic ───
-Object.entries(formMap).forEach(([btnId, formId]) => {
-  const btn   = document.getElementById(btnId);
-  const formEl = document.getElementById(formId);
+  // ─── open/close gallery overlay ───
+  const openBtn = document.getElementById('gallery-btn');
+  const form    = document.getElementById('gallery-form-container');
 
-  btn.addEventListener('click', () => {
-    const isOpen = formEl.style.display === 'flex';
-    formEl.style.display = isOpen ? 'none' : 'flex';
-
-    if (!isOpen && formId === 'gallery-form-container') {
-      // just opened the gallery: position slides
-      setTimeout(layout, 50);
-    }
-    if (isOpen && formId === 'gallery-form-container') {
-      // just closed: reset to first slide
-      curr = 0;
-      layout();
-    }
-  });
-});
-
-  const wrapper = document.querySelector('.slider-wrapper');
-  let touchStartY = 0;
-
-  wrapper.addEventListener('touchstart', e => {
-    touchStartY = e.changedTouches[0].clientY;
+  openBtn.addEventListener('click', () => {
+    form.style.display = 'flex';
+    setTimeout(layout, 50);
   });
 
-  wrapper.addEventListener('touchend', e => {
-    const touchEndY = e.changedTouches[0].clientY;
-    const delta = touchStartY - touchEndY;
-    const threshold = 50;  // swipe threshold in px
-
-    if (Math.abs(delta) > threshold) {
-      if (delta > 0) {
-        nextSlide();     // swipe up → next
-      } else {
-        prevSlide();     // swipe down → previous
-      }
-    }
-  });
+  window.closeGalleryForm = () => {
+    form.style.display = 'none';
+    curr = 0;
+    layout();
+  };
 });
 
