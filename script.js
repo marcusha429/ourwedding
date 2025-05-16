@@ -431,21 +431,27 @@ document.addEventListener('DOMContentLoaded', () => {
     layout();
   };
 
-  // ─── open/close gallery overlay ───
-  const openBtn = document.getElementById('gallery-btn');
-  const form    = document.getElementById('gallery-form-container');
+  // ─── integrate gallery into the grid’s double-tap logic ───
+Object.entries(formMap).forEach(([btnId, formId]) => {
+  const btn   = document.getElementById(btnId);
+  const formEl = document.getElementById(formId);
 
-  openBtn.addEventListener('click', () => {
-    form.style.display = 'flex';
-    // slight delay so CSS applies before measuring
-    setTimeout(layout, 50);
+  btn.addEventListener('click', () => {
+    const isOpen = formEl.style.display === 'flex';
+    formEl.style.display = isOpen ? 'none' : 'flex';
+
+    if (!isOpen && formId === 'gallery-form-container') {
+      // just opened the gallery: position slides
+      setTimeout(layout, 50);
+    }
+    if (isOpen && formId === 'gallery-form-container') {
+      // just closed: reset to first slide
+      curr = 0;
+      layout();
+    }
   });
+});
 
-  window.closeGalleryForm = () => {
-    form.style.display = 'none';
-    curr = 0;
-    layout();
-  };
   const wrapper = document.querySelector('.slider-wrapper');
   let touchStartY = 0;
 
