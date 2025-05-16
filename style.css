@@ -664,7 +664,7 @@ body {
 .wish-image {
   flex: 0 0 40%;
   background-size: cover;
-  background: url('image/wish2.jpg') center/cover no-repeat;
+  background: url('image/yourwish-1.jpg') center/cover no-repeat;
 }
 
 .wish-info {
