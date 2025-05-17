@@ -99,7 +99,7 @@ const translations = {
       "— Thánh Clara, Đồng Trinh —",
 
     // —— Restaurant Form ——
-    weddingdetails: "Lễ Thành Hôn",
+    weddingdetails: "Lễ Cưới",
     restauranttime: "28.06.2025<br>" +
       "Vào lúc 18:00<br><br>",
     restaurantaddress: "Asiana Plaza<br>" +
