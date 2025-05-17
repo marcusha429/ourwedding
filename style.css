@@ -13,6 +13,13 @@
   user-select: none;
 }
 
+:root {
+  /* Minimum 1rem, ideally 4vw, max 2rem */
+  --grid-text-min: 1rem;
+  --grid-text-preferred: 4vw;
+  --grid-text-max: 2rem;
+}
+
 html,
 body {
   height: 100%;
@@ -211,7 +218,9 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 40px;
+  font-size: clamp(var(--grid-text-min),
+      var(--grid-text-preferred),
+      var(--grid-text-max));
   color: white;
   text-shadow: 2px 2px 5px black;
   pointer-events: none;
@@ -1096,7 +1105,9 @@ body {
   }
 
   .grid-text {
-    font-size: 20px;
+    font-size: clamp(var(--grid-text-min),
+        var(--grid-text-preferred),
+        var(--grid-text-max));
   }
 
   .slider-wrapper {
