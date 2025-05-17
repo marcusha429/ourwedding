@@ -1027,9 +1027,8 @@ body {
     border-radius: 8px;
   }
 
-  .church-title,
-  .home-title{
-    font-size: 17px;
+  .church-title{
+    font-size: 14px;
     text-align: center;
     margin-bottom: 16px;
   }
