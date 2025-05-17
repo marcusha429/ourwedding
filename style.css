@@ -1119,12 +1119,12 @@ body {
   }
 
   .slide {
-    top: 10%;
-    left: 5%;
+    top: calc(20% + 15px);
+    left: calc(20% + 15px);
     width: calc(60% - 30px);
     max-width: none;
     max-height: none;
-    margin: 0 100px;
+    margin: 0;
   }
 
   .slider-nav.prev {
