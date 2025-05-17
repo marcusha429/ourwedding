@@ -1122,6 +1122,7 @@ body {
     top: calc(20% + 15px);
     left: calc(20% + 15px);
     width: calc(60% - 30px);
+    height: calc(60% - 30px);
     max-width: none;
     max-height: none;
     margin: 0;
