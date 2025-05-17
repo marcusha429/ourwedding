@@ -11,8 +11,8 @@ const translations = {
     // —— Countdown Timer ——
     mins: "Mins",
     days: "Days",
-    hours: "Hours",
-    secs: "Seconds",
+    hours: "Hrs",
+    secs: "Secs",
 
     // —— Wish Form ——
     yourname: "Your Name",
