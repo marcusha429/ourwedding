@@ -3,7 +3,7 @@ emailjs.init('uslz-38maofgET7_g');
 const translations = {
   en: {
     // —— Main ——
-    meetthebride: "Meet The Bride",
+    lovestory: "Love Story",
     ourschedule: "Our Schedule",
     weddinggallery: "Wedding Gallery",
     yourwish: "Your Wish",
@@ -28,7 +28,8 @@ const translations = {
     invitation: "Reception Invitation",
     timetitle: "Time",
     addresstitle: "Location",
-    churchaddress: "Join us at Tan Chi Linh Church<br>" +
+    churchaddress: "Join us at<br> "+
+      "Tan Chi Linh Church<br>" +
       "6/25 Pham Van Hai, Ward 3, Tan Binh District",
     churchtime: "June 28th, 2025<br>" +
       "4:00 PM (GMT+7)",
@@ -70,7 +71,7 @@ const translations = {
   },
   vi: {
     // —— Main ——
-    meetthebride: "Lễ Rước Dâu",
+    lovestory: "Chuyện Kể Rằng",
     ourschedule: "Lịch Trình",
     weddinggallery: "Gallery",
     yourwish: "Gửi Lời Chúc",
@@ -96,7 +97,8 @@ const translations = {
     // —— Church Form ——
     timetitle: "Thời Gian",
     addresstitle: "Địa Điểm",
-    churchaddress: "Hôn lễ được cử hành tại Nhà Thờ Tân Chí Linh<br>" +
+    churchaddress: "Hôn lễ được cử hành tại<br>"+
+      "Thánh Đường Giáo Xứ Tân Chí Linh<br>" +
       "6/25 Phạm Văn Hai, Phường 3, Quận Tân Bình",
     churchtime: "28.06.2025<br>" +
       "Vào lúc 16:00",
@@ -135,7 +137,8 @@ const translations = {
     inviteat: "Hôn lễ được cử hành tại Tư Gia",
     meettime: "Ngày 28 tháng 6 năm 2025<br />" +
       "Vào lúc 13:00",
-    lastword: " "
+    lastword: " ",
+    ourvows: "Lời Hứa"
   }
 };
 
