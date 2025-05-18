@@ -181,7 +181,11 @@ function playRandomMusic() {
   currentAudio = new Audio(musicList[idx]);
   currentAudio.volume = 0.5;
   currentAudio.addEventListener('ended', () => {
-    const next = (musicList.indexOf(currentAudio.src.split('/').pop()) + 1) % musicList.length;
+    const fullSrc = currentAudio.src;
+    const idx = musicList.findIndex(
+      song => fullSrc.endsWith(song)
+    );
+    const next = (idx + 1) % musicList.length;
     currentAudio.src = musicList[next];
     currentAudio.play().catch(() => { });
   });
