@@ -550,11 +550,12 @@ body {
 .home-form-redesign {
   background: #728c69;
   width: 90vw;
-  height: 90vh;
+  max-height: 90vh;
+  /* height: auto; */
   display: flex;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
+  overflow: auto;
 }
 
 /* Left pane: content */
@@ -565,7 +566,7 @@ body {
   justify-content: space-between;
   padding: 32px 24px;
   color: #fff;
-  overflow-y: auto;
+  overflow-y: visible;
 }
 
 /* Portrait row above “Our Story” */
@@ -698,7 +699,7 @@ body {
 .home-timeline {
   position: relative;
   padding-left: 36px;
-  overflow-y: auto;
+  overflow-y: visible;
 }
 
 .home-timeline::before {
