@@ -113,13 +113,45 @@
       <!-- Our Schedule Form -->
       <div id="schedule-form-container">
         <div class="schedule-layout">
+          <div class="meetbride-form-redesign"> <!-- Meet The Bride Form -->
+            <!-- LEFT: image + title -->
+            <div class="meetbride-side meetbride-side--left">
+              <img src="image/meetthebride-1.jpg" alt="Meet The Bride" class="meetbride-img" />
+              <h2 class="restaurant-title" data-i18n="weddingdetails">
+                Wedding Details
+              </h2>
+            </div>
+
+            <!-- RIGHT: timeline cards + back -->
+            <div class="meetbride-side meetbride-side--right">
+              <div class="meetbride-timeline">
+                <!-- Time -->
+                <div class="timeline-item">
+                  <span class="timeline-icon">♡</span>
+                  <div class="info-box">
+                    <h3 data-i18n="invitation">Reception Invitation</h3>
+                    <p data-i18n="togetherwithourfamilies">
+                      Together with our families,
+                    </p>
+                    <p data-i18n="inviteat">
+                      invite you to celebrate at <strong>Home</strong>.
+                    </p>
+                    <p class="reception-time" data-i18n-html="meettime">
+                      <strong>June 28th, 2025<br />1:00 PM (GMT+7)</strong>
+                    </p>
+                    <p class="reception-note" data-i18n="lastword">
+                      We look forward to sharing this joyful moment!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="church-form-redesign"> <!-- Church Form -->
             <!-- LEFT: image + title -->
             <div class="church-side church-side--left">
               <img src="image/restaurant-1.jpg" alt="Tan Chi Linh Church" class="church-img" />
-              <h2 class="restaurant-title" data-i18n="weddingdetails">
-                Wedding Details
-              </h2>
             </div>
 
             <!-- RIGHT: timeline cards + back -->
@@ -288,22 +320,31 @@
               </div>
 
               <!-- Reception Invitation box -->
+              <!-- Chat-style conversation -->
               <div class="timeline-item">
                 <span class="timeline-icon">♡</span>
-                <div class="info-box">
-                  <h3 data-i18n="invitation">Reception Invitation</h3>
-                  <p data-i18n="togetherwithourfamilies">
-                    Together with our families,
-                  </p>
-                  <p data-i18n="inviteat">
-                    invite you to celebrate at <strong>Home</strong>.
-                  </p>
-                  <p class="reception-time" data-i18n-html="meettime">
-                    <strong>June 28th, 2025<br />1:00 PM (GMT+7)</strong>
-                  </p>
-                  <p class="reception-note" data-i18n="lastword">
-                    We look forward to sharing this joyful moment!
-                  </p>
+                <div class="info-box2">
+                  <h3 data-i18n="ourvows">Our Vows</h3>
+                  <div class="conversation-container">
+                    <div class="message from-bride">
+                      <p data-i18n="chatBride1">
+                        Hey love, can you believe our big day is almost here? 🥰
+                      </p>
+                      <span class="time">09:00 AM</span>
+                    </div>
+                    <div class="message from-groom">
+                      <p data-i18n="chatGroom1">
+                        I know! Counting down every minute. The reception’s gonna be lit! 🎉
+                      </p>
+                      <span class="time">09:02 AM</span>
+                    </div>
+                    <div class="message from-bride">
+                      <p data-i18n="chatBride2">
+                        Don’t forget to bring your dancing shoes 😉
+                      </p>
+                      <span class="time">09:05 AM</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

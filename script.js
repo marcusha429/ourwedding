@@ -24,6 +24,8 @@ const translations = {
     yourgift: "Your Gift",
 
     // —— Our Schedule Form ——
+
+    invitation: "Reception Invitation",
     timetitle: "Time",
     addresstitle: "Location",
     churchaddress: "Join us at Tan Chi Linh Church<br>" +
@@ -58,7 +60,7 @@ const translations = {
     secondsentence: "I greets the sun in Vietnam as he whispers goodnight from the U.S.",
     thirdsentence: "Our love, tested by miles and strengthened by patience, waits joyfully for the day we'll finally share every sunrise side by side.",
     lastsentence: "And our new chapter begins...",
-    invitation: "Reception Invitation",
+    ourvows: "Our Vows",
     togetherwithourfamilies: "Together with our families,",
     inviteat: "invite you to celebrate at Home.",
     meettime: "June 28th, 2025<br />" +
@@ -87,6 +89,9 @@ const translations = {
     send: "Gửi",
     back: "Quay Lại",
     yourgift: "Quà Mừng Cưới",
+
+      // —— Meet The Bride Form ——
+    invitation: "Lời Mời Thân Mật",
 
     // —— Church Form ——
     timetitle: "Thời Gian",
@@ -369,4 +374,5 @@ document.addEventListener('DOMContentLoaded', () => {
     layout();
   };
 });
+
 
