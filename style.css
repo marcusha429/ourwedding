@@ -202,6 +202,11 @@ body {
   position: relative;
 }
 
+.item-2 {
+  background-size: 200%;
+  background-position: calc(50%) 66%;
+}
+
 .item-3 {
   background-size: 250%;
   background-position: calc(50% + 120px) 60%;
@@ -339,63 +344,30 @@ body {
   margin: 16px;
 }
 
-/*-------------------------------------------------------*/
-/*         Home / Meet the Bride Form Styling            */
-/*-------------------------------------------------------*/
-
-.meetbride-form-redesign{
-  background: #6b7d58;
-  width: 100%;
-  height: auto;
+.dress-code-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
-  flex: none;
-  border-radius: 12px;
-  flex-direction: row-reverse;
-  overflow: visible;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.meetbride-side--left {
-  flex: 0 0 50%;
+.dress-code-list li {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 32px 24px;
-  background: #728c69;
+  font-weight: 400;
+  color: #333;
 }
 
-.meetbride-img {
-  width: 100%;
-  max-width: 500px;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 16px;
+.dress-code-swatch {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
 }
 
-.meetbride-side--right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: #fff;
-  padding: 24px;
-}
-
-.meetbride-timeline {
-  position: relative;
-  padding-left: 36px;
-}
-
-.meetbride-timeline::before {
-  content: "";
-  position: absolute;
-  left: 18px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.3);
-}
 
 
 /*-------------------------------------------------------*/

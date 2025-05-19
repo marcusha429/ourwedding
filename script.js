@@ -24,7 +24,6 @@ const translations = {
     yourgift: "Your Gift",
 
     // —— Our Schedule Form ——
-
     invitation: "Reception Invitation",
     timetitle: "Time",
     addresstitle: "Location",
@@ -180,6 +179,11 @@ const musicList = [
   'music/mylovemineallmine.mp3',
   'music/ithinktheycallthislove.mp3',
   'music/blue.mp3',
+  'music/canttakemyeyesoffyou.mp3',
+  'music/canihavethedaywithyou.mp3',
+  'music/universe.mp3',
+  'music/fallinginlove.mp3',
+  'music/lucky.mp3',
 ];
 let currentAudio = null, isPlaying = false;
 
