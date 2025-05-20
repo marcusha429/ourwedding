@@ -1,0 +1,75 @@
+#main-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    z-index: 1;
+  }
+  
+  .music-controls button {
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .music-controls button:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Invitation grid */
+  #content {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .grid-item {
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    transition: filter 0.5s ease, transform 0.5s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .item-2 {
+    background-size: 200%;
+    background-position: calc(50%) 66%;
+  }
+  
+  .item-3 {
+    background-size: 250%;
+    background-position: calc(50% + 120px) 60%;
+  }
+  
+  .grid-item:hover {
+    filter: blur(0);
+    transform: scale(1.1);
+    z-index: 1;
+  }
+  
+  .grid-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(var(--grid-text-min),
+        var(--grid-text-preferred),
+        var(--grid-text-max));
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    pointer-events: none;
+  }
+
+  

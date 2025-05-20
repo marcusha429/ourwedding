@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  font-family: "Literata", "Playfair Display", serif;
+  background: url("https://www.transparenttextures.com/patterns/aged-paper.png") repeat;
+  background-color: #728c69;
+}
+
+/* Forms overlay */
+#wish-form-container,
+#church-form-container,
+#restaurant-form-container,
+#home-form-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+

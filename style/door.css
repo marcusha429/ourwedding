@@ -1,0 +1,75 @@
+#landing {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .door {
+    position: fixed;
+    height: 100%;
+    width: 50%;
+    top: 0;
+    transition: transform 1.5s ease-in-out;
+    z-index: 10;
+    cursor: pointer;
+  }
+  
+  #door-left {
+    left: 0;
+    width: 33.3333%;
+    background: url("../image/main.jpg") center/cover no-repeat;
+  }
+  
+  #door-right {
+    right: 0;
+    width: 66.6667%;
+    background-color: #738678;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .names-container {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .groom-name,
+  .bride-name {
+    position: absolute;
+    width: 80%;
+    font-family: "Elegist", serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #fff;
+    line-height: 1.2;
+    font-size: 10vw;
+  }
+  
+  .bride-name {
+    top: 50%;
+    right: 0;
+    text-align: right;
+  }
+  
+  .groom-name {
+    bottom: 50%;
+    left: 0;
+    text-align: left;
+  }
+  
+  #landing.open #door-left {
+    transform: translateX(-100%);
+  }
+  
+  #landing.open #door-right {
+    transform: translateX(100%);
+  }
+
+  #landing.open #main-content {
+    visibility: visible;
+  }

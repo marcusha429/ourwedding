@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "Elegist";
+    src: url("../fonts/Elegist.otf") format("opentype");
+  }
+
+@font-face {
+    font-family: "UVN";
+    src: url("../fonts/UVN.ttf") format("opentype");
+  }
+  
+@font-face {
+    font-family: "Beautiful";
+    src: url("../fonts/beautiful.ttf") format("opentype");
+  }

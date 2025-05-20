@@ -1,0 +1,110 @@
+/*-------------------------------------------------------*/
+/*------------------WISH FORM LAYOUT---------------------*/
+/*-------------------------------------------------------*/
+
+.wish-layout {
+    background: #728c69;
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    overflow: visible;
+  }
+  
+  .wish-image {
+    flex: 0 0 40%;
+    background-size: cover;
+    background: url('../image/yourwish-1.jpg') center/cover no-repeat;
+  }
+  
+  .wish-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 32px 24px;
+    background: #6b7d58;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+  
+  .wish-content {
+    text-align: center;
+    color: #ffffff;
+    max-width: 800px;
+    width: 100%;
+  }
+  
+  .wish-content h1 {
+    font-size: 70px;
+    margin-bottom: 20px;
+    font-family: "Beautiful", serif;
+  }
+  
+  .wish-content .couple-names {
+    font-size: 28px;
+    margin: 20px 0;
+  }
+  
+  .wish-form {
+    margin: 30px 0;
+  }
+  
+  .wish-form input,
+  .wish-form textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 2px solid #4a5c44;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-family: "Literata", serif;
+    font-size: 16px;
+  }
+  
+  .wish-form textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .qr-codes {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 30px 0;
+  }
+  
+  .qr-code img {
+    width: 140px;
+    height: 140px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .qr-note {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .getting-there-section .map-container {
+    margin-top: 15px;
+  }
+  
+  .submit-btn {
+    margin-top: 10px;
+    padding: 10px 25px;
+    font-size: 20px;
+    background-color: #4a5c44;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: "Playfair Display", serif;
+    margin-bottom: 10px;
+  }
+  
+  .submit-btn:hover {
+    background-color: #5d7456;
+  }
