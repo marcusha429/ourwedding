@@ -17,7 +17,7 @@
   #door-left {
     left: 0;
     width: 33.3333%;
-    background: url("../image/main.webp") center/cover no-repeat;
+    background: url("../image/main.jpg") center/cover no-repeat;
   }
   
   #door-right {
