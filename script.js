@@ -27,7 +27,7 @@ const translations = {
     invitation: "Reception Invitation",
     timetitle: "Time",
     addresstitle: "Location",
-    churchaddress: "Join us at<br> "+
+    churchaddress: "Join us at<br> " +
       "Tan Chi Linh Church<br>" +
       "6/25 Pham Van Hai, Ward 3, Tan Binh District",
     churchtime: "June 28th, 2025<br>" +
@@ -90,13 +90,13 @@ const translations = {
     back: "Quay Lại",
     yourgift: "Quà Mừng Cưới",
 
-      // —— Meet The Bride Form ——
+    // —— Meet The Bride Form ——
     invitation: "Lời Mời Thân Mật",
 
     // —— Church Form ——
     timetitle: "Thời Gian",
     addresstitle: "Địa Điểm",
-    churchaddress: "Hôn lễ được cử hành tại<br>"+
+    churchaddress: "Hôn lễ được cử hành tại<br>" +
       "Thánh Đường Giáo Xứ Tân Chí Linh<br>" +
       "6/25 Phạm Văn Hai, Phường 3, Quận Tân Bình",
     churchtime: "28.06.2025<br>" +
@@ -346,23 +346,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6) 3D Slider (horizontal cover-flow everywhere)
   const ANGLE = 30;
+  const SLIDE_WIDTH_RATIO = 0.7;   // matches your CSS `.slide { width: 70%; }`
+  const MAIN_SCALE = 1.2;
+  const SIDE_SCALE = 0.6;
+  const GAP = 20;        // px of pure space you want between panels
+
   const slides = Array.from(document.querySelectorAll('.slide'));
   const sliderEl = document.querySelector('.slider');
   let curr = 0;
 
   function layout() {
     const W = sliderEl.offsetWidth;
+    const isMobile = window.matchMedia('(max-width: 600px)').matches;
+    
+    // Pre-compute desktop spacing
+    const mainW    = W * SLIDE_WIDTH_RATIO * MAIN_SCALE;
+    const sideW    = W * SLIDE_WIDTH_RATIO * SIDE_SCALE;
+    const spacing  = (mainW/2 + sideW/2) + GAP;
+  
     slides.forEach((slide, i) => {
       const offset = i - curr;
-      const x = offset * (W * 0.5);
-      const rotY = offset * ANGLE;
-      const scale = offset === 0 ? 1.2 : 0.6;
+      let x, rotY, scale, z;
+  
+      if (isMobile) {
+        // Mobile: simple horizontal carousel, no rotation or scaling
+        x     = offset * W;
+        rotY  = 0;
+        scale = 1;
+        z     = slides.length;  
+      } else {
+        // Desktop: 3D cover-flow
+        x     = offset * spacing;
+        rotY  = offset * ANGLE;
+        scale = (offset === 0 ? MAIN_SCALE : SIDE_SCALE);
+        z     = slides.length - Math.abs(offset);
+      }
+  
       slide.style.transform = `
         translateX(${x}px)
         rotateY(${rotY}deg)
         scale(${scale})
       `.trim();
-      slide.style.zIndex = slides.length - Math.abs(offset);
+  
+      slide.style.zIndex = z;
     });
   }
 
@@ -372,10 +398,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.nextSlide = () => { curr = (curr + 1) % slides.length; layout(); };
   window.prevSlide = () => { curr = (curr - 1 + slides.length) % slides.length; layout(); };
 
-
   window.closeGalleryForm = () => {
-    const form = document.getElementById('gallery-form-container');
-    form.style.display = 'none';
+    document.getElementById('gallery-form-container').style.display = 'none';
     document.querySelector('.grid-item.active')?.classList.remove('active');
     curr = 0;
     layout();
