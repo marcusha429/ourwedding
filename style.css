@@ -982,21 +982,6 @@ body {
 }
 
 @font-face {
-  font-family: "E";
-  src: url("fonts/Elegant.ttf") format("opentype");
-}
-
-@font-face {
-  font-family: "Championb";
-  src: url("fonts/Champion-b.ttf") format("opentype");
-}
-
-@font-face {
-  font-family: "Championr";
-  src: url("fonts/Champion-r.ttf") format("opentype");
-}
-
-@font-face {
   font-family: "Beautiful";
   src: url("fonts/beautiful.ttf") format("opentype");
 }
