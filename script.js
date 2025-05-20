@@ -354,6 +354,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const slides = Array.from(document.querySelectorAll('.slide'));
   const sliderEl = document.querySelector('.slider');
   let curr = 0;
+  let touchStartX = 0;
+
+
 
   function layout() {
     const W = sliderEl.offsetWidth;
@@ -391,6 +394,24 @@ document.addEventListener('DOMContentLoaded', () => {
       slide.style.zIndex = z;
     });
   }
+
+  sliderEl.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  
+  sliderEl.addEventListener('touchend', e => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const dx = touchEndX - touchStartX;
+    const THRESHOLD = 50;  // px needed to count as a swipe
+  
+    if (dx > THRESHOLD) {
+      // swipe right → previous slide
+      prevSlide();
+    } else if (dx < -THRESHOLD) {
+      // swipe left → next slide
+      nextSlide();
+    }
+  }, { passive: true });
 
   layout();
   window.addEventListener('resize', layout);
