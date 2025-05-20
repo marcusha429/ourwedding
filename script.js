@@ -70,7 +70,7 @@ const translations = {
   },
   vi: {
     // —— Main ——
-    lovestory: "Chuyện Kể Rằng",
+    lovestory: "Chuyện Chúng Mình",
     ourschedule: "Lịch Trình",
     weddinggallery: "Gallery",
     yourwish: "Gửi Lời Chúc",
@@ -354,64 +354,98 @@ document.addEventListener('DOMContentLoaded', () => {
   const slides = Array.from(document.querySelectorAll('.slide'));
   const sliderEl = document.querySelector('.slider');
   let curr = 0;
-  let touchStartX = 0;
 
 
 
   function layout() {
     const W = sliderEl.offsetWidth;
     const isMobile = window.matchMedia('(max-width: 600px)').matches;
-    
+
     // Pre-compute desktop spacing
-    const mainW    = W * SLIDE_WIDTH_RATIO * MAIN_SCALE;
-    const sideW    = W * SLIDE_WIDTH_RATIO * SIDE_SCALE;
-    const spacing  = (mainW/2 + sideW/2) + GAP;
-  
+    const mainW = W * SLIDE_WIDTH_RATIO * MAIN_SCALE;
+    const sideW = W * SLIDE_WIDTH_RATIO * SIDE_SCALE;
+    const spacing = (mainW / 2 + sideW / 2) + GAP;
+
     slides.forEach((slide, i) => {
       const offset = i - curr;
       let x, rotY, scale, z;
-  
+
       if (isMobile) {
         // Mobile: simple horizontal carousel, no rotation or scaling
-        x     = offset * W;
-        rotY  = 0;
+        x = offset * W;
+        rotY = 0;
         scale = 1;
-        z     = slides.length;  
+        z = slides.length;
       } else {
         // Desktop: 3D cover-flow
-        x     = offset * spacing;
-        rotY  = offset * ANGLE;
+        x = offset * spacing;
+        rotY = offset * ANGLE;
         scale = (offset === 0 ? MAIN_SCALE : SIDE_SCALE);
-        z     = slides.length - Math.abs(offset);
+        z = slides.length - Math.abs(offset);
       }
-  
+
       slide.style.transform = `
         translateX(${x}px)
         rotateY(${rotY}deg)
         scale(${scale})
       `.trim();
-  
+
       slide.style.zIndex = z;
     });
   }
 
+  let touchStartX = 0;
+  let isSwiping = false;
+
   sliderEl.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
+    // Only begin swipe if exactly one finger
+    if (e.touches.length === 1) {
+      isSwiping = true;
+      touchStartX = e.touches[0].clientX;
+    } else {
+      isSwiping = false;
+    }
   }, { passive: true });
-  
+
+  sliderEl.addEventListener('touchmove', e => {
+    // If a second finger lands, cancel the swipe
+    if (e.touches.length > 1) {
+      isSwiping = false;
+    }
+  }, { passive: true });
+
   sliderEl.addEventListener('touchend', e => {
+    // Only process if we’re still in “swipe” mode
+    if (!isSwiping) return;
+
     const touchEndX = e.changedTouches[0].clientX;
     const dx = touchEndX - touchStartX;
-    const THRESHOLD = 50;  // px needed to count as a swipe
-  
+    const THRESHOLD = 50;
+
     if (dx > THRESHOLD) {
-      // swipe right → previous slide
       prevSlide();
     } else if (dx < -THRESHOLD) {
-      // swipe left → next slide
       nextSlide();
     }
   }, { passive: true });
+
+  // sliderEl.addEventListener('touchstart', e => {
+  //   touchStartX = e.touches[0].clientX;
+  // }, { passive: true });
+
+  // sliderEl.addEventListener('touchend', e => {
+  //   const touchEndX = e.changedTouches[0].clientX;
+  //   const dx = touchEndX - touchStartX;
+  //   const THRESHOLD = 50;  // px needed to count as a swipe
+
+  //   if (dx > THRESHOLD) {
+  //     // swipe right → previous slide
+  //     prevSlide();
+  //   } else if (dx < -THRESHOLD) {
+  //     // swipe left → next slide
+  //     nextSlide();
+  //   }
+  // }, { passive: true });
 
   layout();
   window.addEventListener('resize', layout);
