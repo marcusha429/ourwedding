@@ -279,10 +279,37 @@
                   </div>
                 </div>
               </div>
-              <img src="image/restaurant-2.jpg" alt="below Restaurant" class="restaurant-2-img" />
+            </div>
+          </div>
+          <div class="additional-form-redesign"> <!-- Additional Form -->
+            <!-- LEFT: image + title -->
+            <div class="additional-side additional-side--left">
+              <img src="image/restaurant-2.jpg" alt="below Restaurant" class="additional-img" />
               <h2 class="party-title">
                 Let's Party
               </h2>
+            </div>
+
+            <!-- RIGHT: calendar -->
+            <div class="additional-side--right">
+              <div class="calendar-wrapper">
+                <div class="calendar-nav">
+                  <button type="button" id="prev-month">‹</button>
+                  <span id="month-year"></span>
+                  <button type="button" id="next-month">›</button>
+                </div>
+                <table id="calendar">
+                  <thead>
+                    <tr>
+                      <th>Su</th><th>Mo</th><th>Tu</th><th>We</th>
+                      <th>Th</th><th>Fr</th><th>Sa</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- days injected by JS -->
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
           <button class="back-btn" onclick="closeScheduleForm()" data-i18n="back">Back</button>

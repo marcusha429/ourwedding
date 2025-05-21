@@ -358,41 +358,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   function layout() {
-    const W = sliderEl.offsetWidth;
-    const isMobile = window.matchMedia('(max-width: 600px)').matches;
+  const W = sliderEl.offsetWidth;
+  const isMobile = window.matchMedia('(max-width: 600px)').matches;
+  
+  // Pre-compute desktop spacing
+  const mainW    = W * SLIDE_WIDTH_RATIO * MAIN_SCALE;
+  const sideW    = W * SLIDE_WIDTH_RATIO * SIDE_SCALE;
+  const spacing  = (mainW/2 + sideW/2) + GAP;
 
-    // Pre-compute desktop spacing
-    const mainW = W * SLIDE_WIDTH_RATIO * MAIN_SCALE;
-    const sideW = W * SLIDE_WIDTH_RATIO * SIDE_SCALE;
-    const spacing = (mainW / 2 + sideW / 2) + GAP;
+  slides.forEach((slide, i) => {
+    const offset = i - curr;
+    let x, rotY, scale, z;
 
-    slides.forEach((slide, i) => {
-      const offset = i - curr;
-      let x, rotY, scale, z;
+    if (isMobile) {
+      // Mobile: simple horizontal carousel, no rotation or scaling
+      x     = offset * W;
+      rotY  = 0;
+      scale = 1;
+      z     = slides.length;  
+    } else {
+      // Desktop: 3D cover-flow
+      x     = offset * spacing;
+      rotY  = offset * ANGLE;
+      scale = (offset === 0 ? MAIN_SCALE : SIDE_SCALE);
+      z     = slides.length - Math.abs(offset);
+    }
 
-      if (isMobile) {
-        // Mobile: simple horizontal carousel, no rotation or scaling
-        x = offset * W;
-        rotY = 0;
-        scale = 1;
-        z = slides.length;
-      } else {
-        // Desktop: 3D cover-flow
-        x = offset * spacing;
-        rotY = offset * ANGLE;
-        scale = (offset === 0 ? MAIN_SCALE : SIDE_SCALE);
-        z = slides.length - Math.abs(offset);
-      }
+    slide.style.transform = `
+      translateX(${x}px)
+      rotateY(${rotY}deg)
+      scale(${scale})
+    `.trim();
 
-      slide.style.transform = `
-        translateX(${x}px)
-        rotateY(${rotY}deg)
-        scale(${scale})
-      `.trim();
-
-      slide.style.zIndex = z;
-    });
-  }
+    slide.style.zIndex = z;
+  });
+}
 
   let touchStartX = 0;
   let isSwiping = false;
@@ -442,5 +442,66 @@ document.addEventListener('DOMContentLoaded', () => {
     layout();
   };
 });
+
+// ─── Calendar Widget Logic ───
+document.addEventListener('DOMContentLoaded', () => {
+  const today = new Date();
+  let month = today.getMonth(),
+      year  = today.getFullYear(),
+      selectedCell = null;
+
+  const label = document.getElementById('month-year'),
+        body  = document.querySelector('#calendar tbody'),
+        prev  = document.getElementById('prev-month'),
+        next  = document.getElementById('next-month');
+
+  function draw(m, y) {
+    body.innerHTML = '';
+    label.textContent = new Date(y, m)
+      .toLocaleString('default', { month:'long', year:'numeric' });
+    const firstDay = new Date(y, m, 1).getDay(),
+          daysInMonth = new Date(y, m+1, 0).getDate();
+    let row = document.createElement('tr');
+    // blank cells
+    for (let i = 0; i < firstDay; i++) row.appendChild(document.createElement('td'));
+    // days
+    for (let d = 1; d <= daysInMonth; d++) {
+      if (row.children.length === 7) {
+        body.appendChild(row);
+        row = document.createElement('tr');
+      }
+      const cell = document.createElement('td');
+      cell.textContent = d;
+      if (d === today.getDate() && m === today.getMonth() && y === today.getFullYear()) {
+        cell.classList.add('today');
+      }
+      cell.addEventListener('click', () => {
+        if (selectedCell) selectedCell.classList.remove('selected');
+        cell.classList.add('selected');
+        selectedCell = cell;
+        // you can now read `${y}-${m+1}-${d}` as the picked date
+      });
+      row.appendChild(cell);
+    }
+    // fill out to full week
+    while (row.children.length < 7) row.appendChild(document.createElement('td'));
+    body.appendChild(row);
+  }
+
+  prev.addEventListener('click', () => {
+    month = month === 0 ? 11 : month - 1;
+    year = month === 11 && prev ? year - 1 : year;
+    draw(month, year);
+  });
+  next.addEventListener('click', () => {
+    month = month === 11 ? 0 : month + 1;
+    year = month === 0 && next ? year + 1 : year;
+    draw(month, year);
+  });
+
+  draw(month, year);
+});
+
+
 
 

@@ -50,6 +50,7 @@
   
     #schedule-form-container .church-form-redesign,
     #schedule-form-container .restaurant-form-redesign,
+    #schedule-form-container .additional-form-redesign,
     #schedule-form-container .meetbride-form-redesign {
       flex: none;
       width: 100%;
@@ -69,6 +70,7 @@
   
     #schedule-form-container .church-side--left,
     #schedule-form-container .restaurant-side--right,
+    #schedule-form-container .additional-side--left,
     #schedule-form-container .meetbride-side--right {
       background-color: #728c69;
     }
