@@ -238,8 +238,8 @@
 
 .restaurant-img {
   display: block;                /* no inline gaps */
-  width: 60%;                    /* or whatever max you want */
-  max-width: 500px;              /* cap so it doesn’t get too big */
+  width: 70%;                    /* or whatever max you want */
+  max-width: 600px;              /* cap so it doesn’t get too big */
   height: auto;                  /* preserve ratio */
 
   border-radius: 0.75rem;        /* your rounded corners */
@@ -322,6 +322,15 @@
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 16px;
+}
+.party-title {
+  font-family: "Beautiful", serif;
+  font-size: 70px;
+  color: #f5f5f5;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  bottom: 8%;
 }
 
 /* Right calendar side */
