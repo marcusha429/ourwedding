@@ -65,7 +65,10 @@ const translations = {
     inviteat: "invite you to celebrate at Home.",
     meettime: "June 28th, 2025<br />" +
       "1:00 PM (GMT+7)",
-    lastword: "We look forward to sharing this joyful moment!"
+    lastword: "We look forward to sharing this joyful moment!",
+    chatGroom1: "7 years together taught me that love isn't just the beautiful moments but sticking together hrough the ordinary days no matter how far apart we are.<br>"+
+                "From now on, I promise to always be your partner, to support your dream and share all of my bright and blue days to you.<br>" + 
+                "And after that, we're gonna grow old beside each other with laughter and honesty. 🎉"
 
   },
   vi: {
@@ -137,7 +140,10 @@ const translations = {
     meettime: "Ngày 28 tháng 6 năm 2025<br />" +
       "Vào lúc 13:00",
     lastword: " ",
-    ourvows: "Lời Hứa"
+    ourvows: "Lời Hứa",
+    chatGroom1: "7 năm bên nhau đã cho anh biết rằng tình yêu không chỉ là những lúc hạnh phúc, mà là cả những lúc bên nhau dù cách này hay cách khác, dù ở cách xa nhau thế nào.<br>"+
+                "Từ hôm nay, anh sẽ trở thành người chồng, bên em và ủng hộ ước mơ của em, và cũng như chia sẽ hết những ngày vui buồn cùng em.<br>" + 
+                "Và sau đó nữa, chúng ta sẽ cùng già đi với nhau trong những tiếng cười và sự chân thành. 🎉"
   }
 };
 
@@ -472,8 +478,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const cell = document.createElement('td');
       cell.textContent = d;
+      if (y === 2025 && m === 5 && d === 28) {
+        cell.classList.add('thatday');
+        cell.style.pointerEvents = 'none';
+      }
       if (d === today.getDate() && m === today.getMonth() && y === today.getFullYear()) {
         cell.classList.add('today');
+        cell.style.pointerEvents = 'none';
       }
       cell.addEventListener('click', () => {
         if (selectedCell) selectedCell.classList.remove('selected');

@@ -336,13 +336,13 @@
 /* Right calendar side */
 .calendar-wrapper {
   width: 100vw;
-  height: 50vh;
+  max-height: 100vh;
   max-width: 500px;
   margin: 1rem auto;  
   background: #728c69;
   border-radius: 1rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  overflow: hidden;
+  /* box-shadow: 0 4px 16px rgba(0,0,0,0.1); */
+  overflow-y: auto;
   font-family: "Playfair Display", serif;
 }
 
@@ -381,7 +381,7 @@
   text-align: fixed;
 }
 #calendar thead {
-  background: #f0f0f0;
+  background: #728c69;
 }
 #calendar th,
 #calendar td {
@@ -394,12 +394,37 @@
   color: #2f4f36;
   border-radius: 0.5rem;
 }
-#calendar td.selected {
-  background: #2f4f36;
-  color: #fff;
-  border-radius: 50%;
+
+/* Base for both selected and today */
+#calendar td.selected,
+#calendar td.today,
+#calendar td.thatday{
+  /* remove any built-in highlighting */
+  background: none;
+  box-shadow: none;
+  /* center the heart behind the number */
+  background-repeat: no-repeat;
+  background-position: center;
+  /* tweak to taste — makes the heart fill most of the cell */
+  background-size: 75% 75%;
+  /* ensure the number shows above the heart */
+  position: relative;
+  z-index: 1;
+  color: #fff;           /* make sure the number is readable */
 }
+
+/* dark-green heart for your selected date */
+#calendar td.selected {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 29.6'%3E%3Cpath fill='%232f4f36' d='M23.6,0C20.4,0,17.9,2.4,16,4.6C14.1,2.4,11.6,0,8.4,0C3.8,0,0,3.8,0,8.4 c0,9.5,16,21.2,16,21.2s16-11.8,16-21.2C32,3.8,28.2,0,23.6,0z'/%3E%3C/svg%3E");
+}
+
+/* light-green heart for “today” */
 #calendar td.today {
-  box-shadow: inset 0 0 0 2px #728c69;
-  border-radius: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 29.6'%3E%3Cpath fill='%232f4f36' d='M23.6,0C20.4,0,17.9,2.4,16,4.6C14.1,2.4,11.6,0,8.4,0C3.8,0,0,3.8,0,8.4 c0,9.5,16,21.2,16,21.2s16-11.8,16-21.2C32,3.8,28.2,0,23.6,0z'/%3E%3C/svg%3E");
+}
+
+/* light-green heart for “June 28” */
+#calendar td.thatday {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 29.6'%3E%3Cpath fill='%23728c69' stroke='%23ffffff' stroke-width='1.5' d='M23.6,0C20.4,0,17.9,2.4,16,4.6C14.1,2.4,11.6,0,8.4,0C3.8,0,0,3.8,0,8.4 c0,9.5,16,21.2,16,21.2s16-11.8,16-21.2C32,3.8,28.2,0,23.6,0z'/%3E%3C/svg%3E");
+  color: black;
 }
