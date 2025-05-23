@@ -42,6 +42,10 @@
     cursor: pointer;
     position: relative;
   }
+
+  .item-1{
+    background-position: calc(50%) 0%;
+  }
   
   .item-2 {
     background-size: 200%;

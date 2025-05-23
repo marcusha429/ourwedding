@@ -71,7 +71,8 @@ const translations = {
     chatGroom1: "7 years together taught me that love isn't just the beautiful moments but sticking together hrough the ordinary days no matter how far apart we are.<br>"+
                 "From now on, I promise to always be your partner, to support your dream and share all of my bright and blue days to you.<br>" + 
                 "And after that, we're gonna grow old beside each other with laughter and honesty. 🖤",
-    chatBride1: "Darling, from the first time I saw you in the Linear Algebra class at Sai Gon University, I think that I love you. Even though most of the time we couldn't be together, we were still remaining connected and helped each other. And finally, the promise you gave me in the summer of 2019 has come true, congratulations on getting me home. We will continue to make more promises, more plans, and more dreams together. I love you, no matter if it's the first day or the last day. 🩷"
+    chatBride1: "Darling, from the first time I saw you in the Linear Algebra class at Sai Gon University, I think that I love you. Even though most of the time we couldn't be together, we were still remaining connected and helped each other.<br>"+
+    "And finally, the promise you gave me in the summer of 2019 has come true, congratulations on getting me home. We will continue to make more promises, more plans, and more dreams together. I love you, no matter if it's the first day or the last day. 🩷"
   },
   vi: {
     // —— Main ——
@@ -87,8 +88,8 @@ const translations = {
     secs: "Giây",
 
     // —— Wish Form ——
-    yourname: "Hãy ghi tên của bạn vào đây nhé",
-    yourmessage: "Hãy ghi lời chúc của bạn vào đây",
+    yourname: "Bạn tên là...",
+    yourmessage: "Hãy ghi lời chúc của bạn vào đây...",
     sendusyourwish: "Lời Chúc Mừng",
     message: "Hãy để lại lời chúc mừng của bạn bên dưới. Xin gửi lời cảm ơn sâu sắc đến bạn. ",
     send: "Gửi",
@@ -101,8 +102,7 @@ const translations = {
     // —— Church Form ——
     timetitle: "Thời Gian",
     addresstitle: "Địa Điểm",
-    churchaddress: "Hôn lễ được cử hành tại<br>" +
-      "Thánh Đường Giáo Xứ Tân Chí Linh<br>" +
+    churchaddress:"Thánh Đường Giáo Xứ Tân Chí Linh<br>" +
       "6/25 Phạm Văn Hai, Phường 3, Quận Tân Bình",
     churchtime: "28.06.2025<br>" +
       "Vào lúc 16:00",
@@ -112,7 +112,7 @@ const translations = {
     // —— Restaurant Form ——
     weddingdetails: "Lễ Cưới",
     restauranttime: "28.06.2025<br>" +
-      "Vào lúc 18:00<br><br>",
+      "Vào lúc 18:00<br>",
     restaurantaddress: "Asiana Plaza<br>" +
       "Sảnh Alexa - Tầng 10<br>" +
       "284–286 Vườn Lài, Phú Thọ Hòa, Tân Phú<br>",
@@ -148,7 +148,8 @@ const translations = {
     chatGroom1: "7 năm bên nhau đã cho anh biết rằng tình yêu không chỉ là những lúc hạnh phúc, mà là cả những lúc bên nhau dù cách này hay cách khác, dù ở cách xa nhau thế nào.<br>"+
                 "Từ hôm nay, anh sẽ trở thành người chồng, bên em và ủng hộ ước mơ của em, và cũng như chia sẻ hết những ngày vui buồn cùng em.<br>" + 
                 "Và sau đó nữa, chúng ta sẽ cùng già đi với nhau trong những tiếng cười và sự chân thành. 🖤",
-    chatBride1: "Chồng iu ơi, lần đầu tiên nhìn thấy chồng iu ngồi học môn đại số tuyến tính ở đại học Sài Gòn là em đã thích anh rồi. Dù hầu hết thời gian quen nhau mình đều không thể bên cạnh nhau nhưng em cảm thấy tụi mình vẫn luôn đồng hành cùng nhau, giúp đỡ lẫn nhau. Và cuối cùng thì lời hứa của anh vào mùa hè năm 2019 đã thành hiện thực, chúc mừng chồng iu sắp lấy được em về nhà nha.  Tụi mình sẽ lại cùng nhau thực hiện nhiều lời hứa, nhiều dự định, nhiều ước mơ hơn nữa. Em yêu anh, dù là ngày đầu tiên hay sau này. 🩷"
+    chatBride1: "Chồng iu ơi, lần đầu tiên nhìn thấy chồng iu ngồi học môn đại số tuyến tính ở đại học Sài Gòn là em đã thích anh rồi. Dù hầu hết thời gian quen nhau mình đều không thể bên cạnh nhau nhưng em cảm thấy tụi mình vẫn luôn đồng hành cùng nhau, giúp đỡ lẫn nhau.<br>"+ 
+    "Và cuối cùng thì lời hứa của anh vào mùa hè năm 2019 đã thành hiện thực, chúc mừng chồng iu sắp lấy được em về nhà nha.  Tụi mình sẽ lại cùng nhau thực hiện nhiều lời hứa, nhiều dự định, nhiều ước mơ hơn nữa. Em yêu anh, dù là ngày đầu tiên hay sau này. 🩷"
   }
 };
 
