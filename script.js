@@ -35,7 +35,7 @@ const translations = {
       "— St. Clare of Assisi —",
     weddingdetails: "Wedding Details",
     restauranttime: "June 28th, 2025<br>" +
-      "6:00 PM (GMT+7)<br><br>",
+      "6:00 PM (GMT+7)<br>",
     restaurantaddress: "Asiana Plaza Convention Center<br>" +
       "Alexa Hall - 10th Floor<br>" +
       "284–286 Vuon Lai, Phu Tho Hoa, Tan Phu District<br>",
