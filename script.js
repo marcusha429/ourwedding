@@ -27,8 +27,7 @@ const translations = {
     invitation: "Reception Invitation",
     timetitle: "Time",
     addresstitle: "Location",
-    churchaddress: "Join us at<br> " +
-      "Tan Chi Linh Church<br>" +
+    churchaddress:"Tan Chi Linh Church<br>" +
       "6/25 Pham Van Hai, Ward 3, Tan Binh District",
     churchtime: "June 28th, 2025<br>" +
       "4:00 PM (GMT+7)",
@@ -68,7 +67,7 @@ const translations = {
     lastword: "We look forward to sharing this joyful moment!",
     chatBride0: "Hey darling, I want to tell you something.",
     chatGroom0: "I'm listening to you darling, I also have something to tell you.",
-    chatGroom1: "7 years together taught me that love isn't just the beautiful moments but sticking together hrough the ordinary days no matter how far apart we are.<br>"+
+    chatGroom1: "7 years together taught me that love isn't just the beautiful moments but sticking together through the ordinary days no matter how far apart we are.<br>"+
                 "From now on, I promise to always be your partner, to support your dream and share all of my bright and blue days to you.<br>" + 
                 "And after that, we're gonna grow old beside each other with laughter and honesty. 🖤",
     chatBride1: "Darling, from the first time I saw you in the Linear Algebra class at Sai Gon University, I think that I love you. Even though most of the time we couldn't be together, we were still remaining connected and helped each other.<br>"+
